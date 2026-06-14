@@ -1,0 +1,11 @@
+{
+  "phase": "resting_state_baseline_linkage",
+  "baseline_available": true,
+  "baseline_task_name": "Resting state",
+  "baseline_task_path": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Resting state",
+  "baseline_features_available": true,
+  "missing_baseline_features": [],
+  "baseline_features_path": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Resting state\\task_level_eeg_features.json",
+  "baseline_missing_message": "Not available: Resting state baseline missing",
+  "note": "Baseline linkage only. Change-from-baseline features are not computed yet."
+}

@@ -1,0 +1,139 @@
+{
+  "phase": "task_level_feature_completeness_audit",
+  "audit_note": "Completeness audit only. Feature values are not modified and no new features are computed.",
+  "expected_feature_count": 18,
+  "implemented_feature_count": 18,
+  "numeric_feature_count": 18,
+  "not_available_feature_count": 0,
+  "missing_feature_columns": [],
+  "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx",
+  "task_level_eeg_features_json": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\task_level_eeg_features.json",
+  "per_feature": [
+    {
+      "feature": "mean_frontal_theta_power",
+      "present": true,
+      "status": "numeric",
+      "value": 20.50788240435041,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "theta_power_change_from_baseline",
+      "present": true,
+      "status": "numeric",
+      "value": 12.25687106077509,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "theta_power_variability",
+      "present": true,
+      "status": "numeric",
+      "value": 16.32542497402942,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "mean_occipital_alpha_power",
+      "present": true,
+      "status": "numeric",
+      "value": 20.84383758023808,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "alpha_power_change_from_baseline",
+      "present": true,
+      "status": "numeric",
+      "value": -19.43275860509839,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "alpha_power_variability",
+      "present": true,
+      "status": "numeric",
+      "value": 0.8539183335225805,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "mean_theta_alpha_ratio",
+      "present": true,
+      "status": "numeric",
+      "value": 0.9838822781748122,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "theta_alpha_ratio_change_from_baseline",
+      "present": true,
+      "status": "numeric",
+      "value": 0.7790235729950714,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "theta_alpha_ratio_variability",
+      "present": true,
+      "status": "numeric",
+      "value": 19.11825093002026,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "mean_occipital_temporal_theta_plv",
+      "present": true,
+      "status": "numeric",
+      "value": 0.2606721170618559,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "OT_plv_change_from_baseline",
+      "present": true,
+      "status": "numeric",
+      "value": -0.1817542656563264,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "OT_plv_variability",
+      "present": true,
+      "status": "numeric",
+      "value": 0.0744677466842154,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "mean_temporal_frontal_theta_plv",
+      "present": true,
+      "status": "numeric",
+      "value": 0.5894883770520077,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "TF_plv_change_from_baseline",
+      "present": true,
+      "status": "numeric",
+      "value": -0.01150669373033053,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "TF_plv_variability",
+      "present": true,
+      "status": "numeric",
+      "value": 0.4607344921270101,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "mean_occipital_frontal_theta_plv",
+      "present": true,
+      "status": "numeric",
+      "value": 0.205456482730987,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "OF_plv_change_from_baseline",
+      "present": true,
+      "status": "numeric",
+      "value": -0.1846478275447339,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "OF_plv_variability",
+      "present": true,
+      "status": "numeric",
+      "value": 0.1063306607520118,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
+    }
+  ]
+}

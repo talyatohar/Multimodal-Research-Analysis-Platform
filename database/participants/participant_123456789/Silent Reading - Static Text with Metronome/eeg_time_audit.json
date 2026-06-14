@@ -1,0 +1,12 @@
+{
+  "eprime_task_start_utc": "2026-06-09T08:11:00",
+  "eprime_task_end_utc": "2026-06-09T08:12:25",
+  "eeg_recording_start_utc_raw": "2026-06-09T08:10:56+00:00",
+  "eeg_recording_end_utc_raw": "2026-06-09T08:12:28+00:00",
+  "eeg_clock_offset_seconds": 0.0,
+  "eeg_recording_start_utc_adjusted": "2026-06-09T08:10:56+00:00",
+  "eeg_recording_end_utc_adjusted": "2026-06-09T08:12:28+00:00",
+  "raw_overlap_seconds": 85.0,
+  "adjusted_overlap_seconds": 85.0,
+  "warnings": []
+}

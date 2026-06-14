@@ -1,0 +1,22 @@
+{
+  "phase": "metadata_qc",
+  "task_folder": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text",
+  "sources_present": {
+    "eeg_metadata_json": true,
+    "eeg_segment_metadata_json": true,
+    "eeg_time_audit_json": true,
+    "eeg_sync_settings_json": true
+  },
+  "sampling_rate_hz": 500.0,
+  "channel_count": 72,
+  "segment_duration_seconds": 90.0,
+  "partial_overlap": false,
+  "missing_task_start_seconds": 0.0,
+  "missing_task_end_seconds": 0.0,
+  "markers_count": 2,
+  "impedance_available": true,
+  "high_impedance_kohm_threshold": 50.0,
+  "impedance_threshold_note": "Impedance threshold is used for metadata inspection only and is not an exclusion criterion.",
+  "channels_above_metadata_impedance_threshold": [],
+  "eeglab_set_detected": false
+}

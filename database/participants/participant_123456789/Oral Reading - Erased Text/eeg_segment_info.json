@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "read_successful": true,
+  "phase": "raw_signal_access",
+  "bvrf_basename": "Oral_Reading_Erased_Text",
+  "files": {
+    "header": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\EEG_raw\\Oral_Reading_Erased_Text.bvrh",
+    "data": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\EEG_raw\\Oral_Reading_Erased_Text.bvrd",
+    "segment_metadata": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\eeg_segment_metadata.json"
+  },
+  "eeg_start_sample_index": 2000,
+  "eeg_end_sample_index": 46999,
+  "channel_count": 72,
+  "header_channel_count": 72,
+  "sample_count": 45000,
+  "sampling_rate_hz": 500.0,
+  "segment_duration_seconds": 90.0,
+  "shape": [
+    45000,
+    72
+  ],
+  "raw_data_file_size_bytes": 13968000,
+  "channel_count_matches_header": true,
+  "sample_count_matches_indices": true,
+  "sample_count_matches_duration": true,
+  "warnings": []
+}

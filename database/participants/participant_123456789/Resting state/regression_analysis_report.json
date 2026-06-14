@@ -1,0 +1,61 @@
+{
+  "analysis": "task_level_regression",
+  "definition": {
+    "reading_direction": "Hebrew right-to-left",
+    "forward_rule": "delta_x < 0",
+    "regression_candidate_rule": "delta_x > 0",
+    "same_line_rule": "abs(delta_y) < line_transition_threshold_px",
+    "classification_rule": "same_line == True and delta_x > regression_threshold_px",
+    "percentage_rule": "regression_count / total_saccade_count * 100"
+  },
+  "parameters": {
+    "line_transition_threshold_px": 73.5,
+    "regression_threshold_px": 25.0,
+    "line_transition_threshold_source": "auto",
+    "regression_threshold_source": "auto"
+  },
+  "threshold_estimation": {
+    "line_transition_threshold": {
+      "sample_count": 129,
+      "method": "largest_gap_midpoint",
+      "lower_cluster_max": 66.0,
+      "upper_cluster_min": 81.0,
+      "max_gap": 15.0,
+      "median": 23.0,
+      "selected_threshold_px": 73.5
+    },
+    "regression_threshold": {
+      "method": "fallback",
+      "fallback_threshold_px": 25.0,
+      "reason": "no fixation-saccade-fixation transitions"
+    }
+  },
+  "warnings": [
+    "Auto regression threshold estimation failed; using documented fallback 25.0px."
+  ],
+  "validation_summary": {
+    "total_saccade_count": 0,
+    "classifiable_saccade_count": 0,
+    "regression_candidate_count": 0,
+    "same_line_saccade_count": 0,
+    "regression_count": 0,
+    "missing_neighbor_count": 0,
+    "no_previous_fixation_count": 0,
+    "no_next_fixation_count": 0,
+    "missing_coordinate_count": 0,
+    "ignored_intermediate_event_count": 0,
+    "raw_rows_used_for_sequence": 131,
+    "event_sequence_count": 131,
+    "duplicate_rows_collapsed_count": 0,
+    "ignored_event_type_count": 0,
+    "line_transition_excluded_count": 0,
+    "regression_events_path": null
+  },
+  "metrics": {
+    "regression_count": 0,
+    "regression_percentage": null,
+    "mean_regression_distance": null,
+    "mean_regression_duration": null,
+    "regression_duration_variability": null
+  }
+}

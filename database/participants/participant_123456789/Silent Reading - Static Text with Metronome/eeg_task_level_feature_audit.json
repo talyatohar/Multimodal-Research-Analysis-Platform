@@ -1,0 +1,139 @@
+{
+  "phase": "task_level_feature_completeness_audit",
+  "audit_note": "Completeness audit only. Feature values are not modified and no new features are computed.",
+  "expected_feature_count": 18,
+  "implemented_feature_count": 18,
+  "numeric_feature_count": 18,
+  "not_available_feature_count": 0,
+  "missing_feature_columns": [],
+  "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx",
+  "task_level_eeg_features_json": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\task_level_eeg_features.json",
+  "per_feature": [
+    {
+      "feature": "mean_frontal_theta_power",
+      "present": true,
+      "status": "numeric",
+      "value": 15.1601789788075,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "theta_power_change_from_baseline",
+      "present": true,
+      "status": "numeric",
+      "value": 6.909167635232178,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "theta_power_variability",
+      "present": true,
+      "status": "numeric",
+      "value": 11.29768420803575,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "mean_occipital_alpha_power",
+      "present": true,
+      "status": "numeric",
+      "value": 23.50009839618784,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "alpha_power_change_from_baseline",
+      "present": true,
+      "status": "numeric",
+      "value": -16.77649778914863,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "alpha_power_variability",
+      "present": true,
+      "status": "numeric",
+      "value": 1.702291874318388,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "mean_theta_alpha_ratio",
+      "present": true,
+      "status": "numeric",
+      "value": 0.6451112979708529,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "theta_alpha_ratio_change_from_baseline",
+      "present": true,
+      "status": "numeric",
+      "value": 0.4402525927911121,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "theta_alpha_ratio_variability",
+      "present": true,
+      "status": "numeric",
+      "value": 6.636749184131208,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "mean_occipital_temporal_theta_plv",
+      "present": true,
+      "status": "numeric",
+      "value": 0.4873635446032846,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "OT_plv_change_from_baseline",
+      "present": true,
+      "status": "numeric",
+      "value": 0.04493716188510233,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "OT_plv_variability",
+      "present": true,
+      "status": "numeric",
+      "value": 0.1618824069186727,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "mean_temporal_frontal_theta_plv",
+      "present": true,
+      "status": "numeric",
+      "value": 0.6072822250346781,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "TF_plv_change_from_baseline",
+      "present": true,
+      "status": "numeric",
+      "value": 0.006287154252339833,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "TF_plv_variability",
+      "present": true,
+      "status": "numeric",
+      "value": 0.4423272065759059,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "mean_occipital_frontal_theta_plv",
+      "present": true,
+      "status": "numeric",
+      "value": 0.3608426991657382,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "OF_plv_change_from_baseline",
+      "present": true,
+      "status": "numeric",
+      "value": -0.02926161110998271,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
+    },
+    {
+      "feature": "OF_plv_variability",
+      "present": true,
+      "status": "numeric",
+      "value": 0.2381155522318626,
+      "source_file": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
+    }
+  ]
+}

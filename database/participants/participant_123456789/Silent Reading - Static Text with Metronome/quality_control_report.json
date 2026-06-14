@@ -1,0 +1,86 @@
+{
+  "analysis": "task_level_eye_tracking",
+  "segment_path": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\processed_eye_tracking_segment_eprime.xlsx",
+  "sync_window_path": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\sync_window.json",
+  "features_path": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\task_level_eye_tracking_features.xlsx",
+  "quality_control_path": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\quality_control_report.json",
+  "regression_report_path": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\regression_analysis_report.json",
+  "regression_events_path": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\regression_events.xlsx",
+  "loaded_existing": false,
+  "window_type": "eprime",
+  "force_recompute": false,
+  "warnings": [],
+  "missing_columns": [],
+  "interpretation_boundaries": [
+    "Fixation duration alone cannot distinguish visual from cognitive difficulty.",
+    "Saccade timing interpretation depends on reading context.",
+    "EyesNotFound can reflect technical tracking failure, blinks, head movement, or disengagement.",
+    "Pupil diameter is sensitive to lighting, blinks, tracking loss, and validity.",
+    "Validity metrics are quality indicators, not direct behavioral outcomes."
+  ],
+  "implemented_preprocessing": [
+    "Event durations are aggregated by Eye movement type index before task-level metrics.",
+    "Fixation and saccade events require available valid samples across the event.",
+    "EyesNotFound is treated as tracking loss and is not validity-filtered away.",
+    "Pupil means exclude invalid samples and EyesNotFound rows when those columns are available.",
+    "Pupil diameter variability is the standard deviation of the synchronized per-sample left/right pupil average after validity filtering.",
+    "Regression detection uses Hebrew right-to-left reading direction, neighboring fixation transitions, same-line filtering by delta_y, and positive delta_x above the configured threshold."
+  ],
+  "not_implemented_without_defined_parameters": [
+    "Extreme pupil outlier removal",
+    "Pupil smoothing",
+    "Participant-level normalization",
+    "Empirical exclusion thresholds"
+  ],
+  "rows_in_processed_segment": 382,
+  "rows_used_for_task_analysis": 382,
+  "task_duration_ms": 85000.0,
+  "event_counts_after_preprocessing": {
+    "Fixation": 255,
+    "Saccade": 73,
+    "EyesNotFound": 29
+  },
+  "event_duration_totals_ms": {
+    "Fixation": 65957.0,
+    "Saccade": 2710.0,
+    "EyesNotFound": 12990.0
+  },
+  "validity_counts": {
+    "left_valid_samples": 344,
+    "right_valid_samples": 344,
+    "combined_valid_samples": 344,
+    "total_samples": 382
+  },
+  "regression_validation": {
+    "total_saccade_count": 74,
+    "classifiable_saccade_count": 74,
+    "regression_candidate_count": 8,
+    "same_line_saccade_count": 74,
+    "regression_count": 0,
+    "missing_neighbor_count": 0,
+    "no_previous_fixation_count": 0,
+    "no_next_fixation_count": 0,
+    "missing_coordinate_count": 0,
+    "ignored_intermediate_event_count": 61,
+    "raw_rows_used_for_sequence": 382,
+    "event_sequence_count": 382,
+    "duplicate_rows_collapsed_count": 0,
+    "ignored_event_type_count": 46,
+    "line_transition_excluded_count": 8,
+    "regression_events_path": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\regression_events.xlsx"
+  },
+  "regression_parameters": {
+    "line_transition_threshold_px": 292.5,
+    "regression_threshold_px": 183.0,
+    "line_transition_threshold_source": "auto",
+    "regression_threshold_source": "auto"
+  },
+  "regression_metrics": {
+    "regression_count": 0,
+    "regression_percentage": 0.0,
+    "mean_regression_distance": null,
+    "mean_regression_duration": null,
+    "regression_duration_variability": null
+  },
+  "regression_events_rows": 74
+}

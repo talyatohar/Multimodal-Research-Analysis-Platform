@@ -1,0 +1,14 @@
+*** Header Start ***
+Experiment: LazyEyeDemo
+Subject: DEMO001
+SessionStartDateTimeUtc: 09/06/2026 08:07:50
+*** Header End ***
+
+*** LogFrame Start ***
+Procedure: Oral Reading - Erased Text
+FixationStart.OnsetTime: 10000
+FixationStart.OnsetToOnsetTime: 3500
+SixationOpenS.OnsetToOnsetTime: 86500
+TaskName: Oral Reading - Erased Text
+SyntheticDemo: TRUE
+*** LogFrame End ***

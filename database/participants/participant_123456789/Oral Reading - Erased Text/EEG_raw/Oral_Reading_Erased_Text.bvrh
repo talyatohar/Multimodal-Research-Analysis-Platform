@@ -1,0 +1,1993 @@
+{
+   "$schema": "https://www.brainproducts.com/schemas/json/BVRF/BVRFHeader-1.0.0.json",
+   "BVRF": {
+      "Version": "1.0.0"
+   },
+   "BVRFHeaderFile": {
+      "Version": "1.0.0",
+      "SyntheticDemo": true
+   },
+   "EEGModality": {
+      "Amplifiers": [
+         {
+            "Id": "1",
+            "Model": "actiCHamp Plus",
+            "SerialNumber": "25100697"
+         }
+      ],
+      "BVRFFiles": {
+         "DataFile": {
+            "NumericDataType": "Single",
+            "Version": "1.0.0"
+         },
+         "ImpedanceFile": {
+            "Version": "1.0.0"
+         },
+         "MarkerFile": {
+            "Version": "1.0.0"
+         }
+      },
+      "Channels": [
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "Fp1"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "Fp1",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "Fz"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "Fz",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "F3"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "F3",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "F7"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "F7",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "FT9"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "FT9",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "FC5"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "FC5",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "FC1"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "FC1",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "C3"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "C3",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "T7"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "T7",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "TP9"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "TP9",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "CP5"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "CP5",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "CP1"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "CP1",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "Pz"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "Pz",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "P3"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "P3",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "P7"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "P7",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "O1"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "O1",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "Oz"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "Oz",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "O2"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "O2",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "P4"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "P4",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "P8"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "P8",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "TP10"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "TP10",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "CP6"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "CP6",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "CP2"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "CP2",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "Cz"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "Cz",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "C4"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "C4",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "T8"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "T8",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "FT10"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "FT10",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "FC6"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "FC6",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "FC2"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "FC2",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "F4"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "F4",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "F8"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "F8",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "Fp2"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "Fp2",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "AF7"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "AF7",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "AF3"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "AF3",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "AFz"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "AFz",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "F1"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "F1",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "F5"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "F5",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "FT7"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "FT7",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "FC3"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "FC3",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "C1"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "C1",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "C5"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "C5",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "TP7"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "TP7",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "CP3"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "CP3",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "P1"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "P1",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "P5"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "P5",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "PO7"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "PO7",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "PO3"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "PO3",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "POz"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "POz",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "PO4"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "PO4",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "PO8"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "PO8",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "P6"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "P6",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "P2"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "P2",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "CPz"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "CPz",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "CP4"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "CP4",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "TP8"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "TP8",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "C6"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "C6",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "C2"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "C2",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "FC4"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "FC4",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "FT8"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "FT8",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "F6"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "F6",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "AF8"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "AF8",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "AF4"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "AF4",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "F2"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "F2",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "Iz"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "Iz",
+            "ResolutionPerBit": 0.048828125,
+            "Type": "EEG",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "Aux1",
+                  "Section": "Sensors"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "Aux1",
+            "ResolutionPerBit": 0.2980232238769531,
+            "Type": "MISC",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "Aux2",
+                  "Section": "Sensors"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "Aux2",
+            "ResolutionPerBit": 0.2980232238769531,
+            "Type": "MISC",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "Aux3",
+                  "Section": "Sensors"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "Aux3",
+            "ResolutionPerBit": 0.2980232238769531,
+            "Type": "MISC",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "Aux4",
+                  "Section": "Sensors"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "Aux4",
+            "ResolutionPerBit": 0.2980232238769531,
+            "Type": "MISC",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "Aux5",
+                  "Section": "Sensors"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "Aux5",
+            "ResolutionPerBit": 0.2980232238769531,
+            "Type": "MISC",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "Aux6",
+                  "Section": "Sensors"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "Aux6",
+            "ResolutionPerBit": 0.2980232238769531,
+            "Type": "MISC",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "Aux7",
+                  "Section": "Sensors"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "Aux7",
+            "ResolutionPerBit": 0.2980232238769531,
+            "Type": "MISC",
+            "Unit": "µV"
+         },
+         {
+            "Composition": {
+               "Plus": {
+                  "Name": "Aux8",
+                  "Section": "Sensors"
+               }
+            },
+            "FilterIds": [
+               "1"
+            ],
+            "Name": "Aux8",
+            "ResolutionPerBit": 0.2980232238769531,
+            "Type": "MISC",
+            "Unit": "µV"
+         }
+      ],
+      "CoordinateSystems": {
+         "EEGCoordinateSystem": "Easycap",
+         "EEGCoordinateSystemDescription": "RAS orientation; origin at intersection between line through T7 and T8 and line though Oz and Fpz",
+         "EEGCoordinateSystemSource": "GACS-64_REF.bvef",
+         "EEGCoordinateUnit": "mm"
+      },
+      "DataSpecific": {
+         "SamplingFrequencyInHertz": 500
+      },
+      "Electrodes": [
+         {
+            "Coordinates": [
+               0,
+               92.3098669932993,
+               0
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "GND",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "GND"
+            }
+         },
+         {
+            "Coordinates": [
+               -28.525317649420515,
+               87.79190052231621,
+               0
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "Fp1",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "1"
+            }
+         },
+         {
+            "Coordinates": [
+               0,
+               65.2729329213902,
+               65.2729329213902
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "Fz",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "2"
+            }
+         },
+         {
+            "Coordinates": [
+               -50.309564829267984,
+               62.12713855417885,
+               46.154933496649655
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "F3",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "3"
+            }
+         },
+         {
+            "Coordinates": [
+               -74.68025114607016,
+               54.25837845974107,
+               0
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "F7",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "4"
+            }
+         },
+         {
+            "Coordinates": [
+               -80.8128705246059,
+               26.25769334256414,
+               -36.068338500986584
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "FT9",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "5"
+            }
+         },
+         {
+            "Coordinates": [
+               -79.90348533748303,
+               32.283103611978056,
+               33.08089775718807
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "FC5",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "6"
+            }
+         },
+         {
+            "Coordinates": [
+               -33.02620972691553,
+               34.19964132182599,
+               79.12499951881738
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "FC1",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "7"
+            }
+         },
+         {
+            "Coordinates": [
+               -65.2729329213902,
+               0,
+               65.2729329213902
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "C3",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "8"
+            }
+         },
+         {
+            "Coordinates": [
+               -92.3098669932993,
+               0,
+               0
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "T7",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "9"
+            }
+         },
+         {
+            "Coordinates": [
+               -80.8128705246059,
+               -26.25769334256414,
+               -36.068338500986584
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "TP9",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "10"
+            }
+         },
+         {
+            "Coordinates": [
+               -80.45473349493808,
+               -30.88367863706595,
+               33.08089775718807
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "CP5",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "11"
+            }
+         },
+         {
+            "Coordinates": [
+               -33.02620972691553,
+               -34.19964132182599,
+               79.12499951881738
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "CP1",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "12"
+            }
+         },
+         {
+            "Coordinates": [
+               0,
+               -65.2729329213902,
+               65.2729329213902
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "Pz",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "13"
+            }
+         },
+         {
+            "Coordinates": [
+               -50.309564829267984,
+               -62.12713855417885,
+               46.154933496649655
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "P3",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "14"
+            }
+         },
+         {
+            "Coordinates": [
+               -74.68025114607016,
+               -54.25837845974107,
+               0
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "P7",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "15"
+            }
+         },
+         {
+            "Coordinates": [
+               -28.525317649420515,
+               -87.79190052231621,
+               0
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "O1",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "16"
+            }
+         },
+         {
+            "Coordinates": [
+               0,
+               -92.3098669932993,
+               0
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "Oz",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "17"
+            }
+         },
+         {
+            "Coordinates": [
+               28.525317649420515,
+               -87.79190052231621,
+               0
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "O2",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "18"
+            }
+         },
+         {
+            "Coordinates": [
+               50.309564829267984,
+               -62.12713855417885,
+               46.154933496649655
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "P4",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "19"
+            }
+         },
+         {
+            "Coordinates": [
+               74.68025114607016,
+               -54.25837845974107,
+               0
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "P8",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "20"
+            }
+         },
+         {
+            "Coordinates": [
+               80.8128705246059,
+               -26.25769334256414,
+               -36.068338500986584
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "TP10",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "21"
+            }
+         },
+         {
+            "Coordinates": [
+               80.45473349493808,
+               -30.88367863706595,
+               33.08089775718807
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "CP6",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "22"
+            }
+         },
+         {
+            "Coordinates": [
+               33.02620972691553,
+               -34.19964132182599,
+               79.12499951881738
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "CP2",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "23"
+            }
+         },
+         {
+            "Coordinates": [
+               0,
+               0,
+               92.3098669932993
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "Cz",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "24"
+            }
+         },
+         {
+            "Coordinates": [
+               65.2729329213902,
+               0,
+               65.2729329213902
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "C4",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "25"
+            }
+         },
+         {
+            "Coordinates": [
+               92.3098669932993,
+               0,
+               0
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "T8",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "26"
+            }
+         },
+         {
+            "Coordinates": [
+               80.8128705246059,
+               26.25769334256414,
+               -36.068338500986584
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "FT10",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "27"
+            }
+         },
+         {
+            "Coordinates": [
+               80.45473349493808,
+               30.88367863706595,
+               33.08089775718807
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "FC6",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "28"
+            }
+         },
+         {
+            "Coordinates": [
+               33.02620972691553,
+               34.19964132182599,
+               79.12499951881738
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "FC2",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "29"
+            }
+         },
+         {
+            "Coordinates": [
+               50.309564829267984,
+               62.12713855417885,
+               46.154933496649655
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "F4",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "30"
+            }
+         },
+         {
+            "Coordinates": [
+               74.68025114607016,
+               54.25837845974107,
+               0
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "F8",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "31"
+            }
+         },
+         {
+            "Coordinates": [
+               28.525317649420515,
+               87.79190052231621,
+               0
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "Fp2",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "32"
+            }
+         },
+         {
+            "Coordinates": [
+               -54.25837845974107,
+               74.68025114607016,
+               0
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "AF7",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "33"
+            }
+         },
+         {
+            "Coordinates": [
+               -33.24031872073049,
+               82.27267586904765,
+               25.444047653851904
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "AF3",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "34"
+            }
+         },
+         {
+            "Coordinates": [
+               0,
+               84.97168058888121,
+               36.06833850098661
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "AFz",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "35"
+            }
+         },
+         {
+            "Coordinates": [
+               -26.097770351398044,
+               64.59424830022289,
+               60.56072170586681
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "F1",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "36"
+            }
+         },
+         {
+            "Coordinates": [
+               -66.96835407897031,
+               58.21470205423009,
+               25.444047653851904
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "F5",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "37"
+            }
+         },
+         {
+            "Coordinates": [
+               -87.79190052231621,
+               28.52531764942051,
+               0
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "FT7",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "38"
+            }
+         },
+         {
+            "Coordinates": [
+               -60.93225443148703,
+               33.775300156796355,
+               60.56072170586681
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "FC3",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "39"
+            }
+         },
+         {
+            "Coordinates": [
+               -36.06833850098659,
+               0,
+               84.97168058888123
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "C1",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "40"
+            }
+         },
+         {
+            "Coordinates": [
+               -85.5882182933947,
+               0,
+               34.57988481303578
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "C5",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "41"
+            }
+         },
+         {
+            "Coordinates": [
+               -87.79190052231621,
+               -28.52531764942051,
+               0
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "TP7",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "42"
+            }
+         },
+         {
+            "Coordinates": [
+               -60.93225443148703,
+               -33.775300156796355,
+               60.56072170586681
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "CP3",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "43"
+            }
+         },
+         {
+            "Coordinates": [
+               -26.097770351398044,
+               -64.59424830022289,
+               60.56072170586681
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "P1",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "44"
+            }
+         },
+         {
+            "Coordinates": [
+               -66.96835407897031,
+               -58.21470205423009,
+               25.444047653851904
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "P5",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "45"
+            }
+         },
+         {
+            "Coordinates": [
+               -54.25837845974107,
+               -74.68025114607016,
+               0
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "PO7",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "46"
+            }
+         },
+         {
+            "Coordinates": [
+               -33.24031872073049,
+               -82.27267586904765,
+               25.444047653851904
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "PO3",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "47"
+            }
+         },
+         {
+            "Coordinates": [
+               0,
+               -84.97168058888121,
+               36.06833850098661
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "POz",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "48"
+            }
+         },
+         {
+            "Coordinates": [
+               33.24031872073049,
+               -82.27267586904765,
+               25.444047653851904
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "PO4",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "49"
+            }
+         },
+         {
+            "Coordinates": [
+               54.25837845974107,
+               -74.68025114607016,
+               0
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "PO8",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "50"
+            }
+         },
+         {
+            "Coordinates": [
+               66.96835407897031,
+               -58.21470205423009,
+               25.444047653851904
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "P6",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "51"
+            }
+         },
+         {
+            "Coordinates": [
+               26.097770351398044,
+               -64.59424830022289,
+               60.56072170586681
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "P2",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "52"
+            }
+         },
+         {
+            "Coordinates": [
+               0,
+               -34.57988481303578,
+               85.5882182933947
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "CPz",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "53"
+            }
+         },
+         {
+            "Coordinates": [
+               60.93225443148703,
+               -33.775300156796355,
+               60.56072170586681
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "CP4",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "54"
+            }
+         },
+         {
+            "Coordinates": [
+               87.79190052231621,
+               -28.52531764942051,
+               0
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "TP8",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "55"
+            }
+         },
+         {
+            "Coordinates": [
+               85.5882182933947,
+               0,
+               34.57988481303578
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "C6",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "56"
+            }
+         },
+         {
+            "Coordinates": [
+               36.06833850098659,
+               0,
+               84.97168058888123
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "C2",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "57"
+            }
+         },
+         {
+            "Coordinates": [
+               60.93225443148703,
+               33.775300156796355,
+               60.56072170586681
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "FC4",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "58"
+            }
+         },
+         {
+            "Coordinates": [
+               87.79190052231621,
+               28.52531764942051,
+               0
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "FT8",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "59"
+            }
+         },
+         {
+            "Coordinates": [
+               66.96835407897031,
+               58.21470205423009,
+               25.444047653851904
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "F6",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "60"
+            }
+         },
+         {
+            "Coordinates": [
+               54.25837845974107,
+               74.68025114607016,
+               0
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "AF8",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "61"
+            }
+         },
+         {
+            "Coordinates": [
+               33.24031872073049,
+               82.27267586904765,
+               25.444047653851904
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "AF4",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "62"
+            }
+         },
+         {
+            "Coordinates": [
+               26.097770351398044,
+               64.59424830022289,
+               60.56072170586681
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "F2",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "63"
+            }
+         },
+         {
+            "Coordinates": [
+               0,
+               -85.5882182933947,
+               -34.57988481303579
+            ],
+            "ElectrodeCategory": "Active",
+            "Name": "Iz",
+            "PhysicalInput": {
+               "AmplifierId": "1",
+               "Id": "64"
+            }
+         }
+      ],
+      "Filters": [
+         {
+            "Domain": "Digital",
+            "FrequencyInHertz": 130,
+            "Id": "1",
+            "Type": "Lowpass"
+         }
+      ],
+      "Grounds": [
+         {
+            "Composition": [
+               {
+                  "Name": "GND"
+               }
+            ],
+            "Name": "GND"
+         }
+      ],
+      "Sensors": [
+         {
+            "Name": "Aux1",
+            "PhysicalInputs": {
+               "Ids": [
+                  "AUX 1"
+               ]
+            }
+         },
+         {
+            "Name": "Aux2",
+            "PhysicalInputs": {
+               "Ids": [
+                  "AUX 2"
+               ]
+            }
+         },
+         {
+            "Name": "Aux3",
+            "PhysicalInputs": {
+               "Ids": [
+                  "AUX 3"
+               ]
+            }
+         },
+         {
+            "Name": "Aux4",
+            "PhysicalInputs": {
+               "Ids": [
+                  "AUX 4"
+               ]
+            }
+         },
+         {
+            "Name": "Aux5",
+            "PhysicalInputs": {
+               "Ids": [
+                  "AUX 5"
+               ]
+            }
+         },
+         {
+            "Name": "Aux6",
+            "PhysicalInputs": {
+               "Ids": [
+                  "AUX 6"
+               ]
+            }
+         },
+         {
+            "Name": "Aux7",
+            "PhysicalInputs": {
+               "Ids": [
+                  "AUX 7"
+               ]
+            }
+         },
+         {
+            "Name": "Aux8",
+            "PhysicalInputs": {
+               "Ids": [
+                  "AUX 8"
+               ]
+            }
+         }
+      ]
+   },
+   "RecordingSoftware": {
+      "Name": "BrainVision Recorder - Synthetic Demo",
+      "Version": "2.1.0"
+   }
+}

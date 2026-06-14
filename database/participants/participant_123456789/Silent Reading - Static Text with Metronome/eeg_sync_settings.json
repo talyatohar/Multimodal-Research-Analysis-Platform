@@ -1,0 +1,4 @@
+{
+  "eeg_clock_offset_seconds": 0.0,
+  "definition": "EEG_PC_time - EPRIME_TOBII_PC_time (seconds)"
+}

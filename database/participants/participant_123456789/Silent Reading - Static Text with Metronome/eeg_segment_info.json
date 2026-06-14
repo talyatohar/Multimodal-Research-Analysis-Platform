@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "read_successful": true,
+  "phase": "raw_signal_access",
+  "bvrf_basename": "Silent_Static_Metronome",
+  "files": {
+    "header": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\EEG_raw\\Silent_Static_Metronome.bvrh",
+    "data": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\EEG_raw\\Silent_Static_Metronome.bvrd",
+    "segment_metadata": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\eeg_segment_metadata.json"
+  },
+  "eeg_start_sample_index": 2000,
+  "eeg_end_sample_index": 44499,
+  "channel_count": 72,
+  "header_channel_count": 72,
+  "sample_count": 42500,
+  "sampling_rate_hz": 500.0,
+  "segment_duration_seconds": 85.0,
+  "shape": [
+    42500,
+    72
+  ],
+  "raw_data_file_size_bytes": 13248000,
+  "channel_count_matches_header": true,
+  "sample_count_matches_indices": true,
+  "sample_count_matches_duration": true,
+  "warnings": []
+}

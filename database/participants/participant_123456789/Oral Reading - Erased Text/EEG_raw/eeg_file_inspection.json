@@ -1,0 +1,37 @@
+{
+  "format": "BVRF",
+  "eeg_raw_folder": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\EEG_raw",
+  "warnings": [],
+  "recording_sets": [
+    {
+      "basename": "Oral_Reading_Erased_Text",
+      "header_file": {
+        "path": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\EEG_raw\\Oral_Reading_Erased_Text.bvrh",
+        "size_bytes": 48605
+      },
+      "data_file": {
+        "path": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\EEG_raw\\Oral_Reading_Erased_Text.bvrd",
+        "size_bytes": 13968000
+      },
+      "marker_file": {
+        "path": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\EEG_raw\\Oral_Reading_Erased_Text.bvrm",
+        "size_bytes": 309
+      },
+      "impedance_file": {
+        "path": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\EEG_raw\\Oral_Reading_Erased_Text.bvri",
+        "size_bytes": 489
+      },
+      "file_sizes_bytes": {
+        "header": 48605,
+        "data": 13968000,
+        "marker": 309,
+        "impedance": 489
+      },
+      "number_of_channels": 72,
+      "sampling_rate_hz": 500.0,
+      "recording_start_time": "2026-06-09T08:07:56+00:00",
+      "missing_required_files": [],
+      "missing_optional_files": []
+    }
+  ]
+}

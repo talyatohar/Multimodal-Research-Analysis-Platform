@@ -1,0 +1,86 @@
+{
+  "analysis": "task_level_eye_tracking",
+  "segment_path": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\processed_eye_tracking_segment_eprime.xlsx",
+  "sync_window_path": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\sync_window.json",
+  "features_path": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\task_level_eye_tracking_features.xlsx",
+  "quality_control_path": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\quality_control_report.json",
+  "regression_report_path": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\regression_analysis_report.json",
+  "regression_events_path": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\regression_events.xlsx",
+  "loaded_existing": false,
+  "window_type": "eprime",
+  "force_recompute": false,
+  "warnings": [],
+  "missing_columns": [],
+  "interpretation_boundaries": [
+    "Fixation duration alone cannot distinguish visual from cognitive difficulty.",
+    "Saccade timing interpretation depends on reading context.",
+    "EyesNotFound can reflect technical tracking failure, blinks, head movement, or disengagement.",
+    "Pupil diameter is sensitive to lighting, blinks, tracking loss, and validity.",
+    "Validity metrics are quality indicators, not direct behavioral outcomes."
+  ],
+  "implemented_preprocessing": [
+    "Event durations are aggregated by Eye movement type index before task-level metrics.",
+    "Fixation and saccade events require available valid samples across the event.",
+    "EyesNotFound is treated as tracking loss and is not validity-filtered away.",
+    "Pupil means exclude invalid samples and EyesNotFound rows when those columns are available.",
+    "Pupil diameter variability is the standard deviation of the synchronized per-sample left/right pupil average after validity filtering.",
+    "Regression detection uses Hebrew right-to-left reading direction, neighboring fixation transitions, same-line filtering by delta_y, and positive delta_x above the configured threshold."
+  ],
+  "not_implemented_without_defined_parameters": [
+    "Extreme pupil outlier removal",
+    "Pupil smoothing",
+    "Participant-level normalization",
+    "Empirical exclusion thresholds"
+  ],
+  "rows_in_processed_segment": 414,
+  "rows_used_for_task_analysis": 414,
+  "task_duration_ms": 90000.0,
+  "event_counts_after_preprocessing": {
+    "Fixation": 275,
+    "Saccade": 88,
+    "EyesNotFound": 27
+  },
+  "event_duration_totals_ms": {
+    "Fixation": 71243.0,
+    "Saccade": 3245.0,
+    "EyesNotFound": 11720.0
+  },
+  "validity_counts": {
+    "left_valid_samples": 377,
+    "right_valid_samples": 377,
+    "combined_valid_samples": 377,
+    "total_samples": 414
+  },
+  "regression_validation": {
+    "total_saccade_count": 88,
+    "classifiable_saccade_count": 88,
+    "regression_candidate_count": 23,
+    "same_line_saccade_count": 88,
+    "regression_count": 9,
+    "missing_neighbor_count": 0,
+    "no_previous_fixation_count": 0,
+    "no_next_fixation_count": 0,
+    "missing_coordinate_count": 0,
+    "ignored_intermediate_event_count": 66,
+    "raw_rows_used_for_sequence": 414,
+    "event_sequence_count": 414,
+    "duplicate_rows_collapsed_count": 0,
+    "ignored_event_type_count": 42,
+    "line_transition_excluded_count": 14,
+    "regression_events_path": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Oral Reading - Erased Text\\regression_events.xlsx"
+  },
+  "regression_parameters": {
+    "line_transition_threshold_px": 292.5,
+    "regression_threshold_px": 192.0,
+    "line_transition_threshold_source": "auto",
+    "regression_threshold_source": "auto"
+  },
+  "regression_metrics": {
+    "regression_count": 9,
+    "regression_percentage": 10.227272727272728,
+    "mean_regression_distance": 675.0,
+    "mean_regression_duration": 36.77777777777778,
+    "regression_duration_variability": 12.567595014339238
+  },
+  "regression_events_rows": 88
+}

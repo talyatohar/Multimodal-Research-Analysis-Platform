@@ -1,0 +1,63 @@
+{
+  "analysis": "task_level_regression",
+  "definition": {
+    "reading_direction": "Hebrew right-to-left",
+    "forward_rule": "delta_x < 0",
+    "regression_candidate_rule": "delta_x > 0",
+    "same_line_rule": "abs(delta_y) < line_transition_threshold_px",
+    "classification_rule": "same_line == True and delta_x > regression_threshold_px",
+    "percentage_rule": "regression_count / total_saccade_count * 100"
+  },
+  "parameters": {
+    "line_transition_threshold_px": 292.5,
+    "regression_threshold_px": 183.0,
+    "line_transition_threshold_source": "auto",
+    "regression_threshold_source": "auto"
+  },
+  "threshold_estimation": {
+    "line_transition_threshold": {
+      "sample_count": 12,
+      "method": "largest_gap_midpoint",
+      "lower_cluster_max": 65.0,
+      "upper_cluster_min": 520.0,
+      "max_gap": 455.0,
+      "median": 65.0,
+      "selected_threshold_px": 292.5
+    },
+    "regression_threshold": {
+      "sample_count": 74,
+      "method": "lower_distribution_percentile",
+      "lower_distribution_p75": 61.0,
+      "multiplier": 3.0,
+      "raw_threshold": 183.0,
+      "selected_threshold_px": 183.0,
+      "transition_count": 74
+    }
+  },
+  "warnings": [],
+  "validation_summary": {
+    "total_saccade_count": 74,
+    "classifiable_saccade_count": 74,
+    "regression_candidate_count": 8,
+    "same_line_saccade_count": 74,
+    "regression_count": 0,
+    "missing_neighbor_count": 0,
+    "no_previous_fixation_count": 0,
+    "no_next_fixation_count": 0,
+    "missing_coordinate_count": 0,
+    "ignored_intermediate_event_count": 61,
+    "raw_rows_used_for_sequence": 382,
+    "event_sequence_count": 382,
+    "duplicate_rows_collapsed_count": 0,
+    "ignored_event_type_count": 46,
+    "line_transition_excluded_count": 8,
+    "regression_events_path": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\regression_events.xlsx"
+  },
+  "metrics": {
+    "regression_count": 0,
+    "regression_percentage": 0.0,
+    "mean_regression_distance": null,
+    "mean_regression_duration": null,
+    "regression_duration_variability": null
+  }
+}

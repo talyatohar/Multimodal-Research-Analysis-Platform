@@ -1,0 +1,37 @@
+{
+  "format": "BVRF",
+  "eeg_raw_folder": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\EEG_raw",
+  "warnings": [],
+  "recording_sets": [
+    {
+      "basename": "Silent_Static_Metronome",
+      "header_file": {
+        "path": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\EEG_raw\\Silent_Static_Metronome.bvrh",
+        "size_bytes": 48605
+      },
+      "data_file": {
+        "path": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\EEG_raw\\Silent_Static_Metronome.bvrd",
+        "size_bytes": 13248000
+      },
+      "marker_file": {
+        "path": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\EEG_raw\\Silent_Static_Metronome.bvrm",
+        "size_bytes": 309
+      },
+      "impedance_file": {
+        "path": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\EEG_raw\\Silent_Static_Metronome.bvri",
+        "size_bytes": 482
+      },
+      "file_sizes_bytes": {
+        "header": 48605,
+        "data": 13248000,
+        "marker": 309,
+        "impedance": 482
+      },
+      "number_of_channels": 72,
+      "sampling_rate_hz": 500.0,
+      "recording_start_time": "2026-06-09T08:10:56+00:00",
+      "missing_required_files": [],
+      "missing_optional_files": []
+    }
+  ]
+}

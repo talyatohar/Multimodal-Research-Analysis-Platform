@@ -1,0 +1,879 @@
+{
+  "format": "BVRF",
+  "phase": "inspection_only",
+  "eeg_raw_folder": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Resting state\\EEG_raw",
+  "warnings": [],
+  "recordings": [
+    {
+      "basename": "Resting_state",
+      "sampling_rate_hz": 500.0,
+      "channel_count": 72,
+      "channels": [
+        {
+          "order": 1,
+          "name": "Fp1",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 2,
+          "name": "Fz",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 3,
+          "name": "F3",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 4,
+          "name": "F7",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 5,
+          "name": "FT9",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 6,
+          "name": "FC5",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 7,
+          "name": "FC1",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 8,
+          "name": "C3",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 9,
+          "name": "T7",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 10,
+          "name": "TP9",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 11,
+          "name": "CP5",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 12,
+          "name": "CP1",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 13,
+          "name": "Pz",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 14,
+          "name": "P3",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 15,
+          "name": "P7",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 16,
+          "name": "O1",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 17,
+          "name": "Oz",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 18,
+          "name": "O2",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 19,
+          "name": "P4",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 20,
+          "name": "P8",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 21,
+          "name": "TP10",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 22,
+          "name": "CP6",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 23,
+          "name": "CP2",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 24,
+          "name": "Cz",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 25,
+          "name": "C4",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 26,
+          "name": "T8",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 27,
+          "name": "FT10",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 28,
+          "name": "FC6",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 29,
+          "name": "FC2",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 30,
+          "name": "F4",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 31,
+          "name": "F8",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 32,
+          "name": "Fp2",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 33,
+          "name": "AF7",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 34,
+          "name": "AF3",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 35,
+          "name": "AFz",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 36,
+          "name": "F1",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 37,
+          "name": "F5",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 38,
+          "name": "FT7",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 39,
+          "name": "FC3",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 40,
+          "name": "C1",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 41,
+          "name": "C5",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 42,
+          "name": "TP7",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 43,
+          "name": "CP3",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 44,
+          "name": "P1",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 45,
+          "name": "P5",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 46,
+          "name": "PO7",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 47,
+          "name": "PO3",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 48,
+          "name": "POz",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 49,
+          "name": "PO4",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 50,
+          "name": "PO8",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 51,
+          "name": "P6",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 52,
+          "name": "P2",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 53,
+          "name": "CPz",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 54,
+          "name": "CP4",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 55,
+          "name": "TP8",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 56,
+          "name": "C6",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 57,
+          "name": "C2",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 58,
+          "name": "FC4",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 59,
+          "name": "FT8",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 60,
+          "name": "F6",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 61,
+          "name": "AF8",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 62,
+          "name": "AF4",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 63,
+          "name": "F2",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 64,
+          "name": "Iz",
+          "type": "EEG",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 65,
+          "name": "Aux1",
+          "type": "MISC",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 66,
+          "name": "Aux2",
+          "type": "MISC",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 67,
+          "name": "Aux3",
+          "type": "MISC",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 68,
+          "name": "Aux4",
+          "type": "MISC",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 69,
+          "name": "Aux5",
+          "type": "MISC",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 70,
+          "name": "Aux6",
+          "type": "MISC",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 71,
+          "name": "Aux7",
+          "type": "MISC",
+          "unit": "\u00b5V"
+        },
+        {
+          "order": 72,
+          "name": "Aux8",
+          "type": "MISC",
+          "unit": "\u00b5V"
+        }
+      ],
+      "amplifier": {
+        "Id": "1",
+        "Model": "actiCHamp Plus",
+        "SerialNumber": "25100697"
+      },
+      "recording_software": {
+        "Name": "BrainVision Recorder - Synthetic Demo",
+        "Version": "2.1.0"
+      },
+      "recording_start_time": "2026-06-09T08:04:56+00:00",
+      "recording_end_time": "2026-06-09T08:06:03+00:00",
+      "duration_seconds": 67.0,
+      "sample_count": 33500,
+      "markers_count": 2,
+      "markers": [
+        {
+          "sample": "0",
+          "type": "Recording Info",
+          "code": "Saving",
+          "datetime": "2026-06-09T11:04:56.000000+03:00",
+          "comment": "Synthetic recording start"
+        },
+        {
+          "sample": "33499",
+          "type": "Recording Info",
+          "code": null,
+          "datetime": "2026-06-09T11:06:03.000000+03:00",
+          "comment": "Synthetic recording end"
+        }
+      ],
+      "impedance_qc": [
+        {
+          "electrode": "GND",
+          "participant_id": null,
+          "impedance_kohm": 17.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "Fp1",
+          "participant_id": null,
+          "impedance_kohm": 12.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "Fz",
+          "participant_id": null,
+          "impedance_kohm": 3.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "F3",
+          "participant_id": null,
+          "impedance_kohm": 23.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "F7",
+          "participant_id": null,
+          "impedance_kohm": 6.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "FT9",
+          "participant_id": null,
+          "impedance_kohm": 22.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "FC5",
+          "participant_id": null,
+          "impedance_kohm": 28.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "FC1",
+          "participant_id": null,
+          "impedance_kohm": 8.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "C3",
+          "participant_id": null,
+          "impedance_kohm": 8.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "T7",
+          "participant_id": null,
+          "impedance_kohm": 22.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "TP9",
+          "participant_id": null,
+          "impedance_kohm": 14.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "CP5",
+          "participant_id": null,
+          "impedance_kohm": 32.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "CP1",
+          "participant_id": null,
+          "impedance_kohm": 9.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "Pz",
+          "participant_id": null,
+          "impedance_kohm": 26.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "P3",
+          "participant_id": null,
+          "impedance_kohm": 31.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "P7",
+          "participant_id": null,
+          "impedance_kohm": 31.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "O1",
+          "participant_id": null,
+          "impedance_kohm": 7.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "Oz",
+          "participant_id": null,
+          "impedance_kohm": 15.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "O2",
+          "participant_id": null,
+          "impedance_kohm": 29.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "P4",
+          "participant_id": null,
+          "impedance_kohm": 10.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "P8",
+          "participant_id": null,
+          "impedance_kohm": 11.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "TP10",
+          "participant_id": null,
+          "impedance_kohm": 5.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "CP6",
+          "participant_id": null,
+          "impedance_kohm": 28.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "CP2",
+          "participant_id": null,
+          "impedance_kohm": 15.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "Cz",
+          "participant_id": null,
+          "impedance_kohm": 5.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "C4",
+          "participant_id": null,
+          "impedance_kohm": 6.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "T8",
+          "participant_id": null,
+          "impedance_kohm": 34.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "FT10",
+          "participant_id": null,
+          "impedance_kohm": 32.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "FC6",
+          "participant_id": null,
+          "impedance_kohm": 25.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "FC2",
+          "participant_id": null,
+          "impedance_kohm": 28.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "F4",
+          "participant_id": null,
+          "impedance_kohm": 32.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "F8",
+          "participant_id": null,
+          "impedance_kohm": 18.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "Fp2",
+          "participant_id": null,
+          "impedance_kohm": 27.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "AF7",
+          "participant_id": null,
+          "impedance_kohm": 25.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "AF3",
+          "participant_id": null,
+          "impedance_kohm": 17.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "AFz",
+          "participant_id": null,
+          "impedance_kohm": 20.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "F1",
+          "participant_id": null,
+          "impedance_kohm": 34.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "F5",
+          "participant_id": null,
+          "impedance_kohm": 22.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "FT7",
+          "participant_id": null,
+          "impedance_kohm": 26.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "FC3",
+          "participant_id": null,
+          "impedance_kohm": 22.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "C1",
+          "participant_id": null,
+          "impedance_kohm": 34.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "C5",
+          "participant_id": null,
+          "impedance_kohm": 34.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "TP7",
+          "participant_id": null,
+          "impedance_kohm": 19.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "CP3",
+          "participant_id": null,
+          "impedance_kohm": 20.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "P1",
+          "participant_id": null,
+          "impedance_kohm": 14.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "P5",
+          "participant_id": null,
+          "impedance_kohm": 23.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "PO7",
+          "participant_id": null,
+          "impedance_kohm": 16.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "PO3",
+          "participant_id": null,
+          "impedance_kohm": 8.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "POz",
+          "participant_id": null,
+          "impedance_kohm": 3.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "PO4",
+          "participant_id": null,
+          "impedance_kohm": 27.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "PO8",
+          "participant_id": null,
+          "impedance_kohm": 28.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "P6",
+          "participant_id": null,
+          "impedance_kohm": 22.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "P2",
+          "participant_id": null,
+          "impedance_kohm": 29.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "CPz",
+          "participant_id": null,
+          "impedance_kohm": 3.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "CP4",
+          "participant_id": null,
+          "impedance_kohm": 4.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "TP8",
+          "participant_id": null,
+          "impedance_kohm": 9.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "C6",
+          "participant_id": null,
+          "impedance_kohm": 6.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "C2",
+          "participant_id": null,
+          "impedance_kohm": 31.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "FC4",
+          "participant_id": null,
+          "impedance_kohm": 4.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "FT8",
+          "participant_id": null,
+          "impedance_kohm": 9.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "F6",
+          "participant_id": null,
+          "impedance_kohm": 18.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "AF8",
+          "participant_id": null,
+          "impedance_kohm": 21.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "AF4",
+          "participant_id": null,
+          "impedance_kohm": 20.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "F2",
+          "participant_id": null,
+          "impedance_kohm": 26.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        },
+        {
+          "electrode": "Iz",
+          "participant_id": null,
+          "impedance_kohm": 13.0,
+          "measurement_time": "2026-06-09T11:02:56.000000+03:00"
+        }
+      ],
+      "data_file_present": true,
+      "data_file_size_bytes": 9648000,
+      "files": {
+        "header": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Resting state\\EEG_raw\\Resting_state.bvrh",
+        "data": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Resting state\\EEG_raw\\Resting_state.bvrd",
+        "marker": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Resting state\\EEG_raw\\Resting_state.bvrm",
+        "impedance": "C:\\Users\\User\\Desktop\\lazy-eye-project\\database\\participants\\participant_123456789\\Resting state\\EEG_raw\\Resting_state.bvri"
+      },
+      "missing_required_files": [],
+      "missing_optional_files": []
+    }
+  ]
+}
