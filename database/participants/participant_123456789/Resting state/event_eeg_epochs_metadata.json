@@ -1,0 +1,632 @@
+[
+  {
+    "event_id": "long_fixation_1",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 0,
+    "eeg_window_end_sample": 771,
+    "eeg_window_sample_count": 772,
+    "epoch_shape": "772\u00d772",
+    "eeg_alignment_status": "Partial window: starts before EEG segment",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_2",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 272,
+    "eeg_window_end_sample": 1011,
+    "eeg_window_sample_count": 740,
+    "epoch_shape": "740\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_3",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 512,
+    "eeg_window_end_sample": 1357,
+    "eeg_window_sample_count": 846,
+    "epoch_shape": "846\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_4",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 858,
+    "eeg_window_end_sample": 1620,
+    "eeg_window_sample_count": 763,
+    "epoch_shape": "763\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_5",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 1579,
+    "eeg_window_end_sample": 2401,
+    "eeg_window_sample_count": 823,
+    "epoch_shape": "823\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_6",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 2283,
+    "eeg_window_end_sample": 3028,
+    "eeg_window_sample_count": 746,
+    "epoch_shape": "746\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_7",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 2991,
+    "eeg_window_end_sample": 3834,
+    "eeg_window_sample_count": 844,
+    "epoch_shape": "844\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_8",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 3335,
+    "eeg_window_end_sample": 4137,
+    "eeg_window_sample_count": 803,
+    "epoch_shape": "803\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_9",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 3938,
+    "eeg_window_end_sample": 4669,
+    "eeg_window_sample_count": 732,
+    "epoch_shape": "732\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_10",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 4170,
+    "eeg_window_end_sample": 4975,
+    "eeg_window_sample_count": 806,
+    "epoch_shape": "806\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_11",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 4476,
+    "eeg_window_end_sample": 5265,
+    "eeg_window_sample_count": 790,
+    "epoch_shape": "790\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_12",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 4766,
+    "eeg_window_end_sample": 5508,
+    "eeg_window_sample_count": 743,
+    "epoch_shape": "743\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_13",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 5009,
+    "eeg_window_end_sample": 5837,
+    "eeg_window_sample_count": 829,
+    "epoch_shape": "829\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_14",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 5540,
+    "eeg_window_end_sample": 6368,
+    "eeg_window_sample_count": 829,
+    "epoch_shape": "829\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_15",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 5869,
+    "eeg_window_end_sample": 6634,
+    "eeg_window_sample_count": 766,
+    "epoch_shape": "766\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_16",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 6331,
+    "eeg_window_end_sample": 7065,
+    "eeg_window_sample_count": 735,
+    "epoch_shape": "735\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_17",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 6566,
+    "eeg_window_end_sample": 7406,
+    "eeg_window_sample_count": 841,
+    "epoch_shape": "841\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_18",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 6907,
+    "eeg_window_end_sample": 7678,
+    "eeg_window_sample_count": 772,
+    "epoch_shape": "772\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_19",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 7558,
+    "eeg_window_end_sample": 8315,
+    "eeg_window_sample_count": 758,
+    "epoch_shape": "758\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_20",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 8195,
+    "eeg_window_end_sample": 9029,
+    "eeg_window_sample_count": 835,
+    "epoch_shape": "835\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_21",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 8530,
+    "eeg_window_end_sample": 9345,
+    "eeg_window_sample_count": 816,
+    "epoch_shape": "816\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_22",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 8846,
+    "eeg_window_end_sample": 9671,
+    "eeg_window_sample_count": 826,
+    "epoch_shape": "826\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_23",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 9172,
+    "eeg_window_end_sample": 10007,
+    "eeg_window_sample_count": 836,
+    "epoch_shape": "836\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_24",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 9508,
+    "eeg_window_end_sample": 10347,
+    "eeg_window_sample_count": 840,
+    "epoch_shape": "840\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_25",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 9848,
+    "eeg_window_end_sample": 10586,
+    "eeg_window_sample_count": 739,
+    "epoch_shape": "739\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_26",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 10248,
+    "eeg_window_end_sample": 11091,
+    "eeg_window_sample_count": 844,
+    "epoch_shape": "844\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_27",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 10755,
+    "eeg_window_end_sample": 11571,
+    "eeg_window_sample_count": 817,
+    "epoch_shape": "817\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_28",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 11072,
+    "eeg_window_end_sample": 11860,
+    "eeg_window_sample_count": 789,
+    "epoch_shape": "789\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_29",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 11361,
+    "eeg_window_end_sample": 12161,
+    "eeg_window_sample_count": 801,
+    "epoch_shape": "801\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_30",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 11845,
+    "eeg_window_end_sample": 12611,
+    "eeg_window_sample_count": 767,
+    "epoch_shape": "767\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_31",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 12112,
+    "eeg_window_end_sample": 12900,
+    "eeg_window_sample_count": 789,
+    "epoch_shape": "789\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_32",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 12401,
+    "eeg_window_end_sample": 13213,
+    "eeg_window_sample_count": 813,
+    "epoch_shape": "813\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_33",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 12714,
+    "eeg_window_end_sample": 13496,
+    "eeg_window_sample_count": 783,
+    "epoch_shape": "783\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_34",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 13577,
+    "eeg_window_end_sample": 14335,
+    "eeg_window_sample_count": 759,
+    "epoch_shape": "759\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_35",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 14734,
+    "eeg_window_end_sample": 15509,
+    "eeg_window_sample_count": 776,
+    "epoch_shape": "776\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_36",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 15150,
+    "eeg_window_end_sample": 15948,
+    "eeg_window_sample_count": 799,
+    "epoch_shape": "799\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_37",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 15597,
+    "eeg_window_end_sample": 16412,
+    "eeg_window_sample_count": 816,
+    "epoch_shape": "816\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_38",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 17102,
+    "eeg_window_end_sample": 17912,
+    "eeg_window_sample_count": 811,
+    "epoch_shape": "811\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_39",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 17413,
+    "eeg_window_end_sample": 18247,
+    "eeg_window_sample_count": 835,
+    "epoch_shape": "835\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_40",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 17902,
+    "eeg_window_end_sample": 18727,
+    "eeg_window_sample_count": 826,
+    "epoch_shape": "826\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_41",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 18228,
+    "eeg_window_end_sample": 19043,
+    "eeg_window_sample_count": 816,
+    "epoch_shape": "816\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_42",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 18906,
+    "eeg_window_end_sample": 19721,
+    "eeg_window_sample_count": 816,
+    "epoch_shape": "816\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_43",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 19397,
+    "eeg_window_end_sample": 20216,
+    "eeg_window_sample_count": 820,
+    "epoch_shape": "820\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_44",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 20373,
+    "eeg_window_end_sample": 21105,
+    "eeg_window_sample_count": 733,
+    "epoch_shape": "733\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_45",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 20806,
+    "eeg_window_end_sample": 21555,
+    "eeg_window_sample_count": 750,
+    "epoch_shape": "750\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_46",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 21056,
+    "eeg_window_end_sample": 21803,
+    "eeg_window_sample_count": 748,
+    "epoch_shape": "748\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_47",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 21628,
+    "eeg_window_end_sample": 22383,
+    "eeg_window_sample_count": 756,
+    "epoch_shape": "756\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_48",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 21884,
+    "eeg_window_end_sample": 22705,
+    "eeg_window_sample_count": 822,
+    "epoch_shape": "822\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_49",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 23351,
+    "eeg_window_end_sample": 24182,
+    "eeg_window_sample_count": 832,
+    "epoch_shape": "832\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_50",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 24175,
+    "eeg_window_end_sample": 24909,
+    "eeg_window_sample_count": 735,
+    "epoch_shape": "735\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_51",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 24748,
+    "eeg_window_end_sample": 25501,
+    "eeg_window_sample_count": 754,
+    "epoch_shape": "754\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_52",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 25002,
+    "eeg_window_end_sample": 25787,
+    "eeg_window_sample_count": 786,
+    "epoch_shape": "786\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_53",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 25433,
+    "eeg_window_end_sample": 26171,
+    "eeg_window_sample_count": 739,
+    "epoch_shape": "739\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_54",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 25672,
+    "eeg_window_end_sample": 26433,
+    "eeg_window_sample_count": 762,
+    "epoch_shape": "762\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_55",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 25934,
+    "eeg_window_end_sample": 26716,
+    "eeg_window_sample_count": 783,
+    "epoch_shape": "783\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_56",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 26217,
+    "eeg_window_end_sample": 26989,
+    "eeg_window_sample_count": 773,
+    "epoch_shape": "773\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_57",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 26762,
+    "eeg_window_end_sample": 27518,
+    "eeg_window_sample_count": 757,
+    "epoch_shape": "757\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_58",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 27618,
+    "eeg_window_end_sample": 28387,
+    "eeg_window_sample_count": 770,
+    "epoch_shape": "770\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_59",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 27888,
+    "eeg_window_end_sample": 28717,
+    "eeg_window_sample_count": 830,
+    "epoch_shape": "830\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_60",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 28218,
+    "eeg_window_end_sample": 29006,
+    "eeg_window_sample_count": 789,
+    "epoch_shape": "789\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_61",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 28507,
+    "eeg_window_end_sample": 29256,
+    "eeg_window_sample_count": 750,
+    "epoch_shape": "750\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_62",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 28757,
+    "eeg_window_end_sample": 29570,
+    "eeg_window_sample_count": 814,
+    "epoch_shape": "814\u00d772",
+    "eeg_alignment_status": "Aligned",
+    "epoch_extraction_status": "Extracted"
+  },
+  {
+    "event_id": "long_fixation_63",
+    "event_type": "Long Fixation Events",
+    "eeg_window_start_sample": 29263,
+    "eeg_window_end_sample": 29999,
+    "eeg_window_sample_count": 737,
+    "epoch_shape": "737\u00d772",
+    "eeg_alignment_status": "Partial window: ends after EEG segment",
+    "epoch_extraction_status": "Extracted"
+  }
+]

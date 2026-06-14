@@ -1,0 +1,21 @@
+{
+  "phase": "raw_read_test",
+  "read_success": true,
+  "error_message": null,
+  "sampling_rate_hz": 500.0,
+  "channel_count": 72,
+  "start_sample_index": 2000,
+  "end_sample_index": 44499,
+  "expected_sample_count": 42500,
+  "actual_sample_count": 42500,
+  "expected_shape": [
+    42500,
+    72
+  ],
+  "actual_shape": [
+    42500,
+    72
+  ],
+  "data_dtype": "Single",
+  "raw_file_size_bytes": 13248000
+}

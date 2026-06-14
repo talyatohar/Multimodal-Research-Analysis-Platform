@@ -1,0 +1,593 @@
+{
+  "phase": "preprocessed_signal_qc",
+  "qc_note": "Preprocessed signal QC is descriptive only. No exclusion decision is made.",
+  "preprocessing_completed": true,
+  "read_success": true,
+  "error_message": null,
+  "shape": [
+    42500,
+    72
+  ],
+  "sampling_rate_hz": 500.0,
+  "total_nan_count": 0,
+  "total_inf_count": 0,
+  "flat_channel_count": 0,
+  "per_channel": [
+    {
+      "channel": "Fp1",
+      "mean": -0.015439564046465912,
+      "standard_deviation": 5.313257728027336,
+      "min": -12.04544108257983,
+      "max": 24.789201672455064,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "Fz",
+      "mean": -0.01812268728882942,
+      "standard_deviation": 5.289230292665757,
+      "min": -13.287276421468192,
+      "max": 25.066140995499442,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "F3",
+      "mean": 0.017659518108674114,
+      "standard_deviation": 5.497939305249199,
+      "min": -14.778625759068259,
+      "max": 17.070230876937117,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "F7",
+      "mean": -0.006405098366196214,
+      "standard_deviation": 5.530837928475355,
+      "min": -13.07338196004764,
+      "max": 24.704257051692277,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "FT9",
+      "mean": 0.011181639620148185,
+      "standard_deviation": 2.7055817333692316,
+      "min": -9.951495699520423,
+      "max": 8.149283368227557,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "FC5",
+      "mean": 0.009060595761824013,
+      "standard_deviation": 2.7054258229419235,
+      "min": -9.069383019305493,
+      "max": 7.646395186071841,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "FC1",
+      "mean": 0.023101010084693063,
+      "standard_deviation": 5.636540687497621,
+      "min": -13.238915684957284,
+      "max": 21.983467106678305,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "C3",
+      "mean": 0.01968539714202327,
+      "standard_deviation": 2.7276131466026783,
+      "min": -9.788708461582086,
+      "max": 10.581253695040827,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "T7",
+      "mean": -0.012083741965613674,
+      "standard_deviation": 3.533861339435797,
+      "min": -11.827899298661638,
+      "max": 12.028210577362398,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "TP9",
+      "mean": 0.005009447044328245,
+      "standard_deviation": 3.7093949213795394,
+      "min": -9.788161490740713,
+      "max": 9.333176279648226,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "CP5",
+      "mean": -0.005018707924804917,
+      "standard_deviation": 2.6843512416243924,
+      "min": -9.507415358095741,
+      "max": 7.755363313774186,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "CP1",
+      "mean": 0.004040049101204125,
+      "standard_deviation": 2.720816204760985,
+      "min": -11.22588462887217,
+      "max": 10.37040783084413,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "Pz",
+      "mean": 0.024700975102935466,
+      "standard_deviation": 2.7422898907003015,
+      "min": -8.54440936709159,
+      "max": 11.354203362668748,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "P3",
+      "mean": 0.01668148500496645,
+      "standard_deviation": 2.7228825255985227,
+      "min": -10.129168859864464,
+      "max": 9.673064731772568,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "P7",
+      "mean": 0.004170874424043017,
+      "standard_deviation": 2.666032230179977,
+      "min": -7.353575065059182,
+      "max": 7.355259712915859,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "O1",
+      "mean": -0.001171623289753435,
+      "standard_deviation": 5.450055176100396,
+      "min": -11.8091571378319,
+      "max": 12.163535090370827,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "Oz",
+      "mean": 0.007196895361078112,
+      "standard_deviation": 5.018072965536926,
+      "min": -13.042703898577432,
+      "max": 11.886860482477884,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "O2",
+      "mean": 0.003247048875781493,
+      "standard_deviation": 5.016747719400409,
+      "min": -21.542488388891528,
+      "max": 16.2245367094297,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "P4",
+      "mean": 0.0055965162029841505,
+      "standard_deviation": 2.6897233297963377,
+      "min": -8.98551664238425,
+      "max": 13.291398501462147,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "P8",
+      "mean": -0.003670555079869184,
+      "standard_deviation": 2.7083454412002297,
+      "min": -8.597073184490995,
+      "max": 7.791032898230285,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "TP10",
+      "mean": -0.021364914940707653,
+      "standard_deviation": 3.44071431515304,
+      "min": -11.930872097854015,
+      "max": 8.641499708458369,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "CP6",
+      "mean": 0.004253843315221924,
+      "standard_deviation": 2.6928141978525035,
+      "min": -8.804995924945457,
+      "max": 7.54187652605603,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "CP2",
+      "mean": -0.013894519623992282,
+      "standard_deviation": 2.6784849537154787,
+      "min": -7.392083417503246,
+      "max": 8.22087258205536,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "Cz",
+      "mean": -0.006505331310334591,
+      "standard_deviation": 2.656385737202798,
+      "min": -9.283138522843316,
+      "max": 7.186935769318621,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "C4",
+      "mean": 0.013481061952927751,
+      "standard_deviation": 2.71737297739752,
+      "min": -8.39994665371789,
+      "max": 7.7069507051081665,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "T8",
+      "mean": -0.002112515348963285,
+      "standard_deviation": 3.545463561554494,
+      "min": -11.476701197378159,
+      "max": 10.934393214903254,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "FT10",
+      "mean": 0.0019311573135299288,
+      "standard_deviation": 2.7082668589412084,
+      "min": -9.613550535704935,
+      "max": 8.212535116684863,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "FC6",
+      "mean": 0.008714924997844625,
+      "standard_deviation": 2.703614421639464,
+      "min": -10.806792841205215,
+      "max": 7.842750830379518,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "FC2",
+      "mean": -0.01878886339849481,
+      "standard_deviation": 5.3085607775866075,
+      "min": -13.521095904864637,
+      "max": 23.99791523983062,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "F4",
+      "mean": -0.018386716266599996,
+      "standard_deviation": 5.327393417277457,
+      "min": -12.764793245794733,
+      "max": 27.14159442050401,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "F8",
+      "mean": 0.0016114167279647072,
+      "standard_deviation": 5.545151954953518,
+      "min": -17.02067479635829,
+      "max": 24.666127172963535,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "Fp2",
+      "mean": -0.007069347469501179,
+      "standard_deviation": 5.333667306039368,
+      "min": -14.262130333578417,
+      "max": 19.65267022544012,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "AF7",
+      "mean": 0.002342048831940589,
+      "standard_deviation": 2.716182097673909,
+      "min": -10.07554784989727,
+      "max": 8.71017047512559,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "AF3",
+      "mean": 0.016481945541366005,
+      "standard_deviation": 5.506779899275282,
+      "min": -12.726222435661604,
+      "max": 14.17524504658513,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "AFz",
+      "mean": 0.00820230552216449,
+      "standard_deviation": 5.6104666938191725,
+      "min": -13.116159312961404,
+      "max": 20.971863182490004,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "F1",
+      "mean": -0.007943353718090171,
+      "standard_deviation": 5.36212069135047,
+      "min": -13.228513652626617,
+      "max": 19.494170490755707,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "F5",
+      "mean": -0.015118725912765535,
+      "standard_deviation": 2.696661604202134,
+      "min": -10.204779060194918,
+      "max": 8.042547859972773,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "FT7",
+      "mean": -0.01974360542934893,
+      "standard_deviation": 3.439323803440544,
+      "min": -11.363092185719044,
+      "max": 8.84025697576829,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "FC3",
+      "mean": -0.0006028248366423668,
+      "standard_deviation": 2.6986276101064846,
+      "min": -7.730068914829965,
+      "max": 7.50057892050548,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "C1",
+      "mean": -0.008892647642773751,
+      "standard_deviation": 2.6742090549293804,
+      "min": -7.4749814019785505,
+      "max": 8.851862249437282,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "C5",
+      "mean": -0.009629289143496277,
+      "standard_deviation": 2.672495836688379,
+      "min": -8.272900208403138,
+      "max": 7.666307109646016,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "TP7",
+      "mean": -0.016976799219368434,
+      "standard_deviation": 3.475672591363795,
+      "min": -10.680422130501253,
+      "max": 8.797467473739278,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "CP3",
+      "mean": 0.009558720140534764,
+      "standard_deviation": 2.700640127180601,
+      "min": -10.596987342669447,
+      "max": 11.004160881980042,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "P1",
+      "mean": -0.0005774472813468512,
+      "standard_deviation": 2.6776715202234507,
+      "min": -10.107418138554573,
+      "max": 7.902282426655192,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "P5",
+      "mean": 0.012637010747555156,
+      "standard_deviation": 2.7160354737523598,
+      "min": -10.525953050445665,
+      "max": 10.705715918602422,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "PO7",
+      "mean": -0.014074275505140692,
+      "standard_deviation": 5.347659656022702,
+      "min": -12.418951415268582,
+      "max": 11.459750355115425,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "PO3",
+      "mean": 0.012959306433532707,
+      "standard_deviation": 5.108832654648558,
+      "min": -13.901348409032273,
+      "max": 12.407497641556464,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "POz",
+      "mean": -0.01716691638422161,
+      "standard_deviation": 5.140839760514959,
+      "min": -18.634780322205668,
+      "max": 14.941359163724325,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "PO4",
+      "mean": 0.0034622609709854127,
+      "standard_deviation": 4.963309771819081,
+      "min": -12.420783059092294,
+      "max": 11.499604547230765,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "PO8",
+      "mean": 0.0009392672882537527,
+      "standard_deviation": 4.92618979130334,
+      "min": -10.956522800904748,
+      "max": 11.130792779753083,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "P6",
+      "mean": 0.012279404144281034,
+      "standard_deviation": 2.6931892529783097,
+      "min": -8.835614128935458,
+      "max": 7.867089246411779,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "P2",
+      "mean": 0.0025170974761724706,
+      "standard_deviation": 2.7018123728487606,
+      "min": -7.794129828777602,
+      "max": 7.979184321091853,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "CPz",
+      "mean": -0.008819720337864096,
+      "standard_deviation": 2.7036689568119674,
+      "min": -9.031994531776993,
+      "max": 8.14879469972927,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "CP4",
+      "mean": -0.005086071797601735,
+      "standard_deviation": 2.674876465016312,
+      "min": -7.5741614557543375,
+      "max": 7.716750246026665,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "TP8",
+      "mean": 0.002117435836006518,
+      "standard_deviation": 3.561506151764649,
+      "min": -9.184362397454233,
+      "max": 8.266737026403565,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "C6",
+      "mean": -0.007213480682661151,
+      "standard_deviation": 2.656516462516558,
+      "min": -8.914458608507744,
+      "max": 7.576822475438687,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "C2",
+      "mean": 0.00938310321914025,
+      "standard_deviation": 2.7107700290984496,
+      "min": -8.514815757645195,
+      "max": 8.116210228614534,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "FC4",
+      "mean": -0.014986582713796947,
+      "standard_deviation": 2.695329351605095,
+      "min": -8.193512214023123,
+      "max": 7.341285391178898,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "FT8",
+      "mean": 0.0009100820195317882,
+      "standard_deviation": 3.5954812454713183,
+      "min": -9.32568037101873,
+      "max": 9.61285070210787,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "F6",
+      "mean": 0.0043216951068105955,
+      "standard_deviation": 2.667060641164687,
+      "min": -8.802497358343917,
+      "max": 7.589628872391489,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "AF8",
+      "mean": -0.007232508082232319,
+      "standard_deviation": 2.6801046860741673,
+      "min": -7.799142158708644,
+      "max": 8.419812258046068,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "AF4",
+      "mean": 0.00603848503657823,
+      "standard_deviation": 5.599375313754136,
+      "min": -12.771430047102,
+      "max": 23.692864962963355,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "F2",
+      "mean": -0.006592629076606126,
+      "standard_deviation": 5.390521129183271,
+      "min": -13.937480744367855,
+      "max": 18.18062799658651,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "Iz",
+      "mean": 0.008898042417776347,
+      "standard_deviation": 5.003648931615726,
+      "min": -13.11018319736148,
+      "max": 11.141032678501576,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "Aux1",
+      "mean": 0.0006923506992500091,
+      "standard_deviation": 0.4813565176031269,
+      "min": -4.787269664484951,
+      "max": 1.642513522062039,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "Aux2",
+      "mean": 0.0007622687152853711,
+      "standard_deviation": 0.48544680294715775,
+      "min": -5.013494702523718,
+      "max": 1.7046407420583525,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "Aux3",
+      "mean": 0.0027534340633533372,
+      "standard_deviation": 0.485465863777135,
+      "min": -4.605796796427372,
+      "max": 1.6006989188442382,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "Aux4",
+      "mean": 0.0021682453870754963,
+      "standard_deviation": 0.4830869707846024,
+      "min": -4.573066587194873,
+      "max": 2.294965477834904,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "Aux5",
+      "mean": 0.003523472095964133,
+      "standard_deviation": 0.48872989221876334,
+      "min": -4.686681725786838,
+      "max": 2.1081966617388788,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "Aux6",
+      "mean": 0.0006209695286618167,
+      "standard_deviation": 0.4809701963832707,
+      "min": -4.732229593223333,
+      "max": 1.7037700932027657,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "Aux7",
+      "mean": 0.003034061091001614,
+      "standard_deviation": 0.4803274276349047,
+      "min": -4.509511303312444,
+      "max": 1.8036384211996812,
+      "flat_channel_flag": false
+    },
+    {
+      "channel": "Aux8",
+      "mean": 0.002764195628689052,
+      "standard_deviation": 0.48425567093795335,
+      "min": -4.775505630728031,
+      "max": 1.6388883721864196,
+      "flat_channel_flag": false
+    }
+  ]
+}

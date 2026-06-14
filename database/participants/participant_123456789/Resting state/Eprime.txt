@@ -1,0 +1,14 @@
+*** Header Start ***
+Experiment: LazyEyeDemo
+Subject: DEMO001
+SessionStartDateTimeUtc: 09/06/2026 08:04:50
+*** Header End ***
+
+*** LogFrame Start ***
+Procedure: Resting state
+FixationStart.OnsetTime: 10000
+FixationStart.OnsetToOnsetTime: 3000
+SixationOpenS.OnsetToOnsetTime: 57000
+TaskName: Resting state
+SyntheticDemo: TRUE
+*** LogFrame End ***

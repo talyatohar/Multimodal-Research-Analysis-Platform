@@ -1,0 +1,14 @@
+*** Header Start ***
+Experiment: LazyEyeDemo
+Subject: DEMO001
+SessionStartDateTimeUtc: 09/06/2026 08:10:50
+*** Header End ***
+
+*** LogFrame Start ***
+Procedure: Silent Reading - Static Text with Metronome
+FixationStart.OnsetTime: 10000
+FixationStart.OnsetToOnsetTime: 3500
+SixationOpenS.OnsetToOnsetTime: 81500
+TaskName: Silent Reading - Static Text with Metronome
+SyntheticDemo: TRUE
+*** LogFrame End ***

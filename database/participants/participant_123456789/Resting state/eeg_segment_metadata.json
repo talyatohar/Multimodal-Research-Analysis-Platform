@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "task_start_utc": "2026-06-09T08:05:00+00:00",
+  "task_end_utc": "2026-06-09T08:06:00+00:00",
+  "eeg_recording_start_utc_raw": "2026-06-09T08:04:56+00:00",
+  "eeg_recording_end_utc_raw": "2026-06-09T08:06:03+00:00",
+  "eeg_recording_start_utc_adjusted": "2026-06-09T08:04:56+00:00",
+  "eeg_recording_end_utc_adjusted": "2026-06-09T08:06:03+00:00",
+  "eeg_clock_offset_seconds": 0.0,
+  "segment_start_utc": "2026-06-09T08:05:00+00:00",
+  "segment_end_utc": "2026-06-09T08:06:00+00:00",
+  "segment_duration_seconds": 60.0,
+  "missing_task_start_seconds": 0.0,
+  "missing_task_end_seconds": 0.0,
+  "partial_overlap": false,
+  "eeg_start_sample_index": 2000,
+  "eeg_end_sample_index": 31999,
+  "sampling_rate_hz": 500.0,
+  "sample_count": 33500,
+  "warnings": []
+}

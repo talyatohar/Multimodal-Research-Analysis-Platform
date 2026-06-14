@@ -1,0 +1,14 @@
+{
+  "mean_frontal_theta_power": 8.251011343575318,
+  "theta_power_variability": 4.9455579659543965,
+  "mean_occipital_alpha_power": 40.27659618533647,
+  "alpha_power_variability": 1.6222875201143874,
+  "mean_theta_alpha_ratio": 0.2048587051797408,
+  "theta_alpha_ratio_variability": 3.0485089138857986,
+  "mean_occipital_temporal_theta_plv": 0.44242638271818224,
+  "OT_plv_variability": 0.09223977425142672,
+  "mean_temporal_frontal_theta_plv": 0.6009950707823383,
+  "TF_plv_variability": 0.4526705277036585,
+  "mean_occipital_frontal_theta_plv": 0.3901043102757209,
+  "OF_plv_variability": 0.11310879217096763
+}

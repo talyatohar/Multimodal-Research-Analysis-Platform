@@ -1,0 +1,9 @@
+{
+  "session_start_utc": "2026-06-09T08:07:50",
+  "task_start_utc": "2026-06-09T08:08:00",
+  "task_end_utc": "2026-06-09T08:09:30",
+  "task_duration_ms": 90000,
+  "fixation_onset_ms": 10000,
+  "fixation_duration_ms": 3500,
+  "story_duration_ms": 86500
+}

@@ -1,0 +1,71 @@
+{
+  "phase": "preprocessing_definition_only",
+  "note": "Plan and audit placeholders only. No EEG signals are modified.",
+  "reference": "average",
+  "bandpass_hz": [
+    0.5,
+    40
+  ],
+  "notch_hz": 50,
+  "bad_channel_policy": "flag_only",
+  "ica_policy": "semi_automatic",
+  "baseline_source": "resting_state",
+  "roi_definitions": {
+    "frontal": [
+      "Fp1",
+      "Fp2",
+      "AF3",
+      "AF4",
+      "AF7",
+      "AF8",
+      "Fz",
+      "F1",
+      "F2",
+      "F3",
+      "F4",
+      "F5",
+      "F6",
+      "F7",
+      "F8",
+      "FCz",
+      "FC1",
+      "FC2",
+      "FC3",
+      "FC4",
+      "FC5",
+      "FC6",
+      "FT7",
+      "FT8",
+      "FT9",
+      "FT10"
+    ],
+    "temporal": [
+      "T7",
+      "T8",
+      "TP7",
+      "TP8",
+      "TP9",
+      "TP10",
+      "P7",
+      "P9",
+      "P10"
+    ],
+    "occipital": [
+      "Oz",
+      "O1",
+      "O2",
+      "POz",
+      "PO3",
+      "PO4",
+      "PO7",
+      "PO8",
+      "Iz"
+    ]
+  },
+  "status": {
+    "preprocessing_completed": "Not implemented yet",
+    "bad_channels_flagged": "Not implemented yet",
+    "ica_completed": "Not implemented yet",
+    "baseline_available": "Not implemented yet"
+  }
+}

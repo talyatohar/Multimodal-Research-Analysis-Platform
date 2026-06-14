@@ -1,0 +1,3 @@
+Sample	Type	Code	Value	Channel	DateTime	StartEndId	Comment
+0	Recording Info	Saving			2026-06-09T11:07:56.000000+03:00	{DEMO001-ORAL_REA-0000-0000-000000000000}	Synthetic recording start
+48499	Recording Info				2026-06-09T11:09:33.000000+03:00	{DEMO001-ORAL_REA-0000-0000-000000000000}	Synthetic recording end

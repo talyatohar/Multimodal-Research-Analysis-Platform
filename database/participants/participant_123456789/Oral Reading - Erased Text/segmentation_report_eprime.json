@@ -1,0 +1,61 @@
+{
+  "files_checked": [
+    "EyeTracking.xlsx"
+  ],
+  "files_with_overlap": [
+    "EyeTracking.xlsx"
+  ],
+  "recordings_checked": [
+    "EyeTracking.xlsx::Synthetic_Tobii_Recording1"
+  ],
+  "recordings_with_overlap": [
+    "EyeTracking.xlsx::Synthetic_Tobii_Recording1"
+  ],
+  "rows_before": 927,
+  "rows_after": 414,
+  "task_start_utc": "2026-06-09T08:08:00",
+  "task_end_utc": "2026-06-09T08:09:30",
+  "window_type": "eprime",
+  "window_end_key": "task_end_utc",
+  "filter_start_utc": "2026-06-09T08:07:59.500000Z",
+  "filter_end_utc": "2026-06-09T08:09:30.500000Z",
+  "pre_task_buffer_ms": 500,
+  "post_task_buffer_ms": 500,
+  "first_selected_row_utc": "2026-06-09T08:08:00Z",
+  "last_selected_row_utc": "2026-06-09T08:09:29.772000Z",
+  "per_file": [
+    {
+      "file": "EyeTracking.xlsx",
+      "rows_before": 927,
+      "recordings_checked": [
+        "EyeTracking.xlsx::Synthetic_Tobii_Recording1"
+      ],
+      "recordings_with_overlap": [
+        "EyeTracking.xlsx::Synthetic_Tobii_Recording1"
+      ]
+    }
+  ],
+  "per_recording": [
+    {
+      "file": "EyeTracking.xlsx",
+      "recording_name": "Synthetic_Tobii_Recording1",
+      "recording_start_utc": "2026-06-09T08:04:45Z",
+      "first_row_utc": "2026-06-09T08:05:00Z",
+      "last_row_utc": "2026-06-09T08:12:24.885000Z",
+      "min_recording_timestamp_ms": 15000.0,
+      "max_recording_timestamp_ms": 459885.0,
+      "task_start_utc": "2026-06-09T08:08:00",
+      "task_end_utc": "2026-06-09T08:09:30",
+      "filter_start_utc": "2026-06-09T08:07:59.500000Z",
+      "filter_end_utc": "2026-06-09T08:09:30.500000Z",
+      "pre_task_buffer_ms": 500,
+      "post_task_buffer_ms": 500,
+      "overlap": true,
+      "rows_before": 927,
+      "rows_in_window": 414,
+      "rows_after": 414,
+      "first_selected_row_utc": "2026-06-09T08:08:00Z",
+      "last_selected_row_utc": "2026-06-09T08:09:29.772000Z"
+    }
+  ]
+}

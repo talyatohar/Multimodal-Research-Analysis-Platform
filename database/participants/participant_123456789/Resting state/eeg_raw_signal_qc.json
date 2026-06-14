@@ -1,0 +1,740 @@
+{
+  "phase": "descriptive_raw_signal_qc",
+  "qc_note": "Descriptive QC only. No exclusion decision is made.",
+  "read_success": true,
+  "error_message": null,
+  "shape": [
+    30000,
+    72
+  ],
+  "sampling_rate_hz": 500.0,
+  "total_nan_count": 0,
+  "total_inf_count": 0,
+  "flat_channel_count": 0,
+  "flat_channels": [],
+  "per_channel": [
+    {
+      "channel": "Fp1",
+      "min": -12.354276657104492,
+      "max": 12.549859046936035,
+      "mean": -0.03085607323620067,
+      "standard_deviation": 4.261164251646351,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "Fz",
+      "min": -12.630383491516113,
+      "max": 12.882457733154297,
+      "mean": 0.004113935813920883,
+      "standard_deviation": 4.264516552756197,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "F3",
+      "min": -13.844293594360352,
+      "max": 13.880851745605469,
+      "mean": -0.013329840800527624,
+      "standard_deviation": 4.270252109447014,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "F7",
+      "min": -13.442682266235352,
+      "max": 12.714016914367676,
+      "mean": 0.0013792887576006857,
+      "standard_deviation": 4.244273886342723,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "FT9",
+      "min": -12.181943893432617,
+      "max": 11.077613830566406,
+      "mean": 0.0018338384323525437,
+      "standard_deviation": 3.1908847738777966,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "FC5",
+      "min": -12.048294067382812,
+      "max": 11.850090026855469,
+      "mean": 0.007431488398086852,
+      "standard_deviation": 3.1727264216242,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "FC1",
+      "min": -12.629079818725586,
+      "max": 13.336886405944824,
+      "mean": -0.005115327312402466,
+      "standard_deviation": 4.257278631265151,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "C3",
+      "min": -11.915289878845215,
+      "max": 10.845109939575195,
+      "mean": 0.0094747864173952,
+      "standard_deviation": 3.1786494036339303,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "T7",
+      "min": -12.06655216217041,
+      "max": 12.479151725769043,
+      "mean": 0.013941494106021128,
+      "standard_deviation": 3.9771068121085906,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "TP9",
+      "min": -12.344259262084961,
+      "max": 12.406867980957031,
+      "mean": -0.002693021915980838,
+      "standard_deviation": 3.9788462526736166,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "CP5",
+      "min": -10.465309143066406,
+      "max": 11.66775131225586,
+      "mean": 0.02788798562118318,
+      "standard_deviation": 3.179174476080561,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "CP1",
+      "min": -11.80361270904541,
+      "max": 11.613930702209473,
+      "mean": 0.0019950735150118513,
+      "standard_deviation": 3.192907346802885,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "Pz",
+      "min": -11.450431823730469,
+      "max": 11.892695426940918,
+      "mean": -0.0041316756528503905,
+      "standard_deviation": 3.1866185944473657,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "P3",
+      "min": -11.532196998596191,
+      "max": 11.744200706481934,
+      "mean": 0.023476034634159683,
+      "standard_deviation": 3.1882495648469287,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "P7",
+      "min": -11.8337984085083,
+      "max": 11.849969863891602,
+      "mean": 0.007742964051988869,
+      "standard_deviation": 3.1802326224238078,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "O1",
+      "min": -18.28799057006836,
+      "max": 16.87822914123535,
+      "mean": -0.017206751923358632,
+      "standard_deviation": 6.795780855981635,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "Oz",
+      "min": -18.309478759765625,
+      "max": 16.99679183959961,
+      "mean": 0.0148068552828617,
+      "standard_deviation": 6.787329227570832,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "O2",
+      "min": -16.313243865966797,
+      "max": 16.014972686767578,
+      "mean": -0.0018781555772797826,
+      "standard_deviation": 6.803020731061095,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "P4",
+      "min": -11.946399688720703,
+      "max": 10.982307434082031,
+      "mean": -0.011849273758766807,
+      "standard_deviation": 3.172785505212539,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "P8",
+      "min": -11.002016067504883,
+      "max": 12.12342643737793,
+      "mean": 0.004922036954264816,
+      "standard_deviation": 3.15299679785154,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "TP10",
+      "min": -12.668218612670898,
+      "max": 12.913122177124023,
+      "mean": -0.005089308277871047,
+      "standard_deviation": 3.953035979264509,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "CP6",
+      "min": -11.331892967224121,
+      "max": 13.351752281188965,
+      "mean": -0.00439074853744872,
+      "standard_deviation": 3.1650430805126706,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "CP2",
+      "min": -10.45348072052002,
+      "max": 10.593859672546387,
+      "mean": 0.009603781042742291,
+      "standard_deviation": 3.1893942047704273,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "Cz",
+      "min": -11.560912132263184,
+      "max": 11.634489059448242,
+      "mean": -0.0007664331789202454,
+      "standard_deviation": 3.1794795479137883,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "C4",
+      "min": -12.028523445129395,
+      "max": 11.2008695602417,
+      "mean": 0.0071683800474309466,
+      "standard_deviation": 3.178142772181749,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "T8",
+      "min": -11.830466270446777,
+      "max": 13.108323097229004,
+      "mean": 0.01477928137108247,
+      "standard_deviation": 3.9799631758638423,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "FT10",
+      "min": -11.433728218078613,
+      "max": 10.64294147491455,
+      "mean": 0.00766250366896226,
+      "standard_deviation": 3.1907174160693805,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "FC6",
+      "min": -10.556914329528809,
+      "max": 11.674074172973633,
+      "mean": 0.003983722017923234,
+      "standard_deviation": 3.17911186580601,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "FC2",
+      "min": -12.721543312072754,
+      "max": 12.962583541870117,
+      "mean": 0.011106427633047861,
+      "standard_deviation": 4.261806031234735,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "F4",
+      "min": -12.858951568603516,
+      "max": 13.528510093688965,
+      "mean": -0.006007148155880471,
+      "standard_deviation": 4.258050599941767,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "F8",
+      "min": -12.471359252929688,
+      "max": 13.384968757629395,
+      "mean": -0.0053907403862200835,
+      "standard_deviation": 4.258166719587084,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "Fp2",
+      "min": -13.072408676147461,
+      "max": 13.262451171875,
+      "mean": 0.005766103028899427,
+      "standard_deviation": 4.274884663034779,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "AF7",
+      "min": -11.645475387573242,
+      "max": 10.283829689025879,
+      "mean": 0.005058765498311793,
+      "standard_deviation": 3.1692323291531217,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "AF3",
+      "min": -13.594883918762207,
+      "max": 13.609535217285156,
+      "mean": 0.000853444904088974,
+      "standard_deviation": 4.265569038855574,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "AFz",
+      "min": -13.18024730682373,
+      "max": 14.236176490783691,
+      "mean": -0.006398887616791278,
+      "standard_deviation": 4.276508940237002,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "F1",
+      "min": -13.235799789428711,
+      "max": 13.331477165222168,
+      "mean": -0.008206998356063075,
+      "standard_deviation": 4.267833444396888,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "F5",
+      "min": -10.658122062683105,
+      "max": 11.30699634552002,
+      "mean": -0.004170780183906997,
+      "standard_deviation": 3.177045625158434,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "FT7",
+      "min": -12.512070655822754,
+      "max": 12.1607027053833,
+      "mean": 0.0018632865363440942,
+      "standard_deviation": 3.976663224286448,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "FC3",
+      "min": -11.555014610290527,
+      "max": 12.104879379272461,
+      "mean": 0.006503284398077328,
+      "standard_deviation": 3.1992118211018745,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "C1",
+      "min": -11.257936477661133,
+      "max": 11.704572677612305,
+      "mean": 0.015617173576056182,
+      "standard_deviation": 3.1700327229374734,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "C5",
+      "min": -11.485715866088867,
+      "max": 10.72011661529541,
+      "mean": -0.00929829839643074,
+      "standard_deviation": 3.1916194628204684,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "TP7",
+      "min": -11.856937408447266,
+      "max": 14.845230102539062,
+      "mean": -0.01510176407766121,
+      "standard_deviation": 3.9722169745041307,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "CP3",
+      "min": -11.325128555297852,
+      "max": 10.221166610717773,
+      "mean": 0.004634707618766151,
+      "standard_deviation": 3.1804884642698594,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "P1",
+      "min": -10.733716011047363,
+      "max": 13.167802810668945,
+      "mean": -0.0013586889980957493,
+      "standard_deviation": 3.1839327342524557,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "P5",
+      "min": -10.56134033203125,
+      "max": 11.392681121826172,
+      "mean": 0.019732578061023378,
+      "standard_deviation": 3.1985551462764312,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "PO7",
+      "min": -16.912677764892578,
+      "max": 17.807273864746094,
+      "mean": -0.005269817368942313,
+      "standard_deviation": 6.802056516729091,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "PO3",
+      "min": -17.808137893676758,
+      "max": 16.649206161499023,
+      "mean": 0.007097555069585602,
+      "standard_deviation": 6.782401003800146,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "POz",
+      "min": -17.21807289123535,
+      "max": 17.27543830871582,
+      "mean": -0.018111265077634015,
+      "standard_deviation": 6.803420977096187,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "PO4",
+      "min": -17.850303649902344,
+      "max": 17.336593627929688,
+      "mean": -0.010074601145612542,
+      "standard_deviation": 6.7897662991444925,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "PO8",
+      "min": -17.71556854248047,
+      "max": 17.163799285888672,
+      "mean": 0.014496455841440669,
+      "standard_deviation": 6.7778301895282045,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "P6",
+      "min": -11.274728775024414,
+      "max": 11.715714454650879,
+      "mean": -0.004419034618605899,
+      "standard_deviation": 3.1937532165905766,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "P2",
+      "min": -11.45217514038086,
+      "max": 10.986721992492676,
+      "mean": -0.029127395167706224,
+      "standard_deviation": 3.188632168297443,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "CPz",
+      "min": -11.478643417358398,
+      "max": 11.334883689880371,
+      "mean": 0.007863501214417678,
+      "standard_deviation": 3.2053110189417535,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "CP4",
+      "min": -10.856062889099121,
+      "max": 12.913042068481445,
+      "mean": 0.0009339987007677943,
+      "standard_deviation": 3.179983182499233,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "TP8",
+      "min": -12.063117027282715,
+      "max": 12.855215072631836,
+      "mean": 0.014943673234486293,
+      "standard_deviation": 3.9800618084597588,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "C6",
+      "min": -11.324179649353027,
+      "max": 12.470656394958496,
+      "mean": -0.014855105637243165,
+      "standard_deviation": 3.1788932212457692,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "C2",
+      "min": -10.511215209960938,
+      "max": 10.459104537963867,
+      "mean": 0.010984889314402243,
+      "standard_deviation": 3.1868679527996604,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "FC4",
+      "min": -10.26370620727539,
+      "max": 11.431836128234863,
+      "mean": 0.012013019204188853,
+      "standard_deviation": 3.1765597041900695,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "FT8",
+      "min": -12.921942710876465,
+      "max": 12.363067626953125,
+      "mean": 0.012398850280162878,
+      "standard_deviation": 3.976790715997674,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "F6",
+      "min": -11.703938484191895,
+      "max": 10.333723068237305,
+      "mean": 0.007139742930892559,
+      "standard_deviation": 3.1869829295891217,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "AF8",
+      "min": -11.701220512390137,
+      "max": 12.038277626037598,
+      "mean": -0.017639047372144584,
+      "standard_deviation": 3.1836247224988257,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "AF4",
+      "min": -14.260805130004883,
+      "max": 13.247328758239746,
+      "mean": 0.0041346177986157275,
+      "standard_deviation": 4.27135089620551,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "F2",
+      "min": -13.64610481262207,
+      "max": 13.541213035583496,
+      "mean": -0.01298891454065403,
+      "standard_deviation": 4.262585776135472,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "Iz",
+      "min": -17.462806701660156,
+      "max": 17.156492233276367,
+      "mean": -0.00043864130904936854,
+      "standard_deviation": 6.796702302704121,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "Aux1",
+      "min": -2.143197536468506,
+      "max": 1.9671320915222168,
+      "mean": 0.003689956126917756,
+      "standard_deviation": 0.5002648883097423,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "Aux2",
+      "min": -1.9892604351043701,
+      "max": 2.1686463356018066,
+      "mean": -0.0034037336167472253,
+      "standard_deviation": 0.5014421620703495,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "Aux3",
+      "min": -2.0662200450897217,
+      "max": 2.0218734741210938,
+      "mean": 0.002287717661071353,
+      "standard_deviation": 0.4985571305619899,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "Aux4",
+      "min": -1.9844684600830078,
+      "max": 1.953539252281189,
+      "mean": 0.0018362226257359604,
+      "standard_deviation": 0.49723893989912926,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "Aux5",
+      "min": -2.0021917819976807,
+      "max": 1.9005261659622192,
+      "mean": 0.002469491042497873,
+      "standard_deviation": 0.5016355389111619,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "Aux6",
+      "min": -2.065791606903076,
+      "max": 1.8919004201889038,
+      "mean": -0.0006088942754989451,
+      "standard_deviation": 0.5014849545107166,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "Aux7",
+      "min": -2.071690320968628,
+      "max": 1.950412631034851,
+      "mean": 0.0007470577545775996,
+      "standard_deviation": 0.5008421618665279,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    },
+    {
+      "channel": "Aux8",
+      "min": -2.0151212215423584,
+      "max": 1.955100178718567,
+      "mean": 0.0033340061738872462,
+      "standard_deviation": 0.49915871633852826,
+      "nan_count": 0,
+      "inf_count": 0,
+      "flat_signal": false
+    }
+  ],
+  "data_dtype": "Single",
+  "start_sample_index": 2000,
+  "end_sample_index": 31999
+}
