@@ -2,7 +2,8 @@
 
 A unified framework for synchronizing, processing, and analyzing multimodal experimental data acquired from independent recording systems.
 
-🚀 **Live Demo:** [Add Vercel Link Here]
+🚀 **Live Demo:** https://multimodal-research-analysis-platform-lw2epaxrupn4bbsrxqldse.streamlit.app/
+
 
 ---
 
