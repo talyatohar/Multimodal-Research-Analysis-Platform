@@ -7,6 +7,7 @@ Writes event_level_eeg_features.xlsx only (no aggregation).
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 from typing import Any
 
@@ -17,6 +18,16 @@ from backend.analysis.events.eeg_alignment import (
     EVENT_DATABASE_WITH_EEG_ALIGNMENT_FILE,
     STATUS_OUTSIDE,
     load_event_database_with_eeg_alignment,
+)
+from backend.analysis.events.blink_qc import (
+    BLINK_CONTAMINATED_LABEL,
+    BLINK_EVENT_TYPE,
+    EVENT_BLINK_QC_FILE,
+    eyesnotfound_intervals_s,
+    flag_blink_windows,
+    frontal_blink_peak_samples,
+    load_event_eeg_settings,
+    summarize_blink_qc,
 )
 from backend.analysis.events.eeg_epoch_extraction import (
     STATUS_EXTRACTED,
@@ -245,7 +256,73 @@ def build_event_level_eeg_features(
 
         rows.append(row)
 
-    return pd.DataFrame(rows, columns=list(EVENT_LEVEL_EEG_FEATURE_COLUMNS)), warnings
+    features = pd.DataFrame(rows, columns=list(EVENT_LEVEL_EEG_FEATURE_COLUMNS))
+    features = _apply_blink_qc(
+        task_folder,
+        features,
+        aligned_database,
+        segment=segment,
+        channel_names=channel_names,
+        sampling_rate_hz=float(sampling_rate_hz),
+        warnings=warnings,
+    )
+    return features, warnings
+
+
+def _apply_blink_qc(
+    task_folder: Path,
+    features: pd.DataFrame,
+    aligned_database: pd.DataFrame,
+    *,
+    segment: np.ndarray,
+    channel_names: list[str],
+    sampling_rate_hz: float,
+    warnings: list[str],
+) -> pd.DataFrame:
+    """Flag event windows that contain a blink; label burst EEG; optionally exclude."""
+    from backend.analysis.events.event_database import _segment_path, _task_start_timestamp_ms
+    from backend.analysis.eye_tracking.eye_selection import apply_eye_selection, load_eye_selection_settings
+    from backend.analysis.eye_tracking.task_level import TS_COL, TYPE_COL
+    from backend.sync.eprime import load_sync_window_json
+
+    if features.empty:
+        return features
+    enf_intervals: list[tuple[float, float]] = []
+    eye_path = _segment_path(task_folder, "eprime")
+    window = load_sync_window_json(task_folder) or {}
+    if eye_path.is_file():
+        eye = pd.read_excel(eye_path, engine="openpyxl")
+        eye, _ = apply_eye_selection(eye, load_eye_selection_settings(task_folder.parent))
+        start_ms = _task_start_timestamp_ms(eye, window)
+        if start_ms is not None:
+            enf_intervals = eyesnotfound_intervals_s(eye, start_ms, type_col=TYPE_COL, ts_col=TS_COL)
+    peaks = frontal_blink_peak_samples(segment, channel_names, sampling_rate_hz)
+    flagged = flag_blink_windows(aligned_database, enf_intervals_s=enf_intervals, peak_samples=peaks)
+    key = flagged.set_index(["event_type", "event_id"])
+    idx = list(zip(features["event_type"], features["event_id"]))
+    features = features.copy()
+    features["window_contains_blink"] = [bool(key["window_contains_blink"].get(k, False)) for k in idx]
+    features["blink_source"] = [str(key["blink_source"].get(k, "")) for k in idx]
+    exclude = load_event_eeg_settings(task_folder.parent)["exclude_blink_windows"]
+    if exclude:
+        present = [f for f in EVENT_EEG_FEATURES if f in features.columns]
+        features[present] = features[present].astype(object)
+    interpretation = []
+    for i, (event_type, _event_id) in enumerate(idx):
+        if event_type == BLINK_EVENT_TYPE:
+            interpretation.append(BLINK_CONTAMINATED_LABEL)
+        elif exclude and features.at[features.index[i], "window_contains_blink"]:
+            for feature in EVENT_EEG_FEATURES:
+                features.at[features.index[i], feature] = NOT_AVAILABLE
+            interpretation.append("excluded: blink in EEG window")
+        else:
+            interpretation.append("")
+    features["interpretation"] = interpretation
+    qc = summarize_blink_qc(features, excluded=exclude)
+    qc["eyesnotfound_runs_ge_80ms"] = len(enf_intervals)
+    qc["fp_blink_peaks"] = int(len(peaks))
+    (task_folder / EVENT_BLINK_QC_FILE).write_text(json.dumps(qc, indent=2), encoding="utf-8")
+    return features
 
 
 def write_event_level_eeg_features(task_folder: Path, features: pd.DataFrame) -> Path:

@@ -24,6 +24,7 @@ from backend.analysis.eye_tracking.task_level import (
     _event_sequence,
     _parse_utc,
 )
+from backend.analysis.eye_tracking.eye_selection import apply_eye_selection, load_eye_selection_settings
 from backend.sync.eprime import load_sync_window_json
 from domain.feature_catalog import EVENT_SUMMARY_FEATURES, EVENT_TYPES
 
@@ -32,7 +33,13 @@ EVENT_SUMMARY_FILE = "event_summary.xlsx"
 
 PRE_EVENT_WINDOW_MS = 500
 POST_EVENT_WINDOW_MS = 500
-EYESNOTFOUND_BURST_MIN_MS = 500
+# Project-book suggested starting point (100ms), validated empirically against
+# real EyesNotFound duration data: ~60% of raw Tobii "type index" segments are a
+# single sample (~8ms, sampling-rate noise, not a meaningful burst), the
+# distribution is smooth up to ~158ms, then a real gap to a sparse 200-383ms tail.
+# 100ms sits in the stable middle of that distribution and matches typical blink
+# duration (100-400ms) from the literature.
+EYESNOTFOUND_BURST_MIN_MS = 100
 
 EVENT_TYPE_REGRESSION = "Regression Events"
 EVENT_TYPE_LONG_FIXATION = "Long Fixation Events"
@@ -222,6 +229,41 @@ def _derive_long_fixation_events(
     return events
 
 
+def _merge_consecutive_type_runs(sequence: pd.DataFrame, type_name: str) -> list[dict[str, float]]:
+    """
+    Merge consecutive same-type rows of a sorted event sequence into single runs.
+
+    Tobii assigns a new "Eye movement type index" to short sub-segments even within
+    one continuous real-world episode — e.g. a single EyesNotFound period is often
+    split across many back-to-back single-sample (~8ms) index groups. Rows adjacent
+    in time with nothing else classified between them are one continuous episode
+    and must be merged before applying a minimum-duration threshold (per the
+    project book: "identify consecutive EyesNotFound samples ... merge continuous
+    segments into single events").
+    """
+    types = sequence["_event_type_normalized"].tolist()
+    onsets = sequence["_event_timestamp_ms"].tolist()
+    durations = sequence["_event_duration_ms"].tolist()
+
+    runs: list[dict[str, float]] = []
+    i = 0
+    n = len(types)
+    while i < n:
+        if types[i] != type_name or pd.isna(onsets[i]):
+            i += 1
+            continue
+        onset = float(onsets[i])
+        end = onset + (float(durations[i]) if pd.notna(durations[i]) else 0.0)
+        j = i
+        while j + 1 < n and types[j + 1] == type_name and pd.notna(onsets[j + 1]):
+            j += 1
+            candidate_end = float(onsets[j]) + (float(durations[j]) if pd.notna(durations[j]) else 0.0)
+            end = max(end, candidate_end)
+        runs.append({"onset_ms": onset, "duration_ms": end - onset})
+        i = j + 1
+    return runs
+
+
 def _derive_eyesnotfound_bursts(
     participant_id: str,
     task_name: str,
@@ -234,18 +276,14 @@ def _derive_eyesnotfound_bursts(
     if sequence.empty:
         return []
 
-    bursts = sequence.loc[sequence["_event_type_normalized"] == "eyesnotfound"].copy()
-    if bursts.empty:
+    runs = _merge_consecutive_type_runs(sequence, "eyesnotfound")
+    if not runs:
         return []
 
     source = str(segment_path.resolve())
     events: list[dict[str, Any]] = []
-    for _, row in bursts.iterrows():
-        duration_ms = row.get("_event_duration_ms")
-        onset_ms = row.get("_event_timestamp_ms")
-        if pd.isna(duration_ms) or pd.isna(onset_ms):
-            continue
-        duration = float(duration_ms)
+    for run in runs:
+        duration = run["duration_ms"]
         if duration < EYESNOTFOUND_BURST_MIN_MS:
             continue
         events.append(
@@ -255,8 +293,8 @@ def _derive_eyesnotfound_bursts(
                 EVENT_TYPE_EYESNOTFOUND,
                 f"eyesnotfound_{len(events) + 1}",
                 source_file=source,
-                detection_method="continuous_eyesnotfound_ge_500ms",
-                onset_relative_s=_relative_seconds(float(onset_ms), task_start_ms),
+                detection_method=f"continuous_eyesnotfound_merged_ge_{int(EYESNOTFOUND_BURST_MIN_MS)}ms",
+                onset_relative_s=_relative_seconds(run["onset_ms"], task_start_ms),
                 duration_ms=duration,
             )
         )
@@ -282,6 +320,8 @@ def build_event_database(
         return pd.DataFrame(columns=list(EVENT_DATABASE_COLUMNS)), warnings
 
     segment = pd.read_excel(segment_path, engine="openpyxl")
+    # same eye selection / fixation classification as Table 1 (participant setting)
+    segment, _eye_info = apply_eye_selection(segment, load_eye_selection_settings(task_folder.parent))
     task_start_ms = _task_start_timestamp_ms(segment, window)
     if task_start_ms is None:
         warnings.append("Could not determine task-start recording timestamp for relative event timing.")

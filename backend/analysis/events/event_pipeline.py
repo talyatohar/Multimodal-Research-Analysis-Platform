@@ -7,11 +7,13 @@ Regenerate forces recomputation of the full pipeline.
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 from typing import Any
 
 import pandas as pd
 
+from backend.analysis.events.blink_qc import EVENT_BLINK_QC_FILE
 from backend.analysis.events.eeg_alignment import (
     EVENT_DATABASE_WITH_EEG_ALIGNMENT_FILE,
     load_event_database_with_eeg_alignment,
@@ -132,5 +134,16 @@ def run_event_level_analysis(
         "epoch_result": epoch_result,
         "feature_result": feature_result,
         "aggregation_result": aggregation_result,
+        "blink_qc": _load_blink_qc(task_folder),
         "loaded_from_cache": False,
     }
+
+
+def _load_blink_qc(task_folder: Path) -> dict[str, Any] | None:
+    path = task_folder / EVENT_BLINK_QC_FILE
+    if not path.is_file():
+        return None
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None

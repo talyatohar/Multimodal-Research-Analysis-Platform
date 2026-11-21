@@ -10,6 +10,7 @@ from typing import Any
 
 import pandas as pd
 
+from backend.analysis.eye_tracking.eye_selection import apply_eye_selection, load_eye_selection_settings
 from backend.sync.eprime import load_sync_window_json
 from domain.resting_state import (
     RESTING_STATE_REGRESSION_SKIP_MESSAGE,
@@ -145,7 +146,12 @@ def _filter_to_task_window(
 
 
 def _normalise_type(series: pd.Series) -> pd.Series:
-    return series.astype("string").str.strip().str.casefold()
+    # fillna before the nullable-string conversion so equality/inequality comparisons
+    # never produce pd.NA entries — a mask containing NA raises "Location based
+    # indexing can only have [...] types" when later combined with a column list in
+    # .loc[], and blank rows are common whenever the export has no classified
+    # movement type (e.g. Resting state segments).
+    return series.fillna("").astype("string").str.strip().str.casefold()
 
 
 def _is_numeric_like(series: pd.Series) -> bool:
@@ -189,16 +195,24 @@ def _combined_valid_mask(left: pd.Series | None, right: pd.Series | None) -> pd.
     return None
 
 
+EVENT_VALIDITY_MIN_FRACTION = 0.5
+
+
 def _event_validity_by_index(
     rows: pd.DataFrame,
     left_valid: pd.Series | None,
     right_valid: pd.Series | None,
 ) -> pd.Series | None:
+    # Requiring every single sample in an event to be valid on both eyes is almost
+    # never satisfied for longer events (e.g. fixations spanning many samples),
+    # since brief per-sample tracking loss (blinks, noise) is normal even within an
+    # otherwise well-tracked event. A majority-valid criterion keeps events that were
+    # predominantly well-tracked while still excluding mostly-invalid ones.
     combined = _combined_valid_mask(left_valid, right_valid)
     if combined is None or TYPE_INDEX_COL not in rows.columns:
         return None
-    aligned = combined.loc[rows.index]
-    return aligned.groupby(rows[TYPE_INDEX_COL]).all()
+    aligned = combined.loc[rows.index].fillna(False).astype(float)
+    return aligned.groupby(rows[TYPE_INDEX_COL]).mean() >= EVENT_VALIDITY_MIN_FRACTION
 
 
 def _event_durations(
@@ -333,7 +347,6 @@ def _event_sequence(df: pd.DataFrame, warnings: list[str]) -> pd.DataFrame:
         return pd.DataFrame()
 
     aggregations: dict[str, Any] = {
-        "_event_type_normalized": "first",
         "_event_timestamp_ms": "min",
         "_event_duration_ms": "max",
     }
@@ -343,7 +356,13 @@ def _event_sequence(df: pd.DataFrame, warnings: list[str]) -> pd.DataFrame:
         aggregations[FIXATION_Y_COL] = _first_numeric
 
     aggregations["_event_row_count"] = "sum"
-    sequence = rows.groupby(TYPE_INDEX_COL, sort=False).agg(aggregations).reset_index()
+    # Composite key: "Eye movement type index" is not a globally unique event ID -
+    # each type (Fixation/Saccade/EyesNotFound/Unclassified) runs its own dense,
+    # independent counter, so the same index number is reused across types. Grouping
+    # by index alone silently merges unrelated events that happen to collide on the
+    # number (confirmed empirically: 60-85% of index values span >1 type on real
+    # data). Grouping by (type, index) keeps them separate.
+    sequence = rows.groupby(["_event_type_normalized", TYPE_INDEX_COL], sort=False).agg(aggregations).reset_index()
     sequence = sequence.sort_values(["_event_timestamp_ms", TYPE_INDEX_COL], kind="mergesort").reset_index(drop=True)
     sequence.attrs["raw_rows_used_for_sequence"] = int(len(rows))
     sequence.attrs["event_sequence_count"] = int(len(sequence))
@@ -410,6 +429,17 @@ def _lower_distribution_threshold(values: pd.Series, multiplier: float) -> tuple
     return threshold, details
 
 
+# Small per-task samples (a few dozen to ~150 events) rarely show a clean bimodal
+# split between "typical small movement" and "line/regression jump" — the gap- and
+# percentile-based estimators below can anchor on tail noise and blow up to a
+# physically implausible size (e.g. a "same line" tolerance covering half the
+# screen). These ceilings are generous multiples of the documented fallbacks (30px /
+# 25px) — well above any plausible single-line height or within-line saccade, so
+# they only reject genuinely broken estimates, not legitimate per-task variation.
+LINE_TRANSITION_THRESHOLD_CEILING_PX = 150.0
+REGRESSION_THRESHOLD_CEILING_PX = 125.0
+
+
 def _estimate_line_transition_threshold(sequence: pd.DataFrame) -> tuple[float, dict[str, Any], str | None]:
     fallback = 30.0
     fixations = sequence.loc[sequence["_event_type_normalized"] == "fixation"].copy()
@@ -423,15 +453,25 @@ def _estimate_line_transition_threshold(sequence: pd.DataFrame) -> tuple[float, 
     y = pd.to_numeric(fixations[FIXATION_Y_COL], errors="coerce").dropna()
     deltas = y.diff().abs().dropna()
     threshold, details = _largest_gap_threshold(deltas)
-    if threshold is not None:
+    if threshold is not None and threshold <= LINE_TRANSITION_THRESHOLD_CEILING_PX:
         details["selected_threshold_px"] = float(threshold)
         return float(threshold), details, None
+    if threshold is not None:
+        details["reason"] = (
+            f"estimated threshold {threshold:.1f}px exceeds plausibility ceiling "
+            f"{LINE_TRANSITION_THRESHOLD_CEILING_PX}px"
+        )
 
     threshold, lower_details = _lower_distribution_threshold(deltas, multiplier=3.0)
-    if threshold is not None:
+    if threshold is not None and threshold <= LINE_TRANSITION_THRESHOLD_CEILING_PX:
         lower_details["selected_threshold_px"] = float(threshold)
         lower_details["fallback_from_gap_details"] = details
         return float(threshold), lower_details, None
+    if threshold is not None:
+        lower_details["reason"] = (
+            f"estimated threshold {threshold:.1f}px exceeds plausibility ceiling "
+            f"{LINE_TRANSITION_THRESHOLD_CEILING_PX}px"
+        )
 
     return fallback, {
         "method": "fallback",
@@ -455,12 +495,19 @@ def _saccade_transition_deltas(sequence: pd.DataFrame) -> pd.DataFrame:
         next_fixation = next_fixations.iloc[0]
         previous_x = previous.get(FIXATION_X_COL)
         next_x = next_fixation.get(FIXATION_X_COL)
+        previous_y = previous.get(FIXATION_Y_COL)
+        next_y = next_fixation.get(FIXATION_Y_COL)
         if pd.isna(previous_x) or pd.isna(next_x):
             continue
         rows.append(
             {
                 "saccade_event_index": event[TYPE_INDEX_COL],
                 "delta_x": float(next_x) - float(previous_x),
+                "delta_y": (
+                    float(next_y) - float(previous_y)
+                    if pd.notna(previous_y) and pd.notna(next_y)
+                    else None
+                ),
             }
         )
     return pd.DataFrame(rows)
@@ -479,7 +526,10 @@ def _nearest_fixation_context(sequence: pd.DataFrame, saccade_position: int) -> 
     return previous, next_fixation, ignored_before, ignored_after
 
 
-def _estimate_regression_threshold(sequence: pd.DataFrame) -> tuple[float, dict[str, Any], str | None]:
+def _estimate_regression_threshold(
+    sequence: pd.DataFrame,
+    line_transition_threshold_px: float,
+) -> tuple[float, dict[str, Any], str | None]:
     fallback = 25.0
     if FIXATION_X_COL not in sequence.columns:
         return fallback, {
@@ -496,11 +546,28 @@ def _estimate_regression_threshold(sequence: pd.DataFrame) -> tuple[float, dict[
             "reason": "no fixation-saccade-fixation transitions",
         }, f"Auto regression threshold estimation failed; using documented fallback {fallback}px."
 
-    threshold, details = _lower_distribution_threshold(transitions["delta_x"].abs(), multiplier=3.0)
-    if threshold is not None:
+    # Calibrate "typical small saccade size" only from same-line transitions —
+    # otherwise line-change jumps (which are large by design) contaminate the
+    # reference distribution and inflate the threshold well past any real
+    # regression size (see LINE_TRANSITION_THRESHOLD_CEILING_PX note above).
+    same_line = transitions.loc[transitions["delta_y"].abs() < line_transition_threshold_px]
+    transition_source = "same_line_transitions"
+    if same_line.empty:
+        same_line = transitions
+        transition_source = "all_transitions_no_same_line_data"
+
+    threshold, details = _lower_distribution_threshold(same_line["delta_x"].abs(), multiplier=3.0)
+    details["transition_source"] = transition_source
+    details["same_line_transition_count"] = int(len(same_line))
+    if threshold is not None and threshold <= REGRESSION_THRESHOLD_CEILING_PX:
         details["selected_threshold_px"] = float(threshold)
         details["transition_count"] = int(len(transitions))
         return float(threshold), details, None
+    if threshold is not None:
+        details["reason"] = (
+            f"estimated threshold {threshold:.1f}px exceeds plausibility ceiling "
+            f"{REGRESSION_THRESHOLD_CEILING_PX}px"
+        )
 
     return fallback, {
         "method": "fallback",
@@ -571,7 +638,9 @@ def _regression_analysis(
         line_source = "manual_override"
 
     if regression_threshold_px is None:
-        regression_threshold_px, regression_details, regression_warning = _estimate_regression_threshold(sequence)
+        regression_threshold_px, regression_details, regression_warning = _estimate_regression_threshold(
+            sequence, line_transition_threshold_px
+        )
         regression_source = "auto"
         if regression_warning:
             threshold_warnings.append(regression_warning)
@@ -829,6 +898,10 @@ def run_task_level_eye_tracking_analysis(
 
     window = load_sync_window_json(task_folder) or {}
     raw_df = pd.read_excel(segment_path, engine="openpyxl")
+    raw_df, eye_selection_info = apply_eye_selection(raw_df, load_eye_selection_settings(task_folder.parent))
+    qc["eye_selection"] = eye_selection_info
+    if eye_selection_info.get("error"):
+        warnings.append(f"Eye selection: {eye_selection_info['error']}")
     df = _filter_to_task_window(raw_df, window, warnings, end_key=end_key)
     total_task_duration_ms = _task_duration_ms(window, warnings, end_key=end_key)
 

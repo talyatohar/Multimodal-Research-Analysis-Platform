@@ -93,6 +93,7 @@ EVENT_EEG_DISTRIBUTION_COLUMNS: tuple[str, ...] = (
     "mean",
     "standard_deviation",
     "variance",
+    "interpretation",
 )
 
 EVENT_TYPES: tuple[str, ...] = ("Long Fixation Events", "Regression Events", "EyesNotFound Bursts")

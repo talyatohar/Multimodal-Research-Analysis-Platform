@@ -13,6 +13,7 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
+from backend.analysis.events.blink_qc import BLINK_CONTAMINATED_LABEL, BLINK_EVENT_TYPE
 from backend.analysis.events.event_database import (
     EVENT_DATABASE_FILE,
     EVENT_SUMMARY_FILE,
@@ -108,9 +109,25 @@ def build_event_level_eeg_distribution(
                     "mean": mean_val,
                     "standard_deviation": std_val,
                     "variance": var_val,
+                    "interpretation": _distribution_interpretation(subset, event_type),
                 }
             )
     return pd.DataFrame(rows, columns=list(EVENT_LEVEL_EEG_DISTRIBUTION_STORE_COLUMNS))
+
+
+def _distribution_interpretation(subset: pd.DataFrame, event_type: str) -> str:
+    if event_type == BLINK_EVENT_TYPE:
+        return BLINK_CONTAMINATED_LABEL
+    if subset.empty or "interpretation" not in subset.columns:
+        return ""
+    excluded = int((subset["interpretation"].astype(str) == "excluded: blink in EEG window").sum())
+    if excluded:
+        return f"blink windows excluded ({excluded} of {len(subset)} events)"
+    if "window_contains_blink" in subset.columns:
+        flagged = int(subset["window_contains_blink"].astype(bool).sum())
+        if flagged:
+            return f"{flagged} of {len(subset)} event windows contain a blink (not excluded)"
+    return ""
 
 
 def distribution_table_for_event_type(
@@ -160,6 +177,7 @@ def _empty_distribution_table() -> pd.DataFrame:
                 "mean": NOT_AVAILABLE,
                 "standard_deviation": NOT_AVAILABLE,
                 "variance": NOT_AVAILABLE,
+                "interpretation": "",
             }
             for feature in EVENT_EEG_FEATURES
         ],
