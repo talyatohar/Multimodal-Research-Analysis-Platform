@@ -286,9 +286,11 @@ def compute_task_level_eeg_features(task_folder: Path, condition: str | None = N
         span = resting_state_condition_samples(
             task_folder, int(data.shape[0]), float(sampling_rate_hz), condition or RESTING_STATE_BASELINE_CONDITION
         )
-        if span is None:
+        if span is not None:
+            data = data[span[0]:span[1]]
+        elif condition is not None:
             return _unavailable_payload("Resting-state eyes-open/eyes-closed boundaries unavailable.")
-        data = data[span[0]:span[1]]
+        # else: no EO/EC boundaries in the log -> whole Resting-state segment (previous behaviour)
 
     mean_theta, theta_variability = _compute_roi_band_features(
         data,

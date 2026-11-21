@@ -111,9 +111,10 @@ def _load_preprocessed_plv_context(
         span = resting_state_condition_samples(
             task_folder, int(data.shape[0]), float(sampling_rate_hz), condition or RESTING_STATE_BASELINE_CONDITION
         )
-        if span is None:
+        if span is not None:
+            data = data[span[0]:span[1]]
+        elif condition is not None:
             return None
-        data = data[span[0]:span[1]]
     return data, float(sampling_rate_hz), channel_names, roi_definitions
 
 
