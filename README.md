@@ -4,6 +4,8 @@ A unified framework for synchronizing, processing, and analyzing multimodal expe
 
 🚀 **Live Demo:** https://multimodal-research-analysis-platform-lw2epaxrupn4bbsrxqldse.streamlit.app/
 
+*The online demo runs on synthetic data only and is not meant for real participant data; real analyses run locally on the lab PC.*
+
 
 ---
 

@@ -11,6 +11,12 @@ import pandas as pd
 import streamlit as st
 
 from backend.analysis.events import run_event_level_analysis, summarize_event_eeg_alignment_counts
+from backend.analysis.events.blink_qc import load_event_eeg_settings, write_event_eeg_settings
+from backend.analysis.eye_tracking.eye_selection import (
+    EYE_SELECTIONS,
+    load_eye_selection_settings,
+    write_eye_selection_settings,
+)
 from backend.analysis.feature_definitions import feature_tooltip
 from backend.analysis.task_level_tables import TABLE_3_FILE, build_task_level_tables
 from backend.eeg.task_level_feature_audit import detect_table_3_eeg_columns
@@ -413,6 +419,45 @@ else:
     st.info("Register a participant on the Upload page to populate this selector.", icon="ℹ️")
 
 st.divider()
+
+if row:
+    with st.expander("Participant analysis settings", expanded=False):
+        _pdir = participant_dir(str(row["participant_id"]))
+        _eye_settings = load_eye_selection_settings(_pdir)
+        _event_settings = load_event_eeg_settings(_pdir)
+        sc1, sc2 = st.columns(2)
+        with sc1:
+            eye_choice = st.selectbox(
+                "Eye selection",
+                options=list(EYE_SELECTIONS),
+                index=list(EYE_SELECTIONS).index(_eye_settings["eye_selection"]),
+                key=f"analyse_eye_selection_{row['participant_id']}",
+                help=(
+                    "Average: use the fixation classification exported by Tobii Pro Lab. "
+                    "Left / Right: re-classify fixations from that eye with the platform's I-VT filter "
+                    "(choose the eye with the better data quality). Applies to all tasks of this participant."
+                ),
+            )
+        with sc2:
+            exclude_blinks = st.checkbox(
+                "Exclude blink-contaminated event EEG windows",
+                value=bool(_event_settings["exclude_blink_windows"]),
+                key=f"analyse_exclude_blinks_{row['participant_id']}",
+                help=(
+                    "Event-level EEG: leave out long-fixation and regression windows that contain a blink "
+                    "(tracking loss of 80 ms or more, or an Fp1/Fp2 blink peak)."
+                ),
+            )
+        if st.button("Save analysis settings", key="save_analysis_settings"):
+            write_eye_selection_settings(
+                _pdir,
+                eye_choice,
+                ivt=_eye_settings.get("ivt") if eye_choice != "Average" else None,
+                note=_eye_settings.get("note"),
+            )
+            write_event_eeg_settings(_pdir, exclude_blinks)
+            _clear_analyse_table_caches()
+            st.success("Settings saved. Tables are recomputed with the new settings the next time you press GENERATE.")
 
 st.markdown("##### Task Level Analysis")
 if st.button("Task Level Analysis", type="secondary"):

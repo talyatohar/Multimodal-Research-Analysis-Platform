@@ -66,6 +66,13 @@ def load_eye_selection_settings(participant_folder: Path) -> dict[str, Any]:
     return settings
 
 
+def participant_settings_mtime(participant_folder: Path) -> float:
+    """Latest modification time of the participant's analysis settings files (0 if none)."""
+    names = (EYE_SELECTION_FILE, "event_eeg_settings.json")
+    times = [(participant_folder / n).stat().st_mtime for n in names if (participant_folder / n).is_file()]
+    return max(times) if times else 0.0
+
+
 def write_eye_selection_settings(participant_folder: Path, eye_selection: str, ivt: dict[str, float] | None = None, note: str | None = None) -> Path:
     if eye_selection not in EYE_SELECTIONS:
         raise ValueError(f"eye_selection must be one of {EYE_SELECTIONS}")

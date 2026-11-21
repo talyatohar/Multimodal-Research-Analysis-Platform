@@ -10,7 +10,11 @@ from typing import Any
 
 import pandas as pd
 
-from backend.analysis.eye_tracking.eye_selection import apply_eye_selection, load_eye_selection_settings
+from backend.analysis.eye_tracking.eye_selection import (
+    apply_eye_selection,
+    load_eye_selection_settings,
+    participant_settings_mtime,
+)
 from backend.sync.eprime import load_sync_window_json
 from domain.resting_state import (
     RESTING_STATE_REGRESSION_SKIP_MESSAGE,
@@ -829,7 +833,11 @@ def run_task_level_eye_tracking_analysis(
     end_key = "manual_task_end_utc" if window_type == "manual" else "task_end_utc"
     warnings: list[str] = []
 
-    if features_path.is_file() and not force_recompute:
+    if (
+        features_path.is_file()
+        and not force_recompute
+        and features_path.stat().st_mtime >= participant_settings_mtime(task_folder.parent)
+    ):
         features = pd.read_excel(features_path, engine="openpyxl")
         if qc_path.is_file():
             qc = json.loads(qc_path.read_text(encoding="utf-8"))

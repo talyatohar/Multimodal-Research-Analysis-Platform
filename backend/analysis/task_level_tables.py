@@ -11,6 +11,7 @@ import pandas as pd
 
 from backend.analysis.corsano_task_level import CorsanoTaskLevelResult, build_corsano_task_level_features
 from backend.analysis.eye_tracking import run_task_level_eye_tracking_analysis
+from backend.analysis.eye_tracking.eye_selection import participant_settings_mtime
 from backend.eeg.task_level_features import load_task_level_eeg_features_json
 from domain.feature_catalog import EEG_TASK_FEATURES as TASK_LEVEL_EEG_FEATURE_COLUMNS
 from domain.feature_catalog import EEG_TASK_FEATURES, EYE_TASK_FEATURES, PHYSIO_TASK_FEATURES, QC_TASK_FEATURES
@@ -94,8 +95,10 @@ def _split_corsano_warnings(warnings: list[str]) -> tuple[list[str], list[str]]:
 
 
 def _load_if_cached(path: Path, force_recompute: bool) -> pd.DataFrame | None:
+    # A table saved before the participant's analysis settings changed is stale.
     if path.is_file() and not force_recompute:
-        return pd.read_excel(path, engine="openpyxl")
+        if path.stat().st_mtime >= participant_settings_mtime(path.parent.parent):
+            return pd.read_excel(path, engine="openpyxl")
     return None
 
 

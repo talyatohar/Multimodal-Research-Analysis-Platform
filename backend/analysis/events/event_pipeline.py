@@ -46,7 +46,14 @@ EVENT_LEVEL_CACHE_FILES: tuple[str, ...] = (
 
 
 def event_level_cache_complete(task_folder: Path) -> bool:
-    return all((task_folder / name).is_file() for name in EVENT_LEVEL_CACHE_FILES)
+    paths = [task_folder / name for name in EVENT_LEVEL_CACHE_FILES]
+    if not all(p.is_file() for p in paths):
+        return False
+    # outputs older than the participant's analysis settings are stale
+    from backend.analysis.eye_tracking.eye_selection import participant_settings_mtime
+
+    settings_time = participant_settings_mtime(task_folder.parent)
+    return all(p.stat().st_mtime >= settings_time for p in paths)
 
 
 def run_event_level_analysis(

@@ -44,6 +44,7 @@ from backend.eeg.task_level_features import (
     _compute_roi_band_features,
     _recording_channel_names,
     _sampling_rate_hz,
+    frontal_plv_roi,
     frontal_theta_roi,
 )
 from domain.feature_catalog import EVENT_EEG_FEATURES
@@ -103,7 +104,7 @@ def _compute_single_epoch_features(
     roi_definitions: dict[str, Any],
     sampling_rate_hz: float,
 ) -> dict[str, float | str]:
-    frontal_roi = roi_definitions.get("frontal") or []
+    frontal_roi = frontal_plv_roi(roi_definitions)
     occipital_roi = roi_definitions.get("occipital") or []
     temporal_roi = roi_definitions.get("temporal") or []
 

@@ -15,7 +15,7 @@ import pandas as pd
 from scipy import signal
 
 from backend.eeg.inspection import eeg_raw_dir, load_eeg_metadata_json
-from backend.eeg.preprocessing import FRONTAL_THETA_ROI, load_eeg_preprocessing_plan
+from backend.eeg.preprocessing import FRONTAL_PLV_EXCLUDED, FRONTAL_THETA_ROI, load_eeg_preprocessing_plan
 from backend.eeg.preprocessing_exec import load_eeg_preprocessing_audit
 from domain.feature_catalog import EEG_TASK_FEATURES
 from domain.resting_state import eeg_baseline_change_zeros, is_resting_state_task
@@ -120,6 +120,11 @@ RESTING_STATE_BASELINE_CONDITION = "eyes_open"
 def frontal_theta_roi(roi_definitions: dict[str, Any]) -> list[str]:
     """Channels for frontal theta power (Fz/F3/F4 unless the plan defines frontal_theta)."""
     return list(roi_definitions.get("frontal_theta") or FRONTAL_THETA_ROI)
+
+
+def frontal_plv_roi(roi_definitions: dict[str, Any]) -> list[str]:
+    """Frontal ROI for theta PLV: the plan's frontal ROI without Fp1/Fp2/AF7/AF8 (blink-prone)."""
+    return [str(c) for c in (roi_definitions.get("frontal") or []) if str(c) not in FRONTAL_PLV_EXCLUDED]
 
 
 def resting_state_condition_samples(

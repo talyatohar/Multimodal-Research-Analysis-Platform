@@ -18,16 +18,14 @@ NOT_IMPLEMENTED_YET = "Not implemented yet"
 # other prefrontal/anterior sites) carry blink and eye-movement artefacts, and no
 # ocular correction is applied. The broader "frontal" ROI is still used for PLV.
 FRONTAL_THETA_ROI: list[str] = ["Fz", "F3", "F4"]
+# Prefrontal sites dominated by blinks/eye movements; excluded from the frontal PLV ROI too.
+FRONTAL_PLV_EXCLUDED: tuple[str, ...] = ("Fp1", "Fp2", "AF7", "AF8")
 
 DEFAULT_ROI_DEFINITIONS: dict[str, list[str]] = {
     "frontal_theta": list(FRONTAL_THETA_ROI),
     "frontal": [
-        "Fp1",
-        "Fp2",
         "AF3",
         "AF4",
-        "AF7",
-        "AF8",
         "Fz",
         "F1",
         "F2",

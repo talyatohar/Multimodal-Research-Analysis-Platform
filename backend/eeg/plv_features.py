@@ -21,6 +21,7 @@ from backend.eeg.task_level_features import (
     RESTING_STATE_BASELINE_CONDITION,
     RESTING_STATE_CONDITIONS_FILE,
     compute_task_level_eeg_features,
+    frontal_plv_roi,
     resting_state_condition_samples,
     THETA_BAND_HZ,
     _recording_channel_names,
@@ -167,7 +168,7 @@ def compute_theta_plv_features(task_folder: Path, condition: str | None = None) 
     data, sampling_rate_hz, channel_names, roi_definitions = context
     occipital_roi = roi_definitions.get("occipital") or []
     temporal_roi = roi_definitions.get("temporal") or []
-    frontal_roi = roi_definitions.get("frontal") or []
+    frontal_roi = frontal_plv_roi(roi_definitions)
 
     ot_pair_plvs = _roi_pair_plvs(
         data,
