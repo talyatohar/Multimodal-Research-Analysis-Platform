@@ -44,6 +44,7 @@ from backend.eeg.task_level_features import (
     _compute_roi_band_features,
     _recording_channel_names,
     _sampling_rate_hz,
+    frontal_theta_roi,
 )
 from domain.feature_catalog import EVENT_EEG_FEATURES
 from domain.storage_layout import EEG_PREPROCESSED_SEGMENT_FILE
@@ -109,7 +110,7 @@ def _compute_single_epoch_features(
     mean_theta, _ = _compute_roi_band_features(
         epoch,
         channel_names,
-        frontal_roi,
+        frontal_theta_roi(roi_definitions),
         sampling_rate_hz,
         THETA_BAND_HZ,
     )

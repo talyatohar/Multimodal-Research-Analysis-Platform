@@ -14,7 +14,13 @@ from domain.storage_layout import EEG_PREPROCESSING_PLAN_FILE
 
 NOT_IMPLEMENTED_YET = "Not implemented yet"
 
+# Frontal theta power uses midline/dorsolateral frontal sites only: Fp1/Fp2 (and the
+# other prefrontal/anterior sites) carry blink and eye-movement artefacts, and no
+# ocular correction is applied. The broader "frontal" ROI is still used for PLV.
+FRONTAL_THETA_ROI: list[str] = ["Fz", "F3", "F4"]
+
 DEFAULT_ROI_DEFINITIONS: dict[str, list[str]] = {
+    "frontal_theta": list(FRONTAL_THETA_ROI),
     "frontal": [
         "Fp1",
         "Fp2",

@@ -15,7 +15,7 @@ import pandas as pd
 from scipy import signal
 
 from backend.eeg.inspection import eeg_raw_dir, load_eeg_metadata_json
-from backend.eeg.preprocessing import load_eeg_preprocessing_plan
+from backend.eeg.preprocessing import FRONTAL_THETA_ROI, load_eeg_preprocessing_plan
 from backend.eeg.preprocessing_exec import load_eeg_preprocessing_audit
 from domain.feature_catalog import EEG_TASK_FEATURES
 from domain.resting_state import eeg_baseline_change_zeros, is_resting_state_task
@@ -113,6 +113,55 @@ def _recording_channel_names(task_folder: Path, audit: dict[str, Any] | None, ch
     return [f"Ch{i + 1}" for i in range(channel_count)]
 
 
+RESTING_STATE_CONDITIONS_FILE = "resting_state_eo_ec_features.json"
+RESTING_STATE_BASELINE_CONDITION = "eyes_open"
+
+
+def frontal_theta_roi(roi_definitions: dict[str, Any]) -> list[str]:
+    """Channels for frontal theta power (Fz/F3/F4 unless the plan defines frontal_theta)."""
+    return list(roi_definitions.get("frontal_theta") or FRONTAL_THETA_ROI)
+
+
+def resting_state_condition_samples(
+    task_folder: Path,
+    n_samples: int,
+    sampling_rate_hz: float,
+    condition: str,
+) -> tuple[int, int] | None:
+    """
+    Sample range [start, end) of the eyes-open or eyes-closed block inside the Resting-state
+    segment, from the E-Prime EyesOpen/EyesClose onsets and durations. The segment starts at
+    the eyes-open onset (task start) plus any missing_task_start_seconds.
+    """
+    from backend.sync.eprime import load_sync_window_json
+
+    window = load_sync_window_json(task_folder) or {}
+    try:
+        eo_onset = float(window["eyes_open_onset_ms"])
+        if condition == "eyes_open":
+            start_ms, dur_ms = eo_onset, float(window["eyes_open_duration_ms"])
+        elif condition == "eyes_closed":
+            start_ms, dur_ms = float(window["eyes_close_onset_ms"]), float(window["eyes_close_duration_ms"])
+        else:
+            return None
+    except (KeyError, TypeError, ValueError):
+        return None
+    meta_path = task_folder / "eeg_segment_metadata.json"
+    missing_start_s = 0.0
+    if meta_path.is_file():
+        try:
+            meta = json.loads(meta_path.read_text(encoding="utf-8"))
+            missing_start_s = float(meta.get("missing_task_start_seconds") or 0.0)
+        except (OSError, ValueError, TypeError):
+            missing_start_s = 0.0
+    rel_start_s = (start_ms - eo_onset) / 1000.0 - missing_start_s
+    start = max(0, int(round(rel_start_s * sampling_rate_hz)))
+    end = min(n_samples, int(round((rel_start_s + dur_ms / 1000.0) * sampling_rate_hz)))
+    if end - start < int(sampling_rate_hz):
+        return None
+    return start, end
+
+
 def _roi_indices(channel_names: list[str], roi_names: list[str]) -> list[int]:
     name_to_idx = {name: idx for idx, name in enumerate(channel_names)}
     return [name_to_idx[name] for name in roi_names if name in name_to_idx]
@@ -200,8 +249,12 @@ def _compute_theta_alpha_ratio_variability(
     return float(theta_var / alpha_var)
 
 
-def compute_task_level_eeg_features(task_folder: Path) -> dict[str, Any]:
-    """Return implemented task-level EEG band-power features."""
+def compute_task_level_eeg_features(task_folder: Path, condition: str | None = None) -> dict[str, Any]:
+    """
+    Return implemented task-level EEG band-power features. For Resting state the
+    eyes-open block is used by default (it is the baseline for the eyes-open reading
+    tasks); pass condition="eyes_closed" for the eyes-closed block.
+    """
     segment_path = task_folder / EEG_PREPROCESSED_SEGMENT_FILE
     if not segment_path.is_file():
         return _unavailable_payload("eeg_preprocessed_segment.npy not found.")
@@ -229,10 +282,18 @@ def compute_task_level_eeg_features(task_folder: Path) -> dict[str, Any]:
     roi_definitions = plan.get("roi_definitions") or {}
     channel_names = _recording_channel_names(task_folder, audit, int(data.shape[1]))
 
+    if is_resting_state_task(task_folder.name):
+        span = resting_state_condition_samples(
+            task_folder, int(data.shape[0]), float(sampling_rate_hz), condition or RESTING_STATE_BASELINE_CONDITION
+        )
+        if span is None:
+            return _unavailable_payload("Resting-state eyes-open/eyes-closed boundaries unavailable.")
+        data = data[span[0]:span[1]]
+
     mean_theta, theta_variability = _compute_roi_band_features(
         data,
         channel_names,
-        roi_definitions.get("frontal") or [],
+        frontal_theta_roi(roi_definitions),
         sampling_rate_hz,
         THETA_BAND_HZ,
     )

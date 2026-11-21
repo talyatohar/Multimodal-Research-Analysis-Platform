@@ -6,6 +6,7 @@ Occipital–temporal, temporal–frontal, and occipital–frontal mean PLV and v
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 from typing import Any
 
@@ -17,6 +18,10 @@ from backend.eeg.preprocessing import load_eeg_preprocessing_plan
 from backend.eeg.preprocessing_exec import load_eeg_preprocessing_audit
 from backend.eeg.task_level_features import (
     NOT_AVAILABLE,
+    RESTING_STATE_BASELINE_CONDITION,
+    RESTING_STATE_CONDITIONS_FILE,
+    compute_task_level_eeg_features,
+    resting_state_condition_samples,
     THETA_BAND_HZ,
     _recording_channel_names,
     _roi_indices,
@@ -25,6 +30,7 @@ from backend.eeg.task_level_features import (
     merge_task_level_eeg_exports,
     save_task_level_eeg_feature_payload,
 )
+from domain.resting_state import is_resting_state_task
 from domain.storage_layout import EEG_PREPROCESSED_SEGMENT_FILE
 
 OT_PLV_FEATURE_NAME = "mean_occipital_temporal_theta_plv"
@@ -72,6 +78,7 @@ def _pair_plv(phase_a: np.ndarray, phase_b: np.ndarray) -> float:
 
 def _load_preprocessed_plv_context(
     task_folder: Path,
+    condition: str | None = None,
 ) -> tuple[np.ndarray, float, list[str], dict[str, Any]] | None:
     segment_path = task_folder / EEG_PREPROCESSED_SEGMENT_FILE
     if not segment_path.is_file():
@@ -99,6 +106,14 @@ def _load_preprocessed_plv_context(
 
     channel_names = _recording_channel_names(task_folder, audit, int(data.shape[1]))
     roi_definitions = plan.get("roi_definitions") or {}
+    if is_resting_state_task(task_folder.name):
+        # Resting state: eyes-open block by default (baseline), or eyes-closed on request.
+        span = resting_state_condition_samples(
+            task_folder, int(data.shape[0]), float(sampling_rate_hz), condition or RESTING_STATE_BASELINE_CONDITION
+        )
+        if span is None:
+            return None
+        data = data[span[0]:span[1]]
     return data, float(sampling_rate_hz), channel_names, roi_definitions
 
 
@@ -143,8 +158,8 @@ def _plv_mean_and_variability(pair_plvs: list[float] | None) -> tuple[float | st
     return float(np.mean(pair_plvs)), variability
 
 
-def compute_theta_plv_features(task_folder: Path) -> dict[str, float | str]:
-    context = _load_preprocessed_plv_context(task_folder)
+def compute_theta_plv_features(task_folder: Path, condition: str | None = None) -> dict[str, float | str]:
+    context = _load_preprocessed_plv_context(task_folder, condition)
     if context is None:
         return _unavailable_plv_payload()
 
@@ -189,6 +204,23 @@ def compute_theta_plv_features(task_folder: Path) -> dict[str, float | str]:
     }
 
 
+def write_resting_state_condition_features(task_folder: Path) -> Path:
+    """Resting state: band power + theta PLV for eyes-open and eyes-closed separately."""
+    out: dict[str, Any] = {
+        "baseline_condition": RESTING_STATE_BASELINE_CONDITION,
+        "note": "Eyes-open values are the baseline for every EEG change-from-baseline feature; "
+        "eyes-closed values are reported separately.",
+    }
+    for condition in ("eyes_open", "eyes_closed"):
+        out[condition] = {
+            **compute_task_level_eeg_features(task_folder, condition),
+            **compute_theta_plv_features(task_folder, condition),
+        }
+    path = task_folder / RESTING_STATE_CONDITIONS_FILE
+    path.write_text(json.dumps(out, indent=2), encoding="utf-8")
+    return path
+
+
 def compute_occipital_temporal_theta_plv_features(task_folder: Path) -> dict[str, float | str]:
     features = compute_theta_plv_features(task_folder)
     return {
@@ -212,6 +244,8 @@ def run_theta_plv_features(task_folder: Path, task_name: str) -> dict[str, Any] 
 
     plv_features = compute_theta_plv_features(task_folder)
     payload = {**current_features, **plv_features}
+    if is_resting_state_task(task_name):
+        write_resting_state_condition_features(task_folder)
     paths = save_task_level_eeg_feature_payload(task_folder, payload, task_name=task_name)
     return {
         "task_name": task_name,
