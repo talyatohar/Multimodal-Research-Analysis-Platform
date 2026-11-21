@@ -6,8 +6,9 @@ from pathlib import Path
 
 import pandas as pd
 
+from backend import paths
 from backend.files import ensure_dir
-from backend.paths import PARTICIPANTS_TABLE_PATH, REGISTRY_COLUMNS
+from backend.paths import REGISTRY_COLUMNS
 from domain.participant_id import normalize_participant_id
 
 
@@ -18,26 +19,26 @@ def _empty_registry() -> pd.DataFrame:
 def _save_registry(df: pd.DataFrame) -> None:
     out = df[REGISTRY_COLUMNS].copy()
     out["participant_id"] = out["participant_id"].apply(normalize_participant_id).astype(str)
-    out.to_excel(PARTICIPANTS_TABLE_PATH, index=False, engine="openpyxl")
+    out.to_excel(paths.PARTICIPANTS_TABLE_PATH, index=False, engine="openpyxl")
 
 
 def ensure_registry_file() -> Path:
-    ensure_dir(PARTICIPANTS_TABLE_PATH.parent)
-    if not PARTICIPANTS_TABLE_PATH.exists():
-        _empty_registry().to_excel(PARTICIPANTS_TABLE_PATH, index=False, engine="openpyxl")
-    return PARTICIPANTS_TABLE_PATH
+    ensure_dir(paths.PARTICIPANTS_TABLE_PATH.parent)
+    if not paths.PARTICIPANTS_TABLE_PATH.exists():
+        _empty_registry().to_excel(paths.PARTICIPANTS_TABLE_PATH, index=False, engine="openpyxl")
+    return paths.PARTICIPANTS_TABLE_PATH
 
 
 def load_registry() -> pd.DataFrame:
     ensure_registry_file()
     try:
         df = pd.read_excel(
-            PARTICIPANTS_TABLE_PATH,
+            paths.PARTICIPANTS_TABLE_PATH,
             engine="openpyxl",
             dtype={"participant_id": str},
         )
     except (ValueError, KeyError):
-        df = pd.read_excel(PARTICIPANTS_TABLE_PATH, engine="openpyxl")
+        df = pd.read_excel(paths.PARTICIPANTS_TABLE_PATH, engine="openpyxl")
     for col in REGISTRY_COLUMNS:
         if col not in df.columns:
             df[col] = None
@@ -86,7 +87,7 @@ def append_participant_row(
     }
     df = pd.concat([df, pd.DataFrame([row])], ignore_index=True)
     _save_registry(df)
-    return PARTICIPANTS_TABLE_PATH
+    return paths.PARTICIPANTS_TABLE_PATH
 
 
 def list_participants() -> list[dict]:

@@ -33,6 +33,32 @@ def _channel_names(header_meta: dict[str, Any], channel_count: int) -> list[str]
     return [f"Ch{i + 1}" for i in range(channel_count)]
 
 
+def _resolution_per_bit_array(
+    header_meta: dict[str, Any],
+    channel_count: int,
+) -> tuple[np.ndarray, list[str]]:
+    """
+    Per-channel scale factor (raw ADC counts -> physical unit), in channel order.
+
+    BVRF stores each channel's own ResolutionPerBit in the .bvrh header
+    (values differ by channel type, e.g. EEG vs Aux). A channel missing the
+    field defaults to 1.0 (no scaling) and is reported as a warning, rather
+    than silently assuming a value.
+    """
+    channels = header_meta.get("channels") or []
+    warnings: list[str] = []
+    values = np.ones(channel_count, dtype=np.float64)
+    for i in range(channel_count):
+        row = channels[i] if i < len(channels) else None
+        resolution = row.get("resolution_per_bit") if isinstance(row, dict) else None
+        if resolution is None:
+            name = row.get("name") if isinstance(row, dict) else f"Ch{i + 1}"
+            warnings.append(f"{name}: missing ResolutionPerBit in .bvrh; using 1.0 (no scaling).")
+            continue
+        values[i] = float(resolution)
+    return values, warnings
+
+
 def load_eeg_segment_array(task_folder: Path) -> tuple[np.ndarray, list[str], dict[str, Any]]:
     """Load segmented EEG array (samples × channels) or raise."""
     segment_meta = load_eeg_segment_metadata(task_folder)
@@ -67,12 +93,20 @@ def load_eeg_segment_array(task_folder: Path) -> tuple[np.ndarray, list[str], di
         start_sample_index=int(start_idx),
         end_sample_index=int(end_idx),
     )
+    resolution_per_bit, resolution_warnings = _resolution_per_bit_array(header_meta, channel_count)
+    # Apply before any filtering/referencing/feature computation - raw BVRF samples
+    # are ADC counts, not physical units, until scaled by each channel's own
+    # ResolutionPerBit (classic BrainVision bug when skipped: absolute amplitude/
+    # power features come out ~(1/ResolutionPerBit)^2 too large).
+    data = data.astype(np.float64) * resolution_per_bit
     names = _channel_names(header_meta, channel_count)
     context = {
         "sampling_rate_hz": header_meta.get("sampling_rate_hz") or segment_meta.get("sampling_rate_hz"),
         "start_sample_index": int(start_idx),
         "end_sample_index": int(end_idx),
         "data_dtype": numeric_data_type,
+        "resolution_per_bit_applied": True,
+        "resolution_per_bit_warnings": resolution_warnings,
     }
     return data, names, context
 

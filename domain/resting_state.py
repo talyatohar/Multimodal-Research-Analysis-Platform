@@ -4,6 +4,14 @@ from __future__ import annotations
 
 RESTING_STATE_TASK = "Resting state"
 
+# Resting-state eye tracking is excluded from analysis by design (study decision):
+# no Tobii segment is cut and every eye/eye-QC feature for the task carries this label.
+RESTING_STATE_EYE_EXCLUDED = "Not used (by design)"
+RESTING_STATE_EYE_EXCLUDED_MESSAGE = (
+    "Resting state: eye tracking is excluded from analysis by design; "
+    "eye-tracking features are reported as 'Not used (by design)'."
+)
+
 RESTING_STATE_REGRESSION_SKIP_MESSAGE = (
     "Regression detection skipped for Resting state because no reading direction exists "
     "during baseline recording."

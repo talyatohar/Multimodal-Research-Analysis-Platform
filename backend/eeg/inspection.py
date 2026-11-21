@@ -19,7 +19,7 @@ BVRF_EXTENSIONS = (".bvrh", ".bvrd", ".bvrm", ".bvri")
 BVRF_REQUIRED_SUFFIXES = (".bvrh", ".bvrd", ".bvrm")
 BVRF_OPTIONAL_SUFFIXES = (".bvri",)
 
-_MARKER_COLUMNS = ("Sample", "Type", "Code", "DateTime", "Comment")
+_MARKER_COLUMNS = ("Sample", "Type", "Code", "Value", "DateTime", "Comment")
 _SEGMENT_TYPES = ("new segment", "recording start", "recordingstart")
 
 _DTYPE_BYTES = {
@@ -130,6 +130,11 @@ def parse_bvrh(path: Path) -> tuple[dict[str, Any], list[str]]:
                 continue
             participant_id = channel.get("ParticipantId")
             display_name = f"{name} ({participant_id})" if participant_id else name
+            resolution_per_bit = channel.get("ResolutionPerBit")
+            try:
+                resolution_per_bit = float(resolution_per_bit) if resolution_per_bit is not None else None
+            except (TypeError, ValueError):
+                resolution_per_bit = None
             channel_rows.append(
                 {
                     "name": display_name,
@@ -137,6 +142,7 @@ def parse_bvrh(path: Path) -> tuple[dict[str, Any], list[str]]:
                     "unit": channel.get("Unit"),
                     "participant_id": participant_id,
                     "amplifier_id": channel.get("AmplifierId"),
+                    "resolution_per_bit": resolution_per_bit,
                 }
             )
         payload["channels"] = channel_rows
@@ -333,6 +339,7 @@ def _channels_for_metadata_export(channels: list[dict[str, Any]]) -> list[dict[s
             "name": channel.get("name"),
             "type": channel.get("type"),
             "unit": channel.get("unit"),
+            "resolution_per_bit": channel.get("resolution_per_bit"),
         }
         for index, channel in enumerate(channels, start=1)
     ]

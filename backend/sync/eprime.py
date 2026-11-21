@@ -63,28 +63,80 @@ def parse_eprime_log(file_path: str | Path) -> dict[str, Any]:
             return None
         return match.group(1).strip()
 
-    session_start_raw = get_value("SessionStartDateTimeUtc")
-    fixation_onset = get_value("FixationStart.OnsetTime")
-    fixation_duration = get_value("FixationStart.OnsetToOnsetTime")
-    story_duration = get_value("SixationOpenS.OnsetToOnsetTime")
+    def get_first_value(keys: list[str]) -> str | None:
+        for key in keys:
+            value = get_value(key)
+            if value is not None:
+                return value
+        return None
 
+    session_start_raw = get_value("SessionStartDateTimeUtc")
     if not session_start_raw:
         raise ValueError("Could not find SessionStartDateTimeUtc")
-
     session_start = datetime.strptime(session_start_raw, "%d/%m/%Y %H:%M:%S")
 
-    task_start_utc = session_start + timedelta(milliseconds=int(fixation_onset))
-    task_duration_ms = int(fixation_duration) + int(story_duration)
-    task_end_utc = task_start_utc + timedelta(milliseconds=task_duration_ms)
+    fixation_onset = get_value("FixationStart.OnsetTime")
+    if fixation_onset is not None:
+        # Reading-task template (Oral/Silent reading, erased/static, with/without metronome).
+        # E-Prime names the post-fixation frame inconsistently across these task templates:
+        # non-metronome variants log it as "FixationOpen", metronome ("clicks") variants log
+        # it as "SixationOpenS" (a typo baked into that template itself).
+        story_duration_keys = ["FixationOpen.OnsetToOnsetTime", "SixationOpenS.OnsetToOnsetTime"]
+        fixation_duration = get_value("FixationStart.OnsetToOnsetTime")
+        story_duration = get_first_value(story_duration_keys)
+
+        if fixation_duration is None:
+            raise ValueError("Could not find FixationStart.OnsetToOnsetTime")
+        if story_duration is None:
+            raise ValueError(
+                "Could not find story duration field (tried: " + ", ".join(story_duration_keys) + ")"
+            )
+
+        task_start_utc = session_start + timedelta(milliseconds=int(fixation_onset))
+        task_duration_ms = int(fixation_duration) + int(story_duration)
+        task_end_utc = task_start_utc + timedelta(milliseconds=task_duration_ms)
+
+        return {
+            "session_start_utc": session_start.isoformat(),
+            "task_start_utc": task_start_utc.isoformat(),
+            "task_end_utc": task_end_utc.isoformat(),
+            "task_duration_ms": task_duration_ms,
+            "fixation_onset_ms": int(fixation_onset),
+            "fixation_duration_ms": int(fixation_duration),
+            "story_duration_ms": int(story_duration),
+        }
+
+    # Resting-state template: no "FixationStart" frame. Instead there are two 2-minute
+    # blocks — "FixationOpen" (eyes open) followed by "FixationClose" (eyes closed).
+    # The task window spans from the start of the eyes-open block to the end of the
+    # eyes-closed block.
+    eyes_open_onset = get_value("FixationOpen.OnsetTime")
+    eyes_open_duration = get_value("FixationOpen.Duration")
+    eyes_close_onset = get_value("FixationClose.OnsetTime")
+    eyes_close_duration = get_value("FixationClose.Duration")
+
+    if eyes_open_onset is None:
+        raise ValueError(
+            "Could not find FixationStart.OnsetTime or FixationOpen.OnsetTime "
+            "(unrecognized E-Prime task template)"
+        )
+    if eyes_close_onset is None or eyes_close_duration is None:
+        raise ValueError("Could not find FixationClose.OnsetTime / FixationClose.Duration")
+
+    task_start_utc = session_start + timedelta(milliseconds=int(eyes_open_onset))
+    close_end_ms = int(eyes_close_onset) + int(eyes_close_duration)
+    task_end_utc = session_start + timedelta(milliseconds=close_end_ms)
+    task_duration_ms = close_end_ms - int(eyes_open_onset)
 
     return {
         "session_start_utc": session_start.isoformat(),
         "task_start_utc": task_start_utc.isoformat(),
         "task_end_utc": task_end_utc.isoformat(),
         "task_duration_ms": task_duration_ms,
-        "fixation_onset_ms": int(fixation_onset),
-        "fixation_duration_ms": int(fixation_duration),
-        "story_duration_ms": int(story_duration),
+        "eyes_open_onset_ms": int(eyes_open_onset),
+        "eyes_open_duration_ms": int(eyes_open_duration) if eyes_open_duration is not None else None,
+        "eyes_close_onset_ms": int(eyes_close_onset),
+        "eyes_close_duration_ms": int(eyes_close_duration),
     }
 
 

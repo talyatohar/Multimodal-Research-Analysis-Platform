@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import functools
 import json
 from datetime import date, datetime, time, timedelta, timezone
 from pathlib import Path
@@ -10,6 +11,7 @@ from typing import Any
 import pandas as pd
 
 from backend.sync.eprime import load_sync_window_json
+from domain.resting_state import RESTING_STATE_EYE_EXCLUDED_MESSAGE, is_resting_state_task
 
 TS_COL = "Recording timestamp [ms]"
 START_UTC_COL = "Recording start time UTC"
@@ -223,6 +225,40 @@ def _selected_row_bounds(row_utc: pd.Series, mask: pd.Series) -> tuple[str | Non
     return _iso_utc(selected.min().to_pydatetime()), _iso_utc(selected.max().to_pydatetime())
 
 
+MIN_RECORDING_TASK_COVERAGE = 0.8
+
+
+def _window_coverage_fraction(rec_min, rec_max, task_start, task_end) -> float:
+    total = (task_end - task_start).total_seconds()
+    if total <= 0:
+        return 0.0
+    overlap = (min(rec_max, task_end) - max(rec_min, task_start)).total_seconds()
+    return max(0.0, overlap) / total
+
+
+def _remove_stale_segment(task_folder: Path, output_suffix: str) -> None:
+    stale = task_folder / f"processed_eye_tracking_segment_{output_suffix}.xlsx"
+    if stale.is_file():
+        stale.unlink()
+
+
+@functools.lru_cache(maxsize=8)
+def _read_eye_tracking_excel_cached(path_str: str, mtime_ns: int) -> pd.DataFrame:
+    return pd.read_excel(path_str, engine="openpyxl")
+
+
+def _read_eye_tracking_excel(path: Path) -> pd.DataFrame:
+    """
+    Cached by (resolved path, mtime) so a multi-task upload parses each Tobii export
+    once instead of once per task — a full-session export can be tens of MB and take
+    minutes to re-parse. Callers must not mutate the returned frame in place (only
+    read/slice/copy it), since it is shared across calls.
+    """
+    resolved = path.resolve()
+    stat = resolved.stat()
+    return _read_eye_tracking_excel_cached(str(resolved), stat.st_mtime_ns)
+
+
 def list_eye_tracking_files(participant_folder: Path) -> list[Path]:
     files = sorted(participant_folder.glob("EyeTracking*.xlsx"))
     if not files:
@@ -279,6 +315,15 @@ def segment_eye_tracking_for_task(
         "per_recording": [],
     }
 
+    if is_resting_state_task(task_folder.name):
+        # Study decision: resting-state eye tracking is never analysed.
+        report["excluded_by_design"] = True
+        warnings.append(RESTING_STATE_EYE_EXCLUDED_MESSAGE)
+        report_path = task_folder / f"segmentation_report_{output_suffix}.json"
+        report_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
+        _remove_stale_segment(task_folder, output_suffix)
+        return None, report_path, report, warnings
+
     if not candidates:
         warnings.append("No eye-tracking files found in participant folder — segmentation skipped.")
         return None, None, report, warnings
@@ -289,7 +334,7 @@ def segment_eye_tracking_for_task(
         report["files_checked"].append(eye_path.name)
 
         try:
-            df = pd.read_excel(eye_path, engine="openpyxl")
+            df = _read_eye_tracking_excel(eye_path)
         except Exception as exc:
             warnings.append(f"{eye_path.name}: could not read Excel — {exc}")
             report["per_file"].append({"file": eye_path.name, "error": str(exc), "rows_before": 0})
@@ -367,6 +412,21 @@ def segment_eye_tracking_for_task(
                 report["per_recording"].append(recording_info)
                 continue
 
+            # Guard: only use a recording that actually covers the task window. A recording
+            # that merely touches the window (e.g. the tail of the previous task, or a window
+            # on a different PC clock) must not be borrowed as this task's data.
+            coverage = _window_coverage_fraction(rec_min, rec_max, task_start, task_end)
+            recording_info["task_window_coverage"] = coverage
+            if coverage < MIN_RECORDING_TASK_COVERAGE:
+                recording_info["rejected_reason"] = (
+                    f"covers only {coverage:.0%} of the task window (< {MIN_RECORDING_TASK_COVERAGE:.0%})"
+                )
+                warnings.append(
+                    f"{recording_key}: covers only {coverage:.0%} of the task window — not used for this task."
+                )
+                report["per_recording"].append(recording_info)
+                continue
+
             if eye_path.name not in report["files_with_overlap"]:
                 report["files_with_overlap"].append(eye_path.name)
             segment = group.loc[selection_mask].copy()
@@ -381,7 +441,10 @@ def segment_eye_tracking_for_task(
 
     if not segments:
         report["rows_after"] = 0
-        warnings.append("No eye-tracking rows found after applying the task window buffer.")
+        warnings.append(
+            "No Tobii recording covers this task window — eye-tracking features are not available."
+        )
+        _remove_stale_segment(task_folder, output_suffix)
         report_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
         return None, report_path, report, warnings
 

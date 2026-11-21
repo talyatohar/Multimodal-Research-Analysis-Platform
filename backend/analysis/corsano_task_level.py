@@ -22,7 +22,10 @@ MISSING_RESTING_STATE = "Missing Resting State"
 NOT_AVAILABLE = "Not Available"
 SPARSE_BOUNDARY_SECONDS = 60.0
 BPM_QUALITY_MIN = 3
-RESP_QUALITY_MIN = 3
+# Corsano's resp_q quality code observed range is 0-2 (unlike bpm_q's 0-4), so a
+# threshold of 3 could never be satisfied by any sample — it silently zeroed out
+# respiration features for every task. 1 accepts fair-or-better quality.
+RESP_QUALITY_MIN = 1
 OUTLIER_REMOVAL_MIN_SAMPLES = 10
 OUTLIER_REMOVAL_NOTE = (
     "Outlier removal is applied only when at least 10 valid samples are available."
@@ -50,6 +53,14 @@ class CorsanoTaskLevelResult:
 
 
 def _parse_task_window(task_folder: Path) -> tuple[pd.Timestamp, pd.Timestamp] | None:
+    """
+    Task window on the Corsano clock. E-Prime times are on the E-Prime PC clock, while
+    Corsano timestamps follow real (network) time, which matches the EEG PC clock
+    (verified on participant 211: rest wrist stillness and oral-reading HR line up only
+    after shifting). So the window is shifted by the task's effective EEG clock offset
+    (manual session offset for reading tasks, trigger-derived for Resting state).
+    No EEG offset available -> no shift.
+    """
     window = load_sync_window_json(task_folder)
     if not window:
         return None
@@ -57,6 +68,13 @@ def _parse_task_window(task_folder: Path) -> tuple[pd.Timestamp, pd.Timestamp] |
     end = pd.to_datetime(window.get("task_end_utc"), errors="coerce", utc=True)
     if pd.isna(start) or pd.isna(end):
         return None
+    # local import: backend.eeg package imports task_level_tables -> this module (cycle)
+    from backend.eeg.sync import effective_eeg_clock_offset_seconds
+
+    offset, _source = effective_eeg_clock_offset_seconds(task_folder, window)
+    if offset:
+        shift = pd.Timedelta(seconds=float(offset))
+        start, end = start + shift, end + shift
     return start, end
 
 

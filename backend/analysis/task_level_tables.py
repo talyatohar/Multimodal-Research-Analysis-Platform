@@ -15,6 +15,8 @@ from backend.eeg.task_level_features import load_task_level_eeg_features_json
 from domain.feature_catalog import EEG_TASK_FEATURES as TASK_LEVEL_EEG_FEATURE_COLUMNS
 from domain.feature_catalog import EEG_TASK_FEATURES, EYE_TASK_FEATURES, PHYSIO_TASK_FEATURES, QC_TASK_FEATURES
 from domain.resting_state import (
+    RESTING_STATE_EYE_EXCLUDED,
+    RESTING_STATE_EYE_EXCLUDED_MESSAGE,
     eeg_baseline_change_zeros,
     is_resting_state_task,
     physio_baseline_change_zeros,
@@ -56,9 +58,14 @@ def _apply_resting_state_table_defaults(
         return table
     updated = table.copy()
     if table_kind == "eye":
-        for feature, value in resting_state_regression_metric_zeros().items():
+        updated = updated.astype(object)
+        for feature in updated.columns:
+            updated.loc[updated.index[0], feature] = RESTING_STATE_EYE_EXCLUDED
+    elif table_kind == "qc":
+        updated = updated.astype(object)
+        for feature in ("left_valid_percentage", "right_valid_percentage", "combined_valid_percentage"):
             if feature in updated.columns:
-                updated.loc[updated.index[0], feature] = value
+                updated.loc[updated.index[0], feature] = RESTING_STATE_EYE_EXCLUDED
     elif table_kind == "physio":
         for feature, value in physio_baseline_change_zeros().items():
             if feature in updated.columns:
@@ -119,6 +126,18 @@ def _build_eye_table(
             task_folder,
             table_kind="eye",
         ), True
+
+    if is_resting_state_task(task_folder.name):
+        warnings["Table 1 · Eye Tracking Data"] = [RESTING_STATE_EYE_EXCLUDED_MESSAGE]
+        quality_control["eye_tracking"] = {"excluded_by_design": True}
+        table = pd.DataFrame(
+            [{feature: RESTING_STATE_EYE_EXCLUDED for feature in EYE_TASK_FEATURES}],
+            columns=list(EYE_TASK_FEATURES),
+        )
+        _save_table(table, table_path)
+        if window_type == "eprime":
+            _save_table(table, task_folder / "table_1_eye_tracking_data_eprime.xlsx")
+        return table, False
 
     analysis = run_task_level_eye_tracking_analysis(
         task_folder,
@@ -282,11 +301,14 @@ def _build_quality_control_table(
     table_path = task_folder / (TABLE_4_FILE if window_type == "eprime" else f"table_4_quality_control{suffix}.xlsx")
     cached = _load_if_cached(table_path, force_recompute)
     if cached is not None:
-        return _normalize_cached_row(cached, QC_TASK_FEATURES), True
+        return _apply_resting_state_table_defaults(
+            _normalize_cached_row(cached, QC_TASK_FEATURES), task_folder, table_kind="qc"
+        ), True
 
     if corsano is None:
         corsano = build_corsano_task_level_features(task_folder, window_type=window_type)
     table = pd.DataFrame([corsano.quality_control_row], columns=list(QC_TASK_FEATURES))
+    table = _apply_resting_state_table_defaults(table, task_folder, table_kind="qc")
     _, qc_warnings = _split_corsano_warnings(corsano.warnings)
     if qc_warnings:
         warnings["Table 4 · Quality Control"] = qc_warnings

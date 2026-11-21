@@ -18,6 +18,7 @@ from backend.eeg.sync import (
     _parse_iso_datetime,
     _format_datetime,
     apply_clock_offset,
+    derive_resting_state_offset_seconds,
     get_eeg_recording_window_utc_raw,
     load_eeg_sync_settings,
 )
@@ -102,6 +103,11 @@ def build_eeg_segment_metadata(task_folder: Path) -> dict[str, Any]:
         except (TypeError, ValueError):
             warnings.append("Invalid eeg_clock_offset_seconds in eeg_sync_settings.json.")
             offset_seconds = None
+
+    derived_offset, derived_warnings = derive_resting_state_offset_seconds(task_folder, sync_window)
+    warnings.extend(derived_warnings)
+    if derived_offset is not None:
+        offset_seconds = derived_offset
 
     raw_start, raw_end, eeg_warnings = get_eeg_recording_window_utc_raw(task_folder)
     warnings.extend(eeg_warnings)

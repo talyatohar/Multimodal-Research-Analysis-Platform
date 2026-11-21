@@ -13,15 +13,18 @@ from pathlib import Path
 from typing import Any
 
 from backend.eeg.inspection import (
+    _discover_bvrf_sets,
     _format_datetime,
     _parse_iso_datetime,
     eeg_raw_dir,
     load_eeg_metadata_json,
+    parse_bvrm,
 )
 from backend.sync.eprime import load_sync_window_json
 from domain.storage_layout import EEG_SYNC_SETTINGS_FILE, EEG_TIME_AUDIT_FILE
 
 _LEGACY_MARKER_TS_LEN = 14
+_TRIGGER_MATCH_TOLERANCE_SECONDS = 2.0
 
 
 def _parse_legacy_marker_timestamp(raw: str | None) -> datetime | None:
@@ -155,6 +158,93 @@ def apply_clock_offset(
     return adjusted_start, adjusted_end
 
 
+def _stimulus_marker_datetimes(task_folder: Path) -> list[datetime]:
+    """Ordered UTC datetimes of Stimulus-type markers from the task's .bvrm file(s)."""
+    grouped = _discover_bvrf_sets(eeg_raw_dir(task_folder))
+    for files in grouped.values():
+        marker_path = files.get(".bvrm")
+        if marker_path is None:
+            continue
+        markers, _ = parse_bvrm(marker_path)
+        stimuli = [m for m in markers if (m.get("type") or "").strip().lower() == "stimulus"]
+        stimuli.sort(key=lambda m: int(m.get("sample") or 0))
+        datetimes = [
+            dt for dt in (_parse_iso_datetime(m.get("datetime")) for m in stimuli) if dt is not None
+        ]
+        if datetimes:
+            return [_ensure_utc(dt) for dt in datetimes]
+    return []
+
+
+def derive_resting_state_offset_seconds(
+    task_folder: Path,
+    sync_window: dict[str, Any] | None,
+) -> tuple[float | None, list[str]]:
+    """
+    Resting-state recordings carry hardware trigger markers (EyesOpen/EyesClose,
+    fired by the same keypress that E-Prime logs). When present and consistent with
+    the E-Prime EyesOpen->EyesClose interval, they give an exact per-task clock
+    offset — more reliable than the manually-entered PC-to-PC offset, which is a
+    single value assumed constant across the whole session and can be invalidated
+    mid-session (e.g. an NTP resync on the EEG computer). Reading tasks have no such
+    triggers, so this only ever applies to resting-state sync windows.
+    """
+    warnings: list[str] = []
+    if not sync_window:
+        return None, warnings
+
+    eyes_open_ms = sync_window.get("eyes_open_onset_ms")
+    eyes_close_ms = sync_window.get("eyes_close_onset_ms")
+    session_start = _parse_iso_datetime(sync_window.get("session_start_utc"))
+    if eyes_open_ms is None or eyes_close_ms is None or session_start is None:
+        return None, warnings
+
+    markers = _stimulus_marker_datetimes(task_folder)
+    if len(markers) < 2:
+        return None, warnings
+
+    marker_open, marker_close = markers[0], markers[1]
+    marker_delta = (marker_close - marker_open).total_seconds()
+    eprime_delta = (eyes_close_ms - eyes_open_ms) / 1000.0
+
+    if abs(marker_delta - eprime_delta) > _TRIGGER_MATCH_TOLERANCE_SECONDS:
+        warnings.append(
+            "Resting-state trigger markers found but their spacing "
+            f"({marker_delta:.3f}s) does not match the E-Prime EyesOpen-to-EyesClose "
+            f"interval ({eprime_delta:.3f}s); keeping the manual clock offset."
+        )
+        return None, warnings
+
+    eyes_open_utc = _ensure_utc(session_start) + timedelta(milliseconds=eyes_open_ms)
+    offset_seconds = (marker_open - eyes_open_utc).total_seconds()
+    warnings.append(
+        "EEG clock offset derived from resting-state EyesOpen/EyesClose hardware "
+        f"trigger markers ({offset_seconds:.3f}s), overriding the manual clock offset."
+    )
+    return offset_seconds, warnings
+
+
+def effective_eeg_clock_offset_seconds(
+    task_folder: Path,
+    sync_window: dict[str, Any] | None = None,
+) -> tuple[float | None, str]:
+    """
+    Offset (EEG_PC_time - E-Prime_PC_time, s) actually used for this task: the
+    resting-state trigger-derived value when available, else the manual value from
+    eeg_sync_settings.json, else None. Returns (offset, source).
+    """
+    window = sync_window or load_sync_window_json(task_folder)
+    derived, _ = derive_resting_state_offset_seconds(task_folder, window)
+    if derived is not None:
+        return derived, "resting_state_triggers"
+    settings = load_eeg_sync_settings(task_folder) or {}
+    manual = settings.get("eeg_clock_offset_seconds")
+    try:
+        return (float(manual), "manual") if manual is not None else (None, "none")
+    except (TypeError, ValueError):
+        return None, "none"
+
+
 def write_eeg_sync_settings(
     task_folder: Path,
     eeg_clock_offset_seconds: float | None,
@@ -191,6 +281,13 @@ def build_eeg_time_audit(
     window = sync_window or load_sync_window_json(task_folder)
     warnings: list[str] = []
 
+    offset_source = "manual"
+    derived_offset, derived_warnings = derive_resting_state_offset_seconds(task_folder, window)
+    warnings.extend(derived_warnings)
+    if derived_offset is not None:
+        eeg_clock_offset_seconds = derived_offset
+        offset_source = "resting_state_triggers"
+
     eprime_start = _parse_iso_datetime(window.get("task_start_utc") if window else None)
     eprime_end = _parse_iso_datetime(window.get("task_end_utc") if window else None)
     if window is None:
@@ -216,6 +313,7 @@ def build_eeg_time_audit(
         "eeg_recording_start_utc_raw": _format_datetime(raw_start),
         "eeg_recording_end_utc_raw": _format_datetime(raw_end),
         "eeg_clock_offset_seconds": eeg_clock_offset_seconds,
+        "eeg_clock_offset_source": offset_source,
         "eeg_recording_start_utc_adjusted": _format_datetime(adjusted_start),
         "eeg_recording_end_utc_adjusted": _format_datetime(adjusted_end),
         "raw_overlap_seconds": raw_overlap,
