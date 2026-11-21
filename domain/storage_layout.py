@@ -18,11 +18,8 @@ PARTICIPANT_LEVEL_CORSONO = (
     "heart_rate_variability.xlsx",
 )
 
-# Per-task BrainVision bundle + E-Prime + comprehension
+# Per-task E-Prime log (EEG files are stored under EEG_raw/)
 TASK_RAW_FILES = (
-    "Task.ahdr",
-    "Task.eeg",
-    "Task.amrk",
     "Eprime.txt",
 )
 
@@ -120,9 +117,6 @@ database/
             ├── task_level_eeg_features.json
             ├── eeg_baseline_status.json
             ├── eeg_task_level_feature_audit.json
-            ├── Task.ahdr
-            ├── Task.eeg
-            ├── Task.amrk
             ├── Eprime.txt
             ├── reading_comprehension_score.txt
             ├── table_3_EEG_Data.xlsx

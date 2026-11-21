@@ -26,9 +26,7 @@ BASELINE_LINKAGE_NOTE = (
 
 def _task_has_eeg(task_folder: Path) -> bool:
     raw_folder = eeg_raw_dir(task_folder)
-    if raw_folder.is_dir() and any(path.is_file() for path in raw_folder.iterdir()):
-        return True
-    return (task_folder / "Task.amrk").is_file() or (task_folder / "Task.ahdr").is_file()
+    return raw_folder.is_dir() and any(path.is_file() for path in raw_folder.iterdir())
 
 
 def _missing_baseline_features(baseline_features: dict[str, Any] | None) -> list[str]:

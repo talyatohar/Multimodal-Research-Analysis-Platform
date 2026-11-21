@@ -11,7 +11,6 @@ from pathlib import Path
 from typing import Any
 
 from backend.eeg.inspection import eeg_raw_dir
-from domain.storage_layout import EEG_RAW_FOLDER
 
 EEGLAB_SET_EXTENSION = ".set"
 MESSAGE_SET_DETECTED = "EEGLAB .set file detected"

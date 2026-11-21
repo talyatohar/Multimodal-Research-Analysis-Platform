@@ -42,7 +42,6 @@ from domain.resting_state import (
 )
 from domain.tasks import TASK_NAMES
 from shared.cohort_state import find_participant, participant_options, summarize_tasks
-from shared.corsano_debug_ui import render_corsano_debug_section
 from shared.developer_mode import developer_mode_enabled
 from shared.session_keys import (
     ANALYSE_COMPARE_DF,
@@ -410,7 +409,6 @@ if row:
         f"Age {row.get('participant_age') if row.get('participant_age') is not None else '—'}"
     )
     st.caption(f"Registered tasks: {summarize_tasks(row)}")
-    render_corsano_debug_section(str(row["participant_id"]))
 else:
     st.info("Register a participant on the Upload page to populate this selector.", icon="ℹ️")
 
@@ -920,8 +918,8 @@ if developer_mode_enabled():
             f"including: `{', '.join(EPRIME_FIELDS)}` (see project book for window math)."
         )
         st.markdown(
-            "**BrainVision** — `.amrk` first marker → recording start (local → UTC offset rule); "
-            "`.ahdr` `SamplingInterval` → Hz."
+            "**BrainVision BVRF** — `.bvrm` marker DateTime → recording start/end; `.bvrh` → sampling rate; "
+            "per-session EEG clock offset (Resting state: from triggers)."
         )
         st.markdown(
             "**Tobii** — search all participant `EyeTracking.xlsx` files until a recording spans "

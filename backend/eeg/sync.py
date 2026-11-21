@@ -23,24 +23,7 @@ from backend.eeg.inspection import (
 from backend.sync.eprime import load_sync_window_json
 from domain.storage_layout import EEG_SYNC_SETTINGS_FILE, EEG_TIME_AUDIT_FILE
 
-_LEGACY_MARKER_TS_LEN = 14
 _TRIGGER_MATCH_TOLERANCE_SECONDS = 2.0
-
-
-def _parse_legacy_marker_timestamp(raw: str | None) -> datetime | None:
-    if not raw:
-        return None
-    text = raw.strip()
-    if len(text) < _LEGACY_MARKER_TS_LEN:
-        return None
-    try:
-        base = datetime.strptime(text[:_LEGACY_MARKER_TS_LEN], "%Y%m%d%H%M%S")
-        if len(text) > _LEGACY_MARKER_TS_LEN:
-            frac = text[_LEGACY_MARKER_TS_LEN :].ljust(6, "0")[:6]
-            base = base.replace(microsecond=int(frac))
-        return base.replace(tzinfo=timezone.utc)
-    except ValueError:
-        return None
 
 
 def _ensure_utc(dt: datetime) -> datetime:
@@ -64,50 +47,6 @@ def _overlap_seconds(
     return (overlap_end - overlap_start).total_seconds()
 
 
-def _legacy_eeg_window(task_folder: Path) -> tuple[datetime | None, datetime | None, list[str]]:
-    warnings: list[str] = []
-    meta_path = task_folder / "eeg_meta.json"
-    if not meta_path.is_file():
-        return None, None, warnings
-
-    try:
-        meta = json.loads(meta_path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as exc:
-        warnings.append(f"Could not read eeg_meta.json: {exc}")
-        return None, None, warnings
-
-    start_dt = _parse_legacy_marker_timestamp(meta.get("first_marker_timestamp"))
-    if start_dt is None:
-        warnings.append("Legacy EEG: could not parse first marker timestamp.")
-        return None, None, warnings
-
-    rate = meta.get("sampling_rate_hz")
-    eeg_path = task_folder / "Task.eeg"
-    ahdr_path = task_folder / "Task.ahdr"
-    end_dt: datetime | None = None
-
-    if eeg_path.is_file() and ahdr_path.is_file() and rate:
-        try:
-            from backend.sync.eeg_meta import parse_ahdr
-
-            fields = parse_ahdr(ahdr_path.read_bytes())
-            n_channels = 0
-            for key, value in fields.items():
-                if key.startswith("Ch") and key[2:].isdigit():
-                    n_channels += 1
-            if n_channels <= 0:
-                n_channels = int(fields.get("NumberOfChannels", "0") or "0") or None
-            if n_channels and rate > 0:
-                nbytes = eeg_path.stat().st_size
-                itemsize = 4  # legacy BrainVision float32
-                sample_count = nbytes // (n_channels * itemsize)
-                end_dt = start_dt + timedelta(seconds=sample_count / rate)
-        except (OSError, ValueError, TypeError):
-            pass
-
-    return start_dt, end_dt, warnings
-
-
 def _bvrf_eeg_window(task_folder: Path) -> tuple[datetime | None, datetime | None, list[str]]:
     warnings: list[str] = []
     metadata = load_eeg_metadata_json(eeg_raw_dir(task_folder))
@@ -128,10 +67,7 @@ def get_eeg_recording_window_utc_raw(
     task_folder: Path,
 ) -> tuple[datetime | None, datetime | None, list[str]]:
     """Return raw EEG recording window (start, end) without clock offset applied."""
-    start, end, warnings = _bvrf_eeg_window(task_folder)
-    if start is not None:
-        return start, end, warnings
-    return _legacy_eeg_window(task_folder)
+    return _bvrf_eeg_window(task_folder)
 
 
 def get_eeg_recording_window_utc_adjusted(

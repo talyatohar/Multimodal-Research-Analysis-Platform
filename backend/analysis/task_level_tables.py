@@ -20,7 +20,6 @@ from domain.resting_state import (
     eeg_baseline_change_zeros,
     is_resting_state_task,
     physio_baseline_change_zeros,
-    resting_state_regression_metric_zeros,
 )
 TABLE_1_FILE = "table_1_eye_tracking_data.xlsx"
 TABLE_2_FILE = "table_2_physiological_data.xlsx"
@@ -279,9 +278,6 @@ def _build_eeg_table(
         table_warnings.append(
             "EEG task-level features are partially implemented; band-power and theta/alpha ratio features are available when task_level_eeg_features.json exists.",
         )
-        for filename in ("Task.ahdr", "Task.amrk", "Task.eeg"):
-            if not (task_folder / filename).is_file():
-                table_warnings.append(f"EEG Data: missing {filename}.")
     if table_warnings:
         warnings["Table 3 · EEG Data"] = table_warnings
     table = _apply_resting_state_table_defaults(table, task_folder, table_kind="eeg")

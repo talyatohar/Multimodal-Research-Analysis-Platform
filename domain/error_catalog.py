@@ -8,7 +8,7 @@ from __future__ import annotations
 
 
 def missing_eeg_bundle() -> str:
-    return "EEG analysis cannot be generated because one or more BrainVision files (Task.ahdr / Task.amrk / Task.eeg) are missing."
+    return "EEG analysis cannot be generated because the BrainVision BVRF files (.bvrh / .bvrd / .bvrm) are missing for this task."
 
 
 def missing_eye_tracking() -> str:

@@ -5,7 +5,6 @@ from __future__ import annotations
 import pandas as pd
 import streamlit as st
 
-from domain.feature_catalog import EEG_TASK_FEATURES
 from backend.participant_service import ParticipantUpload, TaskUpload, register_participant
 from domain.cohorts import PARTICIPANT_GROUPS
 from domain.participant_id import normalize_participant_id

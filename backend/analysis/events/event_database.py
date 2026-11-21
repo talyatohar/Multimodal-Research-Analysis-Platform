@@ -13,14 +13,11 @@ from typing import Any
 import pandas as pd
 
 from backend.analysis.eye_tracking.task_level import (
-    DURATION_COL,
     REGRESSION_EVENTS_FILE,
     ROW_UTC_COL,
     SEGMENT_FILE,
     SEGMENT_FILE_BY_WINDOW,
     TS_COL,
-    TYPE_COL,
-    TYPE_INDEX_COL,
     _event_sequence,
     _parse_utc,
 )

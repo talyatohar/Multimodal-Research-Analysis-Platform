@@ -19,7 +19,6 @@ from backend.eeg.baseline_linkage import (
 )
 from backend.eeg.task_level_features import (
     ALPHA_FEATURE_NAME,
-    BASELINE_CHANGE_FEATURE_COLUMNS,
     FEATURE_NAME,
     NOT_AVAILABLE,
     RATIO_FEATURE_NAME,

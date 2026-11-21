@@ -16,6 +16,8 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
+Or create the environment in one step with `conda env create -f environment.yml`. Tested with Python 3.11, Streamlit 1.64.0, pandas 2.3.3, NumPy 2.4.6, SciPy 1.17.1 and openpyxl 3.1.5 (pinned in `requirements.txt`). Run the tests with `pytest`.
+
 The app opens at `http://localhost:8501`. The full walkthrough (input files, the per-session EEG clock offset, upload, analysis, outputs and known limitations) is in the [User Manual](docs/manual/User_Manual.md) ([.docx](docs/manual/User_Manual.docx)).
 
 **Data:** no real participant data is included in this repository, and participant folders are excluded by `.gitignore`. To try the app, use the synthetic demo participant `123456789` in `database/participants/participant_123456789/`; it appears on the Analyse and Participants database pages.

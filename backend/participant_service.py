@@ -33,7 +33,6 @@ from backend.eeg.raw_signal_qc import run_eeg_raw_signal_qc
 from backend.eeg.segmentation import run_eeg_segmentation
 from backend.eeg.sync import run_eeg_synchronization
 from backend.sync.bvrf_inspection import inspect_bvrf_recording, write_eeg_file_inspection
-from backend.sync.eeg_meta import build_eeg_meta, write_eeg_meta_json
 from backend.sync.eprime import (
     add_manual_task_end,
     eprime_file_preview,
@@ -52,9 +51,6 @@ FileInput = Optional[BinaryIO]
 @dataclass
 class TaskUpload:
     task_name: str
-    ahdr: FileInput = None
-    eeg: FileInput = None
-    amrk: FileInput = None
     bvrf_files: list[FileInput] = field(default_factory=list)
     eprime: FileInput = None
     comprehension_score: float | None = None
@@ -234,8 +230,7 @@ def _process_eeg_sync(
         for path in eeg_raw_dir(task_folder).iterdir()
         if path.is_file()
     )
-    has_legacy = (task_folder / "Task.amrk").is_file() or (task_folder / "Task.ahdr").is_file()
-    if not has_eeg and not has_legacy:
+    if not has_eeg:
         return
 
     try:
@@ -272,8 +267,7 @@ def _process_eeg_segmentation(
         for path in eeg_raw_dir(task_folder).iterdir()
         if path.is_file()
     )
-    has_legacy = (task_folder / "Task.amrk").is_file() or (task_folder / "Task.ahdr").is_file()
-    if not has_eeg and not has_legacy:
+    if not has_eeg:
         return
 
     if not (task_folder / "sync_window.json").is_file():
@@ -413,8 +407,7 @@ def _process_eeglab_compat(
         path.is_file()
         for path in eeg_raw_dir(task_folder).iterdir()
     )
-    has_legacy = (task_folder / "Task.amrk").is_file() or (task_folder / "Task.ahdr").is_file()
-    if not has_eeg and not has_legacy:
+    if not has_eeg:
         return
 
     status = get_eeglab_compat_status(task_folder)
@@ -435,8 +428,7 @@ def _process_eeg_qc(
         path.is_file()
         for path in eeg_raw_dir(task_folder).iterdir()
     )
-    has_legacy = (task_folder / "Task.amrk").is_file() or (task_folder / "Task.ahdr").is_file()
-    if not has_eeg and not has_legacy:
+    if not has_eeg:
         return
 
     try:
@@ -462,8 +454,7 @@ def _process_eeg_preprocessing_plan(
         path.is_file()
         for path in eeg_raw_dir(task_folder).iterdir()
     )
-    has_legacy = (task_folder / "Task.amrk").is_file() or (task_folder / "Task.ahdr").is_file()
-    if not has_eeg and not has_legacy:
+    if not has_eeg:
         return
 
     try:
@@ -489,8 +480,7 @@ def _process_eeg_preprocessing_exec(
         path.is_file()
         for path in eeg_raw_dir(task_folder).iterdir()
     )
-    has_legacy = (task_folder / "Task.amrk").is_file() or (task_folder / "Task.ahdr").is_file()
-    if not has_eeg and not has_legacy:
+    if not has_eeg:
         return
 
     try:
@@ -524,8 +514,7 @@ def _process_eeg_preprocessed_signal_qc(
         path.is_file()
         for path in eeg_raw_dir(task_folder).iterdir()
     )
-    has_legacy = (task_folder / "Task.amrk").is_file() or (task_folder / "Task.ahdr").is_file()
-    if not has_eeg and not has_legacy:
+    if not has_eeg:
         return
 
     try:
@@ -556,8 +545,7 @@ def _process_eeg_task_level_features(
         path.is_file()
         for path in eeg_raw_dir(task_folder).iterdir()
     )
-    has_legacy = (task_folder / "Task.amrk").is_file() or (task_folder / "Task.ahdr").is_file()
-    if not has_eeg and not has_legacy:
+    if not has_eeg:
         return
 
     try:
@@ -695,16 +683,6 @@ def _process_task_sync(participant_id: str, task: TaskUpload, result: SaveResult
         "manual_per_recording": manual_seg_report.get("per_recording", []),
     }
 
-    ahdr_path = folder / "Task.ahdr"
-    amrk_path = folder / "Task.amrk"
-    if ahdr_path.is_file() or amrk_path.is_file():
-        meta = build_eeg_meta(
-            ahdr_path.read_bytes() if ahdr_path.is_file() else None,
-            amrk_path.read_bytes() if amrk_path.is_file() else None,
-            [p.name for p in (ahdr_path, amrk_path, folder / "Task.eeg") if p.is_file()],
-        )
-        meta_path = write_eeg_meta_json(folder, meta)
-        result.saved_paths.append(str(meta_path.resolve()))
 
 
 def register_participant(upload: ParticipantUpload) -> SaveResult:
@@ -745,9 +723,6 @@ def register_participant(upload: ParticipantUpload) -> SaveResult:
         t_folder = ensure_dir(task_dir(pid, task.task_name))
         result.saved_paths.append(str(t_folder.resolve()))
 
-        _save_optional(task.ahdr, t_folder, "Task.ahdr", result)
-        _save_optional(task.eeg, t_folder, "Task.eeg", result)
-        _save_optional(task.amrk, t_folder, "Task.amrk", result)
         _save_bvrf_files(task.bvrf_files, t_folder, result)
         _save_optional(task.eprime, t_folder, "Eprime.txt", result)
 

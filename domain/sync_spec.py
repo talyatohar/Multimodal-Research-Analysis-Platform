@@ -8,9 +8,9 @@ Sources
 * **E-Prime** (`Eprime.txt`): extract `SessionStartDateTimeUtc`, `FixationStart.OnsetTime`,
   `FixationStart.OnsetToOnsetTime`, `SixationOpenS.OnsetToOnsetTime` (spec spelling).
   Task window: start at fixation cross, duration = sum of the two OnsetToOnset fields.
-* **EEG BrainVision** (`Task.ahdr`, `Task.amrk`, `Task.eeg`): recording start from first marker in
-  `.amrk`; sampling rate from `SamplingInterval` (µs) in `.ahdr`. Local clock → UTC with project
-  offset rule (Israel DST example: subtract 3 h for May recordings in spec narrative).
+* **EEG BrainVision BVRF** (`.bvrh`, `.bvrd`, `.bvrm`): recording start/end from the `.bvrm` marker
+  DateTime (ISO with UTC offset); sampling rate from the `.bvrh` header. A per-session clock offset
+  (EEG PC − E-Prime PC) is applied; Resting state derives it from its EyesOpen/EyesClose triggers.
 * **Tobii Pro Lab export** (`EyeTracking.xlsx`): split each workbook by `Recording name`, then match
   the task UTC window inside each recording using that recording's start UTC + `Recording timestamp [ms]`.
   Multiple Tobii files and multiple recordings per file may be searched.

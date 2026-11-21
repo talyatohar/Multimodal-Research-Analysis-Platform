@@ -94,14 +94,6 @@ def page_header(
         st.markdown(subtitle)
 
 
-def section_header(title: str) -> None:
-    st.header(title)
-
-
-def muted_note(text: str) -> None:
-    st.caption(text)
-
-
 def render_stable_dataframe(
     df: pd.DataFrame | None,
     *,

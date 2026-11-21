@@ -10,7 +10,7 @@ import numpy as np
 import pandas as pd
 
 from backend.sync.eprime import load_sync_window_json
-from domain.feature_catalog import PHYSIO_TASK_FEATURES, QC_TASK_FEATURES
+from domain.feature_catalog import PHYSIO_TASK_FEATURES
 from domain.storage_layout import TASK_COMPREHENSION_FILE
 from domain.resting_state import (
     RESTING_STATE_TASK,
