@@ -232,6 +232,33 @@ def _display_single_row(df: pd.DataFrame) -> pd.DataFrame:
     return df.iloc[[0]].reset_index(drop=True)
 
 
+def _format_feature_value(value: Any) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, float):
+        if pd.isna(value):
+            return ""
+        return f"{value:.6g}"
+    return str(value)
+
+
+def _transpose_single_row_for_display(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Long-format (feature, value) layout for a wide single-row summary.
+
+    A 1-row table with a dozen+ columns only shows the first few on screen and
+    relies on horizontal scroll for the rest, which is easy to miss (no visible
+    scrollbar affordance in this dataframe grid). Rows scroll vertically instead,
+    which every user already knows how to do.
+    """
+    if df.empty:
+        return df
+    row = _display_single_row(df).iloc[0]
+    return pd.DataFrame(
+        {"feature": row.index.astype(str), "value": [_format_feature_value(v) for v in row.to_numpy()]}
+    )
+
+
 def _event_context(participant_id: str, task_name: str, event_type: str) -> tuple[str, str, str]:
     return (participant_id, task_name, event_type)
 
@@ -367,7 +394,7 @@ default_ix = 0
 if preferred and preferred in opts:
     default_ix = opts.index(preferred)
 
-pid = st.selectbox("Participants ID", options=opts, index=default_ix, key="analyse_pid_select")
+pid = st.selectbox("Participant ID", options=opts, index=default_ix, key="analyse_pid_select")
 if pid and not pid.startswith("—"):
     pid = normalize_participant_id(pid)
 
@@ -517,15 +544,34 @@ if st.session_state[UI_TASK_LEVEL_UNLOCKED]:
             df = dfs_tl.get(key)
             if not isinstance(df, pd.DataFrame) or df.empty:
                 continue
-            df = _display_single_row(df)
+            df = _transpose_single_row_for_display(df)
             st.markdown(f"###### {title}")
             if developer_mode_enabled() and loaded_existing.get(key):
                 st.caption("Loaded from saved table.")
-            render_stable_dataframe(
+            safe_task = re.sub(r"[^\w-]", "_", task_label)
+            event = render_stable_dataframe(
                 df,
-                column_config=_feature_column_config(df),
+                column_config={
+                    "feature": st.column_config.TextColumn(label="feature"),
+                    "value": st.column_config.TextColumn(label="value"),
+                },
                 max_visible_rows=None,
+                key=f"table_display_{key}_{safe_task}",
+                on_select="rerun",
+                selection_mode="single-row",
             )
+            selected_rows = []
+            if event is not None:
+                selected_rows = getattr(getattr(event, "selection", None), "rows", None) or []
+            if selected_rows:
+                selected_feature = str(df.iloc[selected_rows[0]]["feature"])
+                tooltip = feature_tooltip(selected_feature)
+                if tooltip:
+                    st.info(f"**{selected_feature}**\n\n{tooltip}", icon="ℹ️")
+                else:
+                    st.caption(f"Click a row to see its explanation. No description available for `{selected_feature}`.")
+            else:
+                st.caption("Click a row to see a short explanation of that feature.")
             if developer_mode_enabled():
                 if table_paths.get(key):
                     st.caption(f"{table_paths[key]}")

@@ -14,8 +14,14 @@ PLATFORM_PAGE_SUFFIX = "Multimodal Research Platform"
 DATAFRAME_HEADER_HEIGHT_PX = 38
 DATAFRAME_ROW_HEIGHT_PX = 35
 DEFAULT_MAX_VISIBLE_ROWS = 12
-EVENT_SUMMARY_TABLE_HEIGHT = DATAFRAME_HEADER_HEIGHT_PX + DATAFRAME_ROW_HEIGHT_PX
-EVENT_EEG_DISTRIBUTION_TABLE_HEIGHT = DATAFRAME_HEADER_HEIGHT_PX + DATAFRAME_ROW_HEIGHT_PX * 6
+# Tables wider than their container show a horizontal scrollbar; an exact
+# header+rows height leaves no room for it, which makes the grid oscillate
+# between "fits" and "needs scroll" on every repaint (visible as flicker).
+DATAFRAME_SCROLLBAR_BUFFER_PX = 17
+EVENT_SUMMARY_TABLE_HEIGHT = DATAFRAME_HEADER_HEIGHT_PX + DATAFRAME_ROW_HEIGHT_PX + DATAFRAME_SCROLLBAR_BUFFER_PX
+EVENT_EEG_DISTRIBUTION_TABLE_HEIGHT = (
+    DATAFRAME_HEADER_HEIGHT_PX + DATAFRAME_ROW_HEIGHT_PX * 6 + DATAFRAME_SCROLLBAR_BUFFER_PX
+)
 
 
 def dataframe_height_for_rows(
@@ -29,7 +35,7 @@ def dataframe_height_for_rows(
     visible_rows = row_count
     if max_visible_rows is not None and row_count > max_visible_rows:
         visible_rows = max_visible_rows
-    return DATAFRAME_HEADER_HEIGHT_PX + DATAFRAME_ROW_HEIGHT_PX * visible_rows
+    return DATAFRAME_HEADER_HEIGHT_PX + DATAFRAME_ROW_HEIGHT_PX * visible_rows + DATAFRAME_SCROLLBAR_BUFFER_PX
 
 
 def configure_page(page_title: str, page_icon: str = "ℹ️") -> None:
@@ -104,11 +110,17 @@ def render_stable_dataframe(
     max_visible_rows: int | None = DEFAULT_MAX_VISIBLE_ROWS,
     key: str | None = None,
     container: Any | None = None,
-) -> None:
-    """Render a result table sized to its rows; scroll vertically only when needed."""
+    on_select: str | None = None,
+    selection_mode: str | None = None,
+) -> Any:
+    """Render a result table sized to its rows; scroll vertically only when needed.
+
+    Returns the value of the underlying st.dataframe call (None unless on_select is
+    set, in which case it's the selection event — e.g. `event.selection.rows`).
+    """
     table = df if isinstance(df, pd.DataFrame) else pd.DataFrame()
     if table.empty:
-        return
+        return None
 
     resolved_height = height
     if resolved_height is None:
@@ -124,10 +136,16 @@ def render_stable_dataframe(
         kwargs["column_config"] = column_config
     if key is not None:
         kwargs["key"] = key
+    if on_select is not None:
+        kwargs["on_select"] = on_select
+    if selection_mode is not None:
+        kwargs["selection_mode"] = selection_mode
     target = container if container is not None else st
     try:
-        target.dataframe(table, **kwargs)
+        return target.dataframe(table, **kwargs)
     except TypeError:
         kwargs.pop("height", None)
         kwargs.pop("key", None)
-        target.dataframe(table, **kwargs)
+        kwargs.pop("on_select", None)
+        kwargs.pop("selection_mode", None)
+        return target.dataframe(table, **kwargs)

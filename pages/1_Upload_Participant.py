@@ -16,6 +16,18 @@ from shared.developer_mode import developer_mode_enabled
 from shared.ui import apply_theme, configure_page, page_header, sidebar_brand
 
 
+# The EEG-PC vs E-Prime/Tobii-PC clock offset differs between sessions (PC clocks drift
+# and are re-synced independently), so there is no valid global default. It is entered
+# once per participant/session and applied to every reading task. Resting state derives
+# its own offset from hardware triggers (backend/eeg/sync.py).
+EEG_CLOCK_OFFSET_HELP = (
+    "Session-specific: EEG_PC_time − E-Prime/Tobii_PC_time, in seconds, for this participant's "
+    "session. Measure it for every session (e.g. EEG clock shows 10:33:28.5 when E-Prime shows "
+    "10:30:21.4 → +187.1). Applied to all reading tasks. Resting state ignores it when its "
+    "EyesOpen/EyesClose triggers are present (offset derived automatically)."
+)
+
+
 def _rerun() -> None:
     try:
         st.rerun()
@@ -99,6 +111,14 @@ pname = st.text_input("Participant name")
 page = st.number_input("Participant age", min_value=0, max_value=120, value=0, step=1, help="0 = not provided")
 pgroup = st.selectbox("Participant group", options=["— Select group —"] + PARTICIPANT_GROUPS, index=0)
 notes = st.text_area("Notes")
+session_eeg_offset = st.number_input(
+    "EEG clock offset for this session (seconds)",
+    value=None,
+    step=0.001,
+    format="%.3f",
+    placeholder="Required when EEG files are uploaded",
+    help=EEG_CLOCK_OFFSET_HELP,
+)
 
 st.divider()
 st.markdown("##### Participant-level exports")
@@ -131,13 +151,7 @@ for i, block in enumerate(st.session_state.upload_task_blocks):
         tix = opts.index(block["task_name"]) if block["task_name"] in opts else 0
         name = st.selectbox("Task", options=opts, index=tix, key=f"task_name_{i}")
         st.session_state.upload_task_blocks[i]["task_name"] = name
-        f1, f2 = st.columns(2)
-        with f1:
-            ahdr_f = st.file_uploader("Task.ahdr (legacy BrainVision)", key=f"ahdr_{i}")
-            eeg_f = st.file_uploader("Task.eeg (legacy BrainVision)", key=f"eeg_{i}")
-        with f2:
-            amrk_f = st.file_uploader("Task.amrk (legacy BrainVision)", key=f"amrk_{i}")
-            eprime_f = st.file_uploader("Eprime.txt", type=["txt"], key=f"eprime_{i}")
+        eprime_f = st.file_uploader("Eprime.txt", type=["txt"], key=f"eprime_{i}")
         bvrf_files = st.file_uploader(
             "BrainVision Recorder BVRF files (.bvrh, .bvrd, .bvrm, .bvri)",
             type=["bvrh", "bvrd", "bvrm", "bvri"],
@@ -167,30 +181,17 @@ for i, block in enumerate(st.session_state.upload_task_blocks):
             placeholder="HH:MM:SS.sss or full datetime",
             help="Leave empty to use only the E-Prime task end. Time-only values are combined with the experiment date.",
         )
-        eeg_offset = st.number_input(
-            "EEG clock offset (seconds, optional)",
-            value=0.0,
-            step=0.001,
-            format="%.3f",
-            key=f"eeg_offset_{i}",
-            help=(
-                "EEG_PC_time − E-Prime/Tobii_PC_time. "
-                "Example: EEG shows 15:21:50.422 and E-Prime shows 15:18:42.863 → enter +187.559. "
-                "Leave at 0 if clocks match."
-            ),
-        )
         task_uploads.append(
             TaskUpload(
                 task_name=name,
-                ahdr=ahdr_f,
-                eeg=eeg_f,
-                amrk=amrk_f,
                 bvrf_files=list(bvrf_files) if bvrf_files else [],
                 eprime=eprime_f,
                 comprehension_score=comp if comp > 0 else None,
                 manual_reading_end_time=manual_end.strip() or None,
                 manual_time_interpretation=manual_time_mode,
-                eeg_clock_offset_seconds=float(eeg_offset),
+                eeg_clock_offset_seconds=(
+                    float(session_eeg_offset) if session_eeg_offset is not None else None
+                ),
             )
         )
         if st.button("Remove task block", key=f"rm_task_{i}"):
@@ -204,6 +205,9 @@ with b1:
         _rerun()
 with b2:
     if st.button("ADD PARTICIPANT", type="primary", use_container_width=True):
+        if session_eeg_offset is None and any(t.bvrf_files for t in task_uploads):
+            st.error("Enter the EEG clock offset for this session before adding a participant with EEG files.")
+            st.stop()
         upload = ParticipantUpload(
             participant_id=normalize_participant_id(pid),
             participant_name=pname.strip() or None,
@@ -216,7 +220,8 @@ with b2:
             hrv=hrv_file,
             tasks=task_uploads,
         )
-        result = register_participant(upload)
+        with st.spinner("Registering participant and running the full pipeline (this can take several minutes)…"):
+            result = register_participant(upload)
         if not result.ok:
             for err in result.errors:
                 st.error(err)

@@ -7,6 +7,21 @@ A unified framework for synchronizing, processing, and analyzing multimodal expe
 
 ---
 
+## Quick start
+
+```bash
+conda create -n lazyeye311 python=3.11
+conda activate lazyeye311
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+The app opens at `http://localhost:8501`. The full walkthrough (input files, the per-session EEG clock offset, upload, analysis, outputs and known limitations) is in the [User Manual](docs/manual/User_Manual.md) ([.docx](docs/manual/User_Manual.docx)).
+
+**Data:** no real participant data is included in this repository, and participant folders are excluded by `.gitignore`. To try the app, use the synthetic demo participant `123456789` in `database/participants/participant_123456789/`; it appears on the Analyse and Participants database pages.
+
+---
+
 ## Overview
 
 The Multimodal Research Analysis Platform was developed to support cognitive neuroscience research by integrating behavioral, eye-tracking, physiological, and EEG recordings within a single analysis environment.
@@ -207,3 +222,9 @@ Faculty of Biomedical Engineering
 Technion – Israel Institute of Technology
 
 Developed at the Educational Neuroimaging Group.
+
+---
+
+## Citation
+
+Citation: [paper reference – to be added]
