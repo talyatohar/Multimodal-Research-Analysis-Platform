@@ -216,3 +216,26 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# --- Participant data and local artifacts (never commit) ---
+__pycache__/
+*.pyc
+/211/
+/database/participants/*
+!/database/participants/participant_123456789/
+/test*/
+!/tests/
+docs/status_brief/scratch/
+.claude/
+~$*
+*.tmp
+*.wav
+
+# --- Internal documents (kept on disk, never published) ---
+/docs/project_book/
+/docs/status_brief/
+/docs/paper/
+/HANDOFF.md
+/eyesnotfound_section.txt
+/regression_section.txt
+/backend/analysis/eye_tracking/gap_reconstruction.py
