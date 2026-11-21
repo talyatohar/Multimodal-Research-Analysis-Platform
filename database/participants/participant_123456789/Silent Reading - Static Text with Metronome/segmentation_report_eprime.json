@@ -55,7 +55,8 @@
       "rows_in_window": 382,
       "rows_after": 382,
       "first_selected_row_utc": "2026-06-09T08:11:00Z",
-      "last_selected_row_utc": "2026-06-09T08:12:24.885000Z"
+      "last_selected_row_utc": "2026-06-09T08:12:24.885000Z",
+      "task_window_coverage": 0.9986470588235294
     }
   ]
 }

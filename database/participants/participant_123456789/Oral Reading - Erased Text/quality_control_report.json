@@ -8,8 +8,11 @@
   "regression_events_path": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\regression_events.xlsx",
   "loaded_existing": false,
   "window_type": "eprime",
-  "force_recompute": false,
-  "warnings": [],
+  "force_recompute": true,
+  "warnings": [
+    "Auto line-transition threshold estimation failed; using documented fallback 30.0px.",
+    "Auto regression threshold estimation failed; using documented fallback 25.0px."
+  ],
   "missing_columns": [],
   "interpretation_boundaries": [
     "Fixation duration alone cannot distinguish visual from cognitive difficulty.",
@@ -32,6 +35,11 @@
     "Participant-level normalization",
     "Empirical exclusion thresholds"
   ],
+  "eye_selection": {
+    "eye_selection": "Average",
+    "fixation_classification": "Tobii export (Eye movement type), export-time eye selection",
+    "validity_rule": "both eyes valid (>=50% of event samples)"
+  },
   "rows_in_processed_segment": 414,
   "rows_used_for_task_analysis": 414,
   "task_duration_ms": 90000.0,
@@ -55,8 +63,8 @@
     "total_saccade_count": 88,
     "classifiable_saccade_count": 88,
     "regression_candidate_count": 23,
-    "same_line_saccade_count": 88,
-    "regression_count": 9,
+    "same_line_saccade_count": 84,
+    "regression_count": 18,
     "missing_neighbor_count": 0,
     "no_previous_fixation_count": 0,
     "no_next_fixation_count": 0,
@@ -66,21 +74,21 @@
     "event_sequence_count": 414,
     "duplicate_rows_collapsed_count": 0,
     "ignored_event_type_count": 42,
-    "line_transition_excluded_count": 14,
+    "line_transition_excluded_count": 5,
     "regression_events_path": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\regression_events.xlsx"
   },
   "regression_parameters": {
-    "line_transition_threshold_px": 292.5,
-    "regression_threshold_px": 192.0,
+    "line_transition_threshold_px": 30.0,
+    "regression_threshold_px": 25.0,
     "line_transition_threshold_source": "auto",
     "regression_threshold_source": "auto"
   },
   "regression_metrics": {
-    "regression_count": 9,
-    "regression_percentage": 10.227272727272728,
-    "mean_regression_distance": 675.0,
-    "mean_regression_duration": 36.77777777777778,
-    "regression_duration_variability": 12.567595014339238
+    "regression_count": 18,
+    "regression_percentage": 20.454545454545457,
+    "mean_regression_distance": 117.27777777777777,
+    "mean_regression_duration": 38.05555555555556,
+    "regression_duration_variability": 10.037999696577836
   },
   "regression_events_rows": 88
 }

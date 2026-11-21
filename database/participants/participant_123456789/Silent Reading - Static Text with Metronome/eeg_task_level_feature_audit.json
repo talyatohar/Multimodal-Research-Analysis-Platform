@@ -13,126 +13,126 @@
       "feature": "mean_frontal_theta_power",
       "present": true,
       "status": "numeric",
-      "value": 15.1601789788075,
+      "value": 0.05964652880135193,
       "source_file": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "theta_power_change_from_baseline",
       "present": true,
       "status": "numeric",
-      "value": 6.909167635232178,
+      "value": 0.03188745472673286,
       "source_file": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "theta_power_variability",
       "present": true,
       "status": "numeric",
-      "value": 11.29768420803575,
+      "value": 0.00208490251915485,
       "source_file": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "mean_occipital_alpha_power",
       "present": true,
       "status": "numeric",
-      "value": 23.50009839618784,
+      "value": 0.05603060422035498,
       "source_file": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "alpha_power_change_from_baseline",
       "present": true,
       "status": "numeric",
-      "value": -16.77649778914863,
+      "value": -0.03999403322350105,
       "source_file": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "alpha_power_variability",
       "present": true,
       "status": "numeric",
-      "value": 1.702291874318388,
+      "value": 0.004057322654327422,
       "source_file": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "mean_theta_alpha_ratio",
       "present": true,
       "status": "numeric",
-      "value": 0.6451112979708529,
+      "value": 1.064534813274124,
       "source_file": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "theta_alpha_ratio_change_from_baseline",
       "present": true,
       "status": "numeric",
-      "value": 0.4402525927911121,
+      "value": 0.7754519818929659,
       "source_file": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "theta_alpha_ratio_variability",
       "present": true,
       "status": "numeric",
-      "value": 6.636749184131208,
+      "value": 0.5138616513358024,
       "source_file": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "mean_occipital_temporal_theta_plv",
       "present": true,
       "status": "numeric",
-      "value": 0.4873635446032846,
+      "value": 0.4876091233862136,
       "source_file": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "OT_plv_change_from_baseline",
       "present": true,
       "status": "numeric",
-      "value": 0.04493716188510233,
+      "value": 0.04496870548097814,
       "source_file": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "OT_plv_variability",
       "present": true,
       "status": "numeric",
-      "value": 0.1618824069186727,
+      "value": 0.1617020069220492,
       "source_file": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "mean_temporal_frontal_theta_plv",
       "present": true,
       "status": "numeric",
-      "value": 0.6072822250346781,
+      "value": 0.6073371356672033,
       "source_file": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "TF_plv_change_from_baseline",
       "present": true,
       "status": "numeric",
-      "value": 0.006287154252339833,
+      "value": 0.006278836033716151,
       "source_file": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "TF_plv_variability",
       "present": true,
       "status": "numeric",
-      "value": 0.4423272065759059,
+      "value": 0.4422368914052138,
       "source_file": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "mean_occipital_frontal_theta_plv",
       "present": true,
       "status": "numeric",
-      "value": 0.3608426991657382,
+      "value": 0.3610292314879479,
       "source_file": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "OF_plv_change_from_baseline",
       "present": true,
       "status": "numeric",
-      "value": -0.02926161110998271,
+      "value": -0.02956031761320471,
       "source_file": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "OF_plv_variability",
       "present": true,
       "status": "numeric",
-      "value": 0.2381155522318626,
+      "value": 0.2381580077049996,
       "source_file": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
     }
   ]

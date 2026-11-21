@@ -13,126 +13,126 @@
       "feature": "mean_frontal_theta_power",
       "present": true,
       "status": "numeric",
-      "value": 20.50788240435041,
+      "value": 0.08760622679381223,
       "source_file": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "theta_power_change_from_baseline",
       "present": true,
       "status": "numeric",
-      "value": 12.25687106077509,
+      "value": 0.05984715271919316,
       "source_file": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "theta_power_variability",
       "present": true,
       "status": "numeric",
-      "value": 16.32542497402942,
+      "value": 0.003187648610476608,
       "source_file": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "mean_occipital_alpha_power",
       "present": true,
       "status": "numeric",
-      "value": 20.84383758023808,
+      "value": 0.04969568600008552,
       "source_file": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "alpha_power_change_from_baseline",
       "present": true,
       "status": "numeric",
-      "value": -19.43275860509839,
+      "value": -0.04632895144377051,
       "source_file": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "alpha_power_variability",
       "present": true,
       "status": "numeric",
-      "value": 0.8539183335225805,
+      "value": 0.00203643195220923,
       "source_file": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "mean_theta_alpha_ratio",
       "present": true,
       "status": "numeric",
-      "value": 0.9838822781748122,
+      "value": 1.762853757440062,
       "source_file": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "theta_alpha_ratio_change_from_baseline",
       "present": true,
       "status": "numeric",
-      "value": 0.7790235729950714,
+      "value": 1.473770926058904,
       "source_file": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "theta_alpha_ratio_variability",
       "present": true,
       "status": "numeric",
-      "value": 19.11825093002026,
+      "value": 1.565310643951779,
       "source_file": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "mean_occipital_temporal_theta_plv",
       "present": true,
       "status": "numeric",
-      "value": 0.2606721170618559,
+      "value": 0.2599130281780221,
       "source_file": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "OT_plv_change_from_baseline",
       "present": true,
       "status": "numeric",
-      "value": -0.1817542656563264,
+      "value": -0.1827273897272134,
       "source_file": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "OT_plv_variability",
       "present": true,
       "status": "numeric",
-      "value": 0.0744677466842154,
+      "value": 0.07413860059584167,
       "source_file": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "mean_temporal_frontal_theta_plv",
       "present": true,
       "status": "numeric",
-      "value": 0.5894883770520077,
+      "value": 0.5893920201240104,
       "source_file": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "TF_plv_change_from_baseline",
       "present": true,
       "status": "numeric",
-      "value": -0.01150669373033053,
+      "value": -0.01166627950947674,
       "source_file": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "TF_plv_variability",
       "present": true,
       "status": "numeric",
-      "value": 0.4607344921270101,
+      "value": 0.4608186741543495,
       "source_file": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "mean_occipital_frontal_theta_plv",
       "present": true,
       "status": "numeric",
-      "value": 0.205456482730987,
+      "value": 0.2048739713801857,
       "source_file": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "OF_plv_change_from_baseline",
       "present": true,
       "status": "numeric",
-      "value": -0.1846478275447339,
+      "value": -0.1857155777209669,
       "source_file": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "OF_plv_variability",
       "present": true,
       "status": "numeric",
-      "value": 0.1063306607520118,
+      "value": 0.1058435879564008,
       "source_file": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
     }
   ]

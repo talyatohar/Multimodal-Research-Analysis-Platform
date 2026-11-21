@@ -1,0 +1,34 @@
+{
+  "baseline_condition": "eyes_open",
+  "note": "Eyes-open values are the baseline for every EEG change-from-baseline feature; eyes-closed values are reported separately.",
+  "eyes_open": {
+    "mean_frontal_theta_power": "Not available",
+    "theta_power_variability": "Not available",
+    "mean_occipital_alpha_power": "Not available",
+    "alpha_power_variability": "Not available",
+    "mean_theta_alpha_ratio": "Not available",
+    "theta_alpha_ratio_variability": "Not available",
+    "error_message": "Resting-state eyes-open/eyes-closed boundaries unavailable.",
+    "mean_occipital_temporal_theta_plv": "Not available",
+    "OT_plv_variability": "Not available",
+    "mean_temporal_frontal_theta_plv": "Not available",
+    "TF_plv_variability": "Not available",
+    "mean_occipital_frontal_theta_plv": "Not available",
+    "OF_plv_variability": "Not available"
+  },
+  "eyes_closed": {
+    "mean_frontal_theta_power": "Not available",
+    "theta_power_variability": "Not available",
+    "mean_occipital_alpha_power": "Not available",
+    "alpha_power_variability": "Not available",
+    "mean_theta_alpha_ratio": "Not available",
+    "theta_alpha_ratio_variability": "Not available",
+    "error_message": "Resting-state eyes-open/eyes-closed boundaries unavailable.",
+    "mean_occipital_temporal_theta_plv": "Not available",
+    "OT_plv_variability": "Not available",
+    "mean_temporal_frontal_theta_plv": "Not available",
+    "TF_plv_variability": "Not available",
+    "mean_occipital_frontal_theta_plv": "Not available",
+    "OF_plv_variability": "Not available"
+  }
+}

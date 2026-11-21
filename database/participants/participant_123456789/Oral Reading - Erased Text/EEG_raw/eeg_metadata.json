@@ -13,433 +13,505 @@
           "order": 1,
           "name": "Fp1",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 2,
           "name": "Fz",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 3,
           "name": "F3",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 4,
           "name": "F7",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 5,
           "name": "FT9",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 6,
           "name": "FC5",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 7,
           "name": "FC1",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 8,
           "name": "C3",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 9,
           "name": "T7",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 10,
           "name": "TP9",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 11,
           "name": "CP5",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 12,
           "name": "CP1",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 13,
           "name": "Pz",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 14,
           "name": "P3",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 15,
           "name": "P7",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 16,
           "name": "O1",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 17,
           "name": "Oz",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 18,
           "name": "O2",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 19,
           "name": "P4",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 20,
           "name": "P8",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 21,
           "name": "TP10",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 22,
           "name": "CP6",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 23,
           "name": "CP2",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 24,
           "name": "Cz",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 25,
           "name": "C4",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 26,
           "name": "T8",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 27,
           "name": "FT10",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 28,
           "name": "FC6",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 29,
           "name": "FC2",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 30,
           "name": "F4",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 31,
           "name": "F8",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 32,
           "name": "Fp2",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 33,
           "name": "AF7",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 34,
           "name": "AF3",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 35,
           "name": "AFz",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 36,
           "name": "F1",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 37,
           "name": "F5",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 38,
           "name": "FT7",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 39,
           "name": "FC3",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 40,
           "name": "C1",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 41,
           "name": "C5",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 42,
           "name": "TP7",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 43,
           "name": "CP3",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 44,
           "name": "P1",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 45,
           "name": "P5",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 46,
           "name": "PO7",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 47,
           "name": "PO3",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 48,
           "name": "POz",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 49,
           "name": "PO4",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 50,
           "name": "PO8",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 51,
           "name": "P6",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 52,
           "name": "P2",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 53,
           "name": "CPz",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 54,
           "name": "CP4",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 55,
           "name": "TP8",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 56,
           "name": "C6",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 57,
           "name": "C2",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 58,
           "name": "FC4",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 59,
           "name": "FT8",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 60,
           "name": "F6",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 61,
           "name": "AF8",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 62,
           "name": "AF4",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 63,
           "name": "F2",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 64,
           "name": "Iz",
           "type": "EEG",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.048828125
         },
         {
           "order": 65,
           "name": "Aux1",
           "type": "MISC",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.2980232238769531
         },
         {
           "order": 66,
           "name": "Aux2",
           "type": "MISC",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.2980232238769531
         },
         {
           "order": 67,
           "name": "Aux3",
           "type": "MISC",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.2980232238769531
         },
         {
           "order": 68,
           "name": "Aux4",
           "type": "MISC",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.2980232238769531
         },
         {
           "order": 69,
           "name": "Aux5",
           "type": "MISC",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.2980232238769531
         },
         {
           "order": 70,
           "name": "Aux6",
           "type": "MISC",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.2980232238769531
         },
         {
           "order": 71,
           "name": "Aux7",
           "type": "MISC",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.2980232238769531
         },
         {
           "order": 72,
           "name": "Aux8",
           "type": "MISC",
-          "unit": "\u00b5V"
+          "unit": "\u00b5V",
+          "resolution_per_bit": 0.2980232238769531
         }
       ],
       "amplifier": {
@@ -461,6 +533,7 @@
           "sample": "0",
           "type": "Recording Info",
           "code": "Saving",
+          "value": null,
           "datetime": "2026-06-09T11:07:56.000000+03:00",
           "comment": "Synthetic recording start"
         },
@@ -468,6 +541,7 @@
           "sample": "48499",
           "type": "Recording Info",
           "code": null,
+          "value": null,
           "datetime": "2026-06-09T11:09:33.000000+03:00",
           "comment": "Synthetic recording end"
         }

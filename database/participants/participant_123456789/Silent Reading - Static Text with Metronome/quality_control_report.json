@@ -8,8 +8,11 @@
   "regression_events_path": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\regression_events.xlsx",
   "loaded_existing": false,
   "window_type": "eprime",
-  "force_recompute": false,
-  "warnings": [],
+  "force_recompute": true,
+  "warnings": [
+    "Auto line-transition threshold estimation failed; using documented fallback 30.0px.",
+    "Auto regression threshold estimation failed; using documented fallback 25.0px."
+  ],
   "missing_columns": [],
   "interpretation_boundaries": [
     "Fixation duration alone cannot distinguish visual from cognitive difficulty.",
@@ -32,6 +35,11 @@
     "Participant-level normalization",
     "Empirical exclusion thresholds"
   ],
+  "eye_selection": {
+    "eye_selection": "Average",
+    "fixation_classification": "Tobii export (Eye movement type), export-time eye selection",
+    "validity_rule": "both eyes valid (>=50% of event samples)"
+  },
   "rows_in_processed_segment": 382,
   "rows_used_for_task_analysis": 382,
   "task_duration_ms": 85000.0,
@@ -56,7 +64,7 @@
     "classifiable_saccade_count": 74,
     "regression_candidate_count": 8,
     "same_line_saccade_count": 74,
-    "regression_count": 0,
+    "regression_count": 8,
     "missing_neighbor_count": 0,
     "no_previous_fixation_count": 0,
     "no_next_fixation_count": 0,
@@ -66,21 +74,21 @@
     "event_sequence_count": 382,
     "duplicate_rows_collapsed_count": 0,
     "ignored_event_type_count": 46,
-    "line_transition_excluded_count": 8,
+    "line_transition_excluded_count": 0,
     "regression_events_path": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\regression_events.xlsx"
   },
   "regression_parameters": {
-    "line_transition_threshold_px": 292.5,
-    "regression_threshold_px": 183.0,
+    "line_transition_threshold_px": 30.0,
+    "regression_threshold_px": 25.0,
     "line_transition_threshold_source": "auto",
     "regression_threshold_source": "auto"
   },
   "regression_metrics": {
-    "regression_count": 0,
-    "regression_percentage": 0.0,
-    "mean_regression_distance": null,
-    "mean_regression_duration": null,
-    "regression_duration_variability": null
+    "regression_count": 8,
+    "regression_percentage": 10.81081081081081,
+    "mean_regression_distance": 86.625,
+    "mean_regression_duration": 39.875,
+    "regression_duration_variability": 12.766445975961473
   },
   "regression_events_rows": 74
 }

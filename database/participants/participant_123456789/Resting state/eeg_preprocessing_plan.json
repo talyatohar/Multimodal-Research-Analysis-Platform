@@ -11,6 +11,11 @@
   "ica_policy": "semi_automatic",
   "baseline_source": "resting_state",
   "roi_definitions": {
+    "frontal_theta": [
+      "Fz",
+      "F3",
+      "F4"
+    ],
     "frontal": [
       "Fp1",
       "Fp2",

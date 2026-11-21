@@ -1,0 +1,28 @@
+{
+  "exclude_blink_windows": false,
+  "by_event_type": {
+    "EyesNotFound Bursts": {
+      "event_windows": 28,
+      "windows_with_blink": 2,
+      "share_with_blink": 0.071,
+      "excluded_from_eeg_features": 0,
+      "interpretation": "blink-contaminated, not for interpretation"
+    },
+    "Long Fixation Events": {
+      "event_windows": 125,
+      "windows_with_blink": 0,
+      "share_with_blink": 0.0,
+      "excluded_from_eeg_features": 0,
+      "interpretation": ""
+    },
+    "Regression Events": {
+      "event_windows": 8,
+      "windows_with_blink": 0,
+      "share_with_blink": 0.0,
+      "excluded_from_eeg_features": 0,
+      "interpretation": ""
+    }
+  },
+  "eyesnotfound_runs_ge_80ms": 1,
+  "fp_blink_peaks": 0
+}

@@ -7,7 +7,7 @@
       "basename": "Silent_Static_Metronome",
       "header_file": {
         "path": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\EEG_raw\\Silent_Static_Metronome.bvrh",
-        "size_bytes": 48605
+        "size_bytes": 50597
       },
       "data_file": {
         "path": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\EEG_raw\\Silent_Static_Metronome.bvrd",
@@ -15,17 +15,17 @@
       },
       "marker_file": {
         "path": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\EEG_raw\\Silent_Static_Metronome.bvrm",
-        "size_bytes": 309
+        "size_bytes": 312
       },
       "impedance_file": {
         "path": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\EEG_raw\\Silent_Static_Metronome.bvri",
-        "size_bytes": 482
+        "size_bytes": 485
       },
       "file_sizes_bytes": {
-        "header": 48605,
+        "header": 50597,
         "data": 13248000,
-        "marker": 309,
-        "impedance": 482
+        "marker": 312,
+        "impedance": 485
       },
       "number_of_channels": 72,
       "sampling_rate_hz": 500.0,

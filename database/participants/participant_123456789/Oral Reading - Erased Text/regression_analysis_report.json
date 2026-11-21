@@ -9,38 +9,59 @@
     "percentage_rule": "regression_count / total_saccade_count * 100"
   },
   "parameters": {
-    "line_transition_threshold_px": 292.5,
-    "regression_threshold_px": 192.0,
+    "line_transition_threshold_px": 30.0,
+    "regression_threshold_px": 25.0,
     "line_transition_threshold_source": "auto",
     "regression_threshold_source": "auto"
   },
   "threshold_estimation": {
     "line_transition_threshold": {
-      "sample_count": 11,
-      "method": "largest_gap_midpoint",
-      "lower_cluster_max": 65.0,
-      "upper_cluster_min": 520.0,
-      "max_gap": 455.0,
-      "median": 65.0,
-      "selected_threshold_px": 292.5
+      "method": "fallback",
+      "fallback_threshold_px": 30.0,
+      "gap_details": {
+        "sample_count": 11,
+        "method": "largest_gap_midpoint",
+        "lower_cluster_max": 65.0,
+        "upper_cluster_min": 520.0,
+        "max_gap": 455.0,
+        "median": 65.0,
+        "reason": "estimated threshold 292.5px exceeds plausibility ceiling 150.0px"
+      },
+      "lower_distribution_details": {
+        "sample_count": 11,
+        "method": "lower_distribution_percentile",
+        "lower_distribution_p75": 65.0,
+        "multiplier": 3.0,
+        "raw_threshold": 195.0,
+        "reason": "estimated threshold 195.0px exceeds plausibility ceiling 150.0px"
+      }
     },
     "regression_threshold": {
-      "sample_count": 87,
-      "method": "lower_distribution_percentile",
-      "lower_distribution_p75": 64.0,
-      "multiplier": 3.0,
-      "raw_threshold": 192.0,
-      "selected_threshold_px": 192.0,
-      "transition_count": 88
+      "method": "fallback",
+      "fallback_threshold_px": 25.0,
+      "transition_count": 88,
+      "lower_distribution_details": {
+        "sample_count": 83,
+        "method": "lower_distribution_percentile",
+        "lower_distribution_p75": 63.0,
+        "multiplier": 3.0,
+        "raw_threshold": 189.0,
+        "transition_source": "same_line_transitions",
+        "same_line_transition_count": 84,
+        "reason": "estimated threshold 189.0px exceeds plausibility ceiling 125.0px"
+      }
     }
   },
-  "warnings": [],
+  "warnings": [
+    "Auto line-transition threshold estimation failed; using documented fallback 30.0px.",
+    "Auto regression threshold estimation failed; using documented fallback 25.0px."
+  ],
   "validation_summary": {
     "total_saccade_count": 88,
     "classifiable_saccade_count": 88,
     "regression_candidate_count": 23,
-    "same_line_saccade_count": 88,
-    "regression_count": 9,
+    "same_line_saccade_count": 84,
+    "regression_count": 18,
     "missing_neighbor_count": 0,
     "no_previous_fixation_count": 0,
     "no_next_fixation_count": 0,
@@ -50,14 +71,14 @@
     "event_sequence_count": 414,
     "duplicate_rows_collapsed_count": 0,
     "ignored_event_type_count": 42,
-    "line_transition_excluded_count": 14,
+    "line_transition_excluded_count": 5,
     "regression_events_path": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\regression_events.xlsx"
   },
   "metrics": {
-    "regression_count": 9,
-    "regression_percentage": 10.227272727272728,
-    "mean_regression_distance": 675.0,
-    "mean_regression_duration": 36.77777777777778,
-    "regression_duration_variability": 12.567595014339238
+    "regression_count": 18,
+    "regression_percentage": 20.454545454545457,
+    "mean_regression_distance": 117.27777777777777,
+    "mean_regression_duration": 38.05555555555556,
+    "regression_duration_variability": 10.037999696577836
   }
 }
