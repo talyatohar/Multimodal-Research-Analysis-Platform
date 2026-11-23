@@ -27,7 +27,8 @@
     "EyesNotFound is treated as tracking loss and is not validity-filtered away.",
     "Pupil means exclude invalid samples and EyesNotFound rows when those columns are available.",
     "Pupil diameter variability is the standard deviation of the synchronized per-sample left/right pupil average after validity filtering.",
-    "Regression detection uses Hebrew right-to-left reading direction, neighboring fixation transitions, same-line filtering by delta_y, and positive delta_x above the configured threshold."
+    "Saccades are consolidated per fixation pair: the whole non-fixation run between two consecutive fixations is one saccade if it has no EyesNotFound and lasts <= 100 ms; otherwise it is not a saccade (EyesNotFound / Unclassified).",
+    "Regression detection iterates over fixation-to-fixation transitions without tracking loss (one row per pair, any run duration), Hebrew right-to-left reading direction, same-line filtering by delta_y, and positive delta_x above the configured threshold."
   ],
   "not_implemented_without_defined_parameters": [
     "Extreme pupil outlier removal",
@@ -38,19 +39,38 @@
   "eye_selection": {
     "eye_selection": "Average",
     "fixation_classification": "Tobii export (Eye movement type), export-time eye selection",
-    "validity_rule": "both eyes valid (>=50% of event samples)"
+    "validity_rule": "both eyes valid (>=50% of event samples)",
+    "saccade_consolidation": {
+      "saccade_max_duration_ms": 100.0,
+      "runs_between_fixations": 92,
+      "saccades": 59,
+      "tracking_loss_runs": 25,
+      "over_cap_runs": 8,
+      "edge_runs": 0,
+      "over_cap_durations_ms": [
+        135.0,
+        177.0,
+        169.0,
+        103.0,
+        193.0,
+        124.0,
+        135.0,
+        291.0
+      ],
+      "relabelled_samples": 26
+    }
   },
   "rows_in_processed_segment": 414,
   "rows_used_for_task_analysis": 414,
   "task_duration_ms": 90000.0,
   "event_counts_after_preprocessing": {
     "Fixation": 275,
-    "Saccade": 88,
+    "Saccade": 59,
     "EyesNotFound": 27
   },
   "event_duration_totals_ms": {
     "Fixation": 71243.0,
-    "Saccade": 3245.0,
+    "Saccade": 2654.0,
     "EyesNotFound": 11720.0
   },
   "validity_counts": {
@@ -60,35 +80,59 @@
     "total_samples": 414
   },
   "regression_validation": {
-    "total_saccade_count": 88,
-    "classifiable_saccade_count": 88,
-    "regression_candidate_count": 23,
-    "same_line_saccade_count": 84,
-    "regression_count": 18,
-    "missing_neighbor_count": 0,
-    "no_previous_fixation_count": 0,
-    "no_next_fixation_count": 0,
+    "total_saccade_count": 59,
+    "transitions_without_tracking_loss": 258,
+    "classifiable_saccade_count": 283,
+    "regression_candidate_count": 22,
+    "same_line_saccade_count": 249,
+    "regression_count": 12,
+    "fixation_transition_count": 283,
+    "transition_status_counts": {
+      "no_saccade": 191,
+      "saccade": 59,
+      "tracking_loss": 25,
+      "over_saccade_cap": 8
+    },
     "missing_coordinate_count": 0,
-    "ignored_intermediate_event_count": 66,
     "raw_rows_used_for_sequence": 414,
-    "event_sequence_count": 414,
-    "duplicate_rows_collapsed_count": 0,
-    "ignored_event_type_count": 42,
-    "line_transition_excluded_count": 5,
+    "event_sequence_count": 392,
+    "duplicate_rows_collapsed_count": 22,
+    "ignored_event_type_count": 49,
+    "line_transition_excluded_count": 10,
     "regression_events_path": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\regression_events.xlsx"
+  },
+  "saccade_cap": {
+    "saccade_max_duration_ms": 100.0,
+    "over_cap_same_line": {
+      "count": 7,
+      "min_ms": 103.0,
+      "median_ms": 135.0,
+      "p90_ms": 183.4,
+      "max_ms": 193.0
+    },
+    "over_cap_line_change": {
+      "count": 1,
+      "min_ms": 291.0,
+      "median_ms": 291.0,
+      "p90_ms": 291.0,
+      "max_ms": 291.0
+    },
+    "runs_without_tracking_loss": 258,
+    "line_change_runs_without_tracking_loss": 9,
+    "line_change_over_cap_percentage": 11.11111111111111
   },
   "regression_parameters": {
     "line_transition_threshold_px": 30.0,
     "regression_threshold_px": 25.0,
-    "line_transition_threshold_source": "auto",
-    "regression_threshold_source": "auto"
+    "line_transition_threshold_source": "fallback",
+    "regression_threshold_source": "fallback"
   },
   "regression_metrics": {
-    "regression_count": 18,
-    "regression_percentage": 20.454545454545457,
-    "mean_regression_distance": 117.27777777777777,
-    "mean_regression_duration": 38.05555555555556,
-    "regression_duration_variability": 10.037999696577836
+    "regression_count": 12,
+    "regression_percentage": 4.651162790697675,
+    "mean_regression_distance": 101.66666666666667,
+    "mean_regression_duration": 56.0,
+    "regression_duration_variability": 38.4613146846637
   },
-  "regression_events_rows": 88
+  "regression_events_rows": 283
 }

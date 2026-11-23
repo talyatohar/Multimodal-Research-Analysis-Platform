@@ -16,7 +16,7 @@
       "interpretation": ""
     },
     "Regression Events": {
-      "event_windows": 18,
+      "event_windows": 12,
       "windows_with_blink": 0,
       "share_with_blink": 0.0,
       "excluded_from_eeg_features": 0,

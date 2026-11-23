@@ -13,12 +13,14 @@ import streamlit as st
 from backend.analysis.events import run_event_level_analysis, summarize_event_eeg_alignment_counts
 from backend.analysis.events.blink_qc import load_event_eeg_settings, write_event_eeg_settings
 from backend.analysis.eye_tracking.eye_selection import (
+    DEFAULT_IVT_PARAMETERS,
     EYE_SELECTIONS,
     load_eye_selection_settings,
     write_eye_selection_settings,
 )
 from backend.analysis.feature_definitions import feature_tooltip
-from backend.analysis.task_level_tables import TABLE_3_FILE, build_task_level_tables
+from backend.analysis.task_level_tables import EPRIME_ONLY_CAPTION, TABLE_3_FILE, build_task_level_tables
+from backend.eeg.task_level_features import RESTING_STATE_CONDITIONS_FILE
 from backend.eeg.task_level_feature_audit import detect_table_3_eeg_columns
 from backend.paths import participant_dir, task_dir
 from backend.sync.eprime import load_sync_window_json
@@ -374,6 +376,65 @@ def _feature_column_config(df: pd.DataFrame) -> dict[str, Any]:
     return config
 
 
+EYES_CLOSED_FEATURES: tuple[str, ...] = tuple(
+    f for f in EEG_TASK_FEATURES if "change_from_baseline" not in f
+)
+
+
+def _render_eyes_closed_table(task_folder) -> None:
+    """Table 3b: Resting-state eyes-closed EEG (no change-from-baseline fields)."""
+    st.markdown("###### Table 3b · EEG Data (eyes closed)")
+    st.caption("Eyes-open values (Table 3) are the baseline; eyes-closed values are reported separately.")
+    path = task_folder / RESTING_STATE_CONDITIONS_FILE if task_folder is not None else None
+    payload = None
+    if path is not None and path.is_file():
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8")).get("eyes_closed")
+        except (OSError, ValueError):
+            payload = None
+    if not isinstance(payload, dict):
+        st.info("Eyes-closed EEG values are not available for this participant.", icon="ℹ️")
+        return
+    table = _transpose_single_row_for_display(
+        pd.DataFrame([{f: payload.get(f) for f in EYES_CLOSED_FEATURES}], columns=list(EYES_CLOSED_FEATURES))
+    )
+    render_stable_dataframe(
+        table,
+        column_config={
+            "feature": st.column_config.TextColumn(label="feature"),
+            "value": st.column_config.TextColumn(label="value"),
+        },
+        max_visible_rows=None,
+        key="table_display_t3b_eyes_closed",
+    )
+
+
+def _threshold_text(params: dict[str, Any], name: str, source_key: str) -> str:
+    value = params.get(name)
+    if value is None:
+        return "n/a"
+    source = str(params.get(source_key) or "auto").replace("manual_override", "manual")
+    return f"{float(value):.1f} px ({source})"
+
+
+def _analysis_settings_caption(participant_folder, meta: dict[str, Any]) -> str:
+    """One line under the task-level tables: eye, merge angle, line/regression thresholds."""
+    settings = load_eye_selection_settings(participant_folder)
+    eye = settings["eye_selection"]
+    merge = settings["ivt"].get("merge_max_angle_deg")
+    merge_text = f"{merge:g}°" if eye != "Average" else f"{merge:g}° (not used: Tobii export classification)"
+    eye_qc = (meta.get("quality_control") or {}).get("eye_tracking") or {}
+    params = eye_qc.get("regression_parameters") if isinstance(eye_qc, dict) else None
+    if params:
+        thresholds = (
+            f"line threshold {_threshold_text(params, 'line_transition_threshold_px', 'line_transition_threshold_source')}, "
+            f"regression threshold {_threshold_text(params, 'regression_threshold_px', 'regression_threshold_source')}"
+        )
+    else:
+        thresholds = "line / regression thresholds: not applicable for this task"
+    return f"Eye used: {eye} · fixation merge angle: {merge_text} · {thresholds}."
+
+
 def _clear_analyse_table_caches() -> None:
     st.session_state[UI_TASK_LEVEL_GENERATED] = False
     _clear_event_level_results()
@@ -421,14 +482,14 @@ else:
 st.divider()
 
 if row:
-    with st.expander("Participant analysis settings", expanded=False):
+    with st.expander("Participant settings", expanded=False):
         _pdir = participant_dir(str(row["participant_id"]))
         _eye_settings = load_eye_selection_settings(_pdir)
         _event_settings = load_event_eeg_settings(_pdir)
         sc1, sc2 = st.columns(2)
         with sc1:
             eye_choice = st.selectbox(
-                "Eye selection",
+                "Eye used for gaze analysis",
                 options=list(EYE_SELECTIONS),
                 index=list(EYE_SELECTIONS).index(_eye_settings["eye_selection"]),
                 key=f"analyse_eye_selection_{row['participant_id']}",
@@ -439,23 +500,45 @@ if row:
                 ),
             )
         with sc2:
-            exclude_blinks = st.checkbox(
-                "Exclude blink-contaminated event EEG windows",
-                value=bool(_event_settings["exclude_blink_windows"]),
-                key=f"analyse_exclude_blinks_{row['participant_id']}",
+            merge_angle = st.number_input(
+                "Fixation merge angle (deg)",
+                min_value=0.1,
+                max_value=5.0,
+                step=0.1,
+                value=float(_eye_settings["ivt"].get("merge_max_angle_deg", DEFAULT_IVT_PARAMETERS["merge_max_angle_deg"])),
+                format="%.1f",
+                key=f"analyse_merge_angle_{row['participant_id']}",
                 help=(
-                    "Event-level EEG: leave out long-fixation and regression windows that contain a blink "
-                    "(tracking loss of 80 ms or more, or an Fp1/Fp2 blink peak)."
+                    "I-VT 'merge adjacent fixations' maximum angle (Tobii default 0.5 deg). Used when Left or Right "
+                    "is selected; with Average the Tobii export classification is used."
                 ),
             )
-        if st.button("Save analysis settings", key="save_analysis_settings"):
+        exclude_blinks = st.checkbox(
+            "Exclude blink-contaminated event EEG windows",
+            value=bool(_event_settings["exclude_blink_windows"]),
+            key=f"analyse_exclude_blinks_{row['participant_id']}",
+            help=(
+                "Event-level EEG: leave out long-fixation and regression windows that contain a blink "
+                "(tracking loss of 80 ms or more, or an Fp1/Fp2 blink peak)."
+            ),
+        )
+        if st.button("Save participant settings", key="save_analysis_settings"):
+            # Only the overridden I-VT parameters are stored ("ivt"); the rest stay at the defaults.
+            ivt_overrides = {
+                k: float(v)
+                for k, v in _eye_settings["ivt"].items()
+                if float(v) != float(DEFAULT_IVT_PARAMETERS.get(k, float("nan")))
+            }
+            ivt_overrides["merge_max_angle_deg"] = round(float(merge_angle), 2)
             write_eye_selection_settings(
                 _pdir,
                 eye_choice,
-                ivt=_eye_settings.get("ivt") if eye_choice != "Average" else None,
+                ivt=ivt_overrides,
                 note=_eye_settings.get("note"),
             )
             write_event_eeg_settings(_pdir, exclude_blinks)
+            # Saving updates the settings files' modification time, which marks this participant's
+            # cached task-level and event-level tables as stale (recomputed on the next GENERATE).
             _clear_analyse_table_caches()
             st.success("Settings saved. Tables are recomputed with the new settings the next time you press GENERATE.")
 
@@ -589,6 +672,8 @@ if st.session_state[UI_TASK_LEVEL_UNLOCKED]:
                 continue
             df = _transpose_single_row_for_display(df)
             st.markdown(f"###### {title}")
+            if key in ("t2", "t3") and meta.get("window_choice") == "Manual Reading Window":
+                st.caption(EPRIME_ONLY_CAPTION)
             if developer_mode_enabled() and loaded_existing.get(key):
                 st.caption("Loaded from saved table.")
             safe_task = re.sub(r"[^\w-]", "_", task_label)
@@ -620,6 +705,10 @@ if st.session_state[UI_TASK_LEVEL_UNLOCKED]:
                     st.caption(f"{table_paths[key]}")
             for warning in warnings_by_table.get(title, []):
                 st.warning(warning)
+            if key == "t3" and is_resting_state_task(task_label):
+                _render_eyes_closed_table(task_dir(str(row["participant_id"]), task_label) if row else None)
+        if row:
+            st.caption(_analysis_settings_caption(participant_dir(str(row["participant_id"])), meta))
         if is_resting_state_task(task_choice):
             eye_qc = (meta.get("quality_control") or {}).get("eye_tracking")
             info = RESTING_STATE_REGRESSION_SKIP_MESSAGE

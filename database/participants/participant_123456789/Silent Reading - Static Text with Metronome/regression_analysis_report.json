@@ -6,13 +6,15 @@
     "regression_candidate_rule": "delta_x > 0",
     "same_line_rule": "abs(delta_y) < line_transition_threshold_px",
     "classification_rule": "same_line == True and delta_x > regression_threshold_px",
-    "percentage_rule": "regression_count / total_saccade_count * 100"
+    "unit_of_analysis": "one row per pair of consecutive fixations; every pair without EyesNotFound between the two fixations is classified, whatever the run duration (the 100 ms saccade cap applies to saccade metrics only)",
+    "percentage_rule": "regression_count / fixation-to-fixation transitions without tracking loss * 100",
+    "duration_rule": "regression duration = the full non-fixation run duration of that transition (uncapped)"
   },
   "parameters": {
     "line_transition_threshold_px": 30.0,
     "regression_threshold_px": 25.0,
-    "line_transition_threshold_source": "auto",
-    "regression_threshold_source": "auto"
+    "line_transition_threshold_source": "fallback",
+    "regression_threshold_source": "fallback"
   },
   "threshold_estimation": {
     "line_transition_threshold": {
@@ -39,16 +41,16 @@
     "regression_threshold": {
       "method": "fallback",
       "fallback_threshold_px": 25.0,
-      "transition_count": 74,
+      "transition_count": 233,
       "lower_distribution_details": {
-        "sample_count": 74,
+        "sample_count": 222,
         "method": "lower_distribution_percentile",
-        "lower_distribution_p75": 61.0,
+        "lower_distribution_p75": 58.75,
         "multiplier": 3.0,
-        "raw_threshold": 183.0,
+        "raw_threshold": 176.25,
         "transition_source": "same_line_transitions",
-        "same_line_transition_count": 74,
-        "reason": "estimated threshold 183.0px exceeds plausibility ceiling 125.0px"
+        "same_line_transition_count": 222,
+        "reason": "estimated threshold 176.2px exceeds plausibility ceiling 125.0px"
       }
     }
   },
@@ -57,28 +59,48 @@
     "Auto regression threshold estimation failed; using documented fallback 25.0px."
   ],
   "validation_summary": {
-    "total_saccade_count": 74,
-    "classifiable_saccade_count": 74,
-    "regression_candidate_count": 8,
-    "same_line_saccade_count": 74,
-    "regression_count": 8,
-    "missing_neighbor_count": 0,
-    "no_previous_fixation_count": 0,
-    "no_next_fixation_count": 0,
+    "total_saccade_count": 47,
+    "transitions_without_tracking_loss": 233,
+    "classifiable_saccade_count": 261,
+    "regression_candidate_count": 16,
+    "same_line_saccade_count": 222,
+    "regression_count": 5,
+    "fixation_transition_count": 261,
+    "transition_status_counts": {
+      "no_saccade": 175,
+      "saccade": 47,
+      "tracking_loss": 28,
+      "over_saccade_cap": 11
+    },
     "missing_coordinate_count": 0,
-    "ignored_intermediate_event_count": 61,
     "raw_rows_used_for_sequence": 382,
-    "event_sequence_count": 382,
-    "duplicate_rows_collapsed_count": 0,
-    "ignored_event_type_count": 46,
-    "line_transition_excluded_count": 0,
+    "event_sequence_count": 360,
+    "duplicate_rows_collapsed_count": 22,
+    "ignored_event_type_count": 51,
+    "line_transition_excluded_count": 11,
     "regression_events_path": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\regression_events.xlsx"
   },
+  "saccade_cap": {
+    "saccade_max_duration_ms": 100.0,
+    "over_cap_same_line": {
+      "count": 11,
+      "min_ms": 105.0,
+      "median_ms": 146.0,
+      "p90_ms": 187.0,
+      "max_ms": 198.0
+    },
+    "over_cap_line_change": {
+      "count": 0
+    },
+    "runs_without_tracking_loss": 233,
+    "line_change_runs_without_tracking_loss": 11,
+    "line_change_over_cap_percentage": 0.0
+  },
   "metrics": {
-    "regression_count": 8,
-    "regression_percentage": 10.81081081081081,
-    "mean_regression_distance": 86.625,
-    "mean_regression_duration": 39.875,
-    "regression_duration_variability": 12.766445975961473
+    "regression_count": 5,
+    "regression_percentage": 2.1459227467811157,
+    "mean_regression_distance": 81.4,
+    "mean_regression_duration": 48.6,
+    "regression_duration_variability": 21.501162759255603
   }
 }

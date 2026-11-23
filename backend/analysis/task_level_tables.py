@@ -27,6 +27,11 @@ TABLE_2_FILE = "table_2_physiological_data.xlsx"
 TABLE_3_FILE = "table_3_eeg_data.xlsx"
 TABLE_4_FILE = "table_4_quality_control.xlsx"
 
+# Window rule: the "Manual Reading Window" applies to eye tracking only (Table 1 and the
+# eye-validity rows of Table 4). EEG (Table 3) and physiology (Table 2, and the motion rows of
+# Table 4) always use the E-Prime task window. Event-level analysis always uses the E-Prime window.
+EPRIME_ONLY_CAPTION = "EEG and physiology use the E-Prime window."
+
 
 @dataclass
 class TaskLevelTablesResult:
@@ -248,9 +253,8 @@ def _build_eeg_table(
 ) -> tuple[pd.DataFrame, bool]:
     suffix = "" if window_type == "eprime" else f"_{window_type}"
     table_path = task_folder / (TABLE_3_FILE if window_type == "eprime" else f"table_3_eeg_data{suffix}.xlsx")
-    feature_values = (
-        _implemented_eeg_features_from_json(task_folder) if window_type == "eprime" else None
-    )
+    # EEG features are always computed on the E-Prime window, whatever window_type is selected.
+    feature_values = _implemented_eeg_features_from_json(task_folder)
 
     cached = _load_if_cached(table_path, force_recompute)
     if cached is not None:

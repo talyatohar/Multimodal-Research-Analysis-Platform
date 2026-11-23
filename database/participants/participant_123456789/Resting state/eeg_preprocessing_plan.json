@@ -8,7 +8,7 @@
   ],
   "notch_hz": 50,
   "bad_channel_policy": "flag_only",
-  "ica_policy": "semi_automatic",
+  "ica_policy": "none",
   "baseline_source": "resting_state",
   "roi_definitions": {
     "frontal_theta": [
@@ -17,7 +17,6 @@
       "F4"
     ],
     "frontal": [
-      "AF3",
       "AF4",
       "Fz",
       "F1",
@@ -48,8 +47,7 @@
       "TP9",
       "TP10",
       "P7",
-      "P9",
-      "P10"
+      "P8"
     ],
     "occipital": [
       "Oz",

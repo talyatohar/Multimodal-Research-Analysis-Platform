@@ -2,35 +2,15 @@
   {
     "event_id": "regression_1",
     "event_type": "Regression Events",
-    "eeg_window_start_sample": 3738,
-    "eeg_window_end_sample": 4256,
-    "eeg_window_sample_count": 519,
-    "epoch_shape": "519\u00d772",
+    "eeg_window_start_sample": 4395,
+    "eeg_window_end_sample": 4929,
+    "eeg_window_sample_count": 535,
+    "epoch_shape": "535\u00d772",
     "eeg_alignment_status": "Aligned",
     "epoch_extraction_status": "Extracted"
   },
   {
     "event_id": "regression_2",
-    "event_type": "Regression Events",
-    "eeg_window_start_sample": 4395,
-    "eeg_window_end_sample": 4907,
-    "eeg_window_sample_count": 513,
-    "epoch_shape": "513\u00d772",
-    "eeg_alignment_status": "Aligned",
-    "epoch_extraction_status": "Extracted"
-  },
-  {
-    "event_id": "regression_3",
-    "event_type": "Regression Events",
-    "eeg_window_start_sample": 4408,
-    "eeg_window_end_sample": 4929,
-    "eeg_window_sample_count": 522,
-    "epoch_shape": "522\u00d772",
-    "eeg_alignment_status": "Aligned",
-    "epoch_extraction_status": "Extracted"
-  },
-  {
-    "event_id": "regression_4",
     "event_type": "Regression Events",
     "eeg_window_start_sample": 5609,
     "eeg_window_end_sample": 6131,
@@ -40,7 +20,7 @@
     "epoch_extraction_status": "Extracted"
   },
   {
-    "event_id": "regression_5",
+    "event_id": "regression_3",
     "event_type": "Regression Events",
     "eeg_window_start_sample": 7358,
     "eeg_window_end_sample": 7877,
@@ -50,7 +30,7 @@
     "epoch_extraction_status": "Extracted"
   },
   {
-    "event_id": "regression_6",
+    "event_id": "regression_4",
     "event_type": "Regression Events",
     "eeg_window_start_sample": 13004,
     "eeg_window_end_sample": 13520,
@@ -60,7 +40,7 @@
     "epoch_extraction_status": "Extracted"
   },
   {
-    "event_id": "regression_7",
+    "event_id": "regression_5",
     "event_type": "Regression Events",
     "eeg_window_start_sample": 19592,
     "eeg_window_end_sample": 20106,
@@ -70,7 +50,7 @@
     "epoch_extraction_status": "Extracted"
   },
   {
-    "event_id": "regression_8",
+    "event_id": "regression_6",
     "event_type": "Regression Events",
     "eeg_window_start_sample": 20576,
     "eeg_window_end_sample": 21092,
@@ -80,7 +60,7 @@
     "epoch_extraction_status": "Extracted"
   },
   {
-    "event_id": "regression_9",
+    "event_id": "regression_7",
     "event_type": "Regression Events",
     "eeg_window_start_sample": 22783,
     "eeg_window_end_sample": 23295,
@@ -90,37 +70,17 @@
     "epoch_extraction_status": "Extracted"
   },
   {
-    "event_id": "regression_10",
+    "event_id": "regression_8",
     "event_type": "Regression Events",
     "eeg_window_start_sample": 23223,
-    "eeg_window_end_sample": 23746,
-    "eeg_window_sample_count": 524,
-    "epoch_shape": "524\u00d772",
-    "eeg_alignment_status": "Aligned",
-    "epoch_extraction_status": "Extracted"
-  },
-  {
-    "event_id": "regression_11",
-    "event_type": "Regression Events",
-    "eeg_window_start_sample": 23247,
-    "eeg_window_end_sample": 23761,
-    "eeg_window_sample_count": 515,
-    "epoch_shape": "515\u00d772",
-    "eeg_alignment_status": "Aligned",
-    "epoch_extraction_status": "Extracted"
-  },
-  {
-    "event_id": "regression_12",
-    "event_type": "Regression Events",
-    "eeg_window_start_sample": 23293,
     "eeg_window_end_sample": 23806,
-    "eeg_window_sample_count": 514,
-    "epoch_shape": "514\u00d772",
+    "eeg_window_sample_count": 584,
+    "epoch_shape": "584\u00d772",
     "eeg_alignment_status": "Aligned",
     "epoch_extraction_status": "Extracted"
   },
   {
-    "event_id": "regression_13",
+    "event_id": "regression_9",
     "event_type": "Regression Events",
     "eeg_window_start_sample": 31728,
     "eeg_window_end_sample": 32247,
@@ -130,7 +90,7 @@
     "epoch_extraction_status": "Extracted"
   },
   {
-    "event_id": "regression_14",
+    "event_id": "regression_10",
     "event_type": "Regression Events",
     "eeg_window_start_sample": 32855,
     "eeg_window_end_sample": 33381,
@@ -140,17 +100,7 @@
     "epoch_extraction_status": "Extracted"
   },
   {
-    "event_id": "regression_15",
-    "event_type": "Regression Events",
-    "eeg_window_start_sample": 40630,
-    "eeg_window_end_sample": 41148,
-    "eeg_window_sample_count": 519,
-    "epoch_shape": "519\u00d772",
-    "eeg_alignment_status": "Aligned",
-    "epoch_extraction_status": "Extracted"
-  },
-  {
-    "event_id": "regression_16",
+    "event_id": "regression_11",
     "event_type": "Regression Events",
     "eeg_window_start_sample": 42793,
     "eeg_window_end_sample": 43319,
@@ -160,22 +110,12 @@
     "epoch_extraction_status": "Extracted"
   },
   {
-    "event_id": "regression_17",
+    "event_id": "regression_12",
     "event_type": "Regression Events",
     "eeg_window_start_sample": 44483,
     "eeg_window_end_sample": 44999,
     "eeg_window_sample_count": 517,
     "epoch_shape": "517\u00d772",
-    "eeg_alignment_status": "Partial window: ends after EEG segment",
-    "epoch_extraction_status": "Extracted"
-  },
-  {
-    "event_id": "regression_18",
-    "event_type": "Regression Events",
-    "eeg_window_start_sample": 44508,
-    "eeg_window_end_sample": 44999,
-    "eeg_window_sample_count": 492,
-    "epoch_shape": "492\u00d772",
     "eeg_alignment_status": "Partial window: ends after EEG segment",
     "epoch_extraction_status": "Extracted"
   },

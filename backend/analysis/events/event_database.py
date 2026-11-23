@@ -43,8 +43,9 @@ EVENT_TYPE_LONG_FIXATION = "Long Fixation Events"
 EVENT_TYPE_EYESNOTFOUND = "EyesNotFound Bursts"
 
 REGRESSION_EVENT_DURATION_DEFINITION = (
-    "Regression duration = regression saccade duration only; "
-    "neighboring fixations are used for classification, not duration."
+    "Regression duration = the full non-fixation run between the two fixations of the "
+    "transition (uncapped; may exceed the 100 ms saccade cap); the neighbouring fixations are "
+    "used for classification, not duration."
 )
 
 EVENT_DATABASE_COLUMNS: tuple[str, ...] = (

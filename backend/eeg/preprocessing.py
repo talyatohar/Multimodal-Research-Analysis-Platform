@@ -23,8 +23,9 @@ FRONTAL_PLV_EXCLUDED: tuple[str, ...] = ("Fp1", "Fp2", "AF7", "AF8")
 
 DEFAULT_ROI_DEFINITIONS: dict[str, list[str]] = {
     "frontal_theta": list(FRONTAL_THETA_ROI),
+    # Frontal PLV ROI. Fp1/Fp2/AF7/AF8 are excluded (FRONTAL_PLV_EXCLUDED); AF3 is the online
+    # reference, so it is not a recorded channel. Channels missing from a montage are skipped.
     "frontal": [
-        "AF3",
         "AF4",
         "Fz",
         "F1",
@@ -47,6 +48,7 @@ DEFAULT_ROI_DEFINITIONS: dict[str, list[str]] = {
         "FT9",
         "FT10",
     ],
+    # Left/right symmetric (P7 + P8). P9/P10 are not in the study montage.
     "temporal": [
         "T7",
         "T8",
@@ -55,8 +57,7 @@ DEFAULT_ROI_DEFINITIONS: dict[str, list[str]] = {
         "TP9",
         "TP10",
         "P7",
-        "P9",
-        "P10",
+        "P8",
     ],
     "occipital": [
         "Oz",
@@ -76,7 +77,7 @@ DEFAULT_PREPROCESSING_SETTINGS: dict[str, Any] = {
     "bandpass_hz": [0.5, 40],
     "notch_hz": 50,
     "bad_channel_policy": "flag_only",
-    "ica_policy": "semi_automatic",
+    "ica_policy": "none",  # no ICA / ocular correction is applied
     "baseline_source": "resting_state",
 }
 

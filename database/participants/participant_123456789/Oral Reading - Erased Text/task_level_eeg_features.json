@@ -8,13 +8,13 @@
   "theta_power_change_from_baseline": 0.059847152719193164,
   "alpha_power_change_from_baseline": -0.04632895144377051,
   "theta_alpha_ratio_change_from_baseline": 1.4737709260589036,
-  "mean_occipital_temporal_theta_plv": 0.2599130281780221,
-  "OT_plv_variability": 0.07413860059584167,
-  "mean_temporal_frontal_theta_plv": 0.6025275476160078,
-  "TF_plv_variability": 0.45863403185084173,
-  "mean_occipital_frontal_theta_plv": 0.20845838591415727,
-  "OF_plv_variability": 0.1054378887547442,
-  "OT_plv_change_from_baseline": -0.18272738972721336,
-  "TF_plv_change_from_baseline": -0.012399892577403926,
-  "OF_plv_change_from_baseline": -0.18361764166106198
+  "mean_occipital_temporal_theta_plv": 0.23650056290958726,
+  "OT_plv_variability": 0.09305447519676693,
+  "mean_temporal_frontal_theta_plv": 0.5674233176864429,
+  "TF_plv_variability": 0.4596027934048434,
+  "mean_occipital_frontal_theta_plv": 0.20435342420853114,
+  "OF_plv_variability": 0.1062054462192674,
+  "OT_plv_change_from_baseline": -0.17848024812068514,
+  "TF_plv_change_from_baseline": -0.01378552873949579,
+  "OF_plv_change_from_baseline": -0.1833433938752121
 }

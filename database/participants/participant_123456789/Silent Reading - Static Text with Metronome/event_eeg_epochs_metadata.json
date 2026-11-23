@@ -3,24 +3,14 @@
     "event_id": "regression_1",
     "event_type": "Regression Events",
     "eeg_window_start_sample": 266,
-    "eeg_window_end_sample": 782,
-    "eeg_window_sample_count": 517,
-    "epoch_shape": "517\u00d772",
+    "eeg_window_end_sample": 806,
+    "eeg_window_sample_count": 541,
+    "epoch_shape": "541\u00d772",
     "eeg_alignment_status": "Aligned",
     "epoch_extraction_status": "Extracted"
   },
   {
     "event_id": "regression_2",
-    "event_type": "Regression Events",
-    "eeg_window_start_sample": 283,
-    "eeg_window_end_sample": 806,
-    "eeg_window_sample_count": 524,
-    "epoch_shape": "524\u00d772",
-    "eeg_alignment_status": "Aligned",
-    "epoch_extraction_status": "Extracted"
-  },
-  {
-    "event_id": "regression_3",
     "event_type": "Regression Events",
     "eeg_window_start_sample": 10116,
     "eeg_window_end_sample": 10628,
@@ -30,7 +20,7 @@
     "epoch_extraction_status": "Extracted"
   },
   {
-    "event_id": "regression_4",
+    "event_id": "regression_3",
     "event_type": "Regression Events",
     "eeg_window_start_sample": 11648,
     "eeg_window_end_sample": 12174,
@@ -40,27 +30,7 @@
     "epoch_extraction_status": "Extracted"
   },
   {
-    "event_id": "regression_5",
-    "event_type": "Regression Events",
-    "eeg_window_start_sample": 13730,
-    "eeg_window_end_sample": 14239,
-    "eeg_window_sample_count": 510,
-    "epoch_shape": "510\u00d772",
-    "eeg_alignment_status": "Aligned",
-    "epoch_extraction_status": "Extracted"
-  },
-  {
-    "event_id": "regression_6",
-    "event_type": "Regression Events",
-    "eeg_window_start_sample": 14038,
-    "eeg_window_end_sample": 14564,
-    "eeg_window_sample_count": 527,
-    "epoch_shape": "527\u00d772",
-    "eeg_alignment_status": "Aligned",
-    "epoch_extraction_status": "Extracted"
-  },
-  {
-    "event_id": "regression_7",
+    "event_id": "regression_4",
     "event_type": "Regression Events",
     "eeg_window_start_sample": 17272,
     "eeg_window_end_sample": 17791,
@@ -70,7 +40,7 @@
     "epoch_extraction_status": "Extracted"
   },
   {
-    "event_id": "regression_8",
+    "event_id": "regression_5",
     "event_type": "Regression Events",
     "eeg_window_start_sample": 41200,
     "eeg_window_end_sample": 41720,

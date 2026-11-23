@@ -32,13 +32,33 @@ _TABLE2_OUTLIER_QC_NOTE = (
 )
 
 
+_EYE_SOURCE_NOTE = (
+    "Computed from the selected eye's fixation classification (participant setting): the platform "
+    "I-VT filter on that eye's raw gaze when Left or Right is selected, the Tobii Pro Lab export "
+    "classification when Average is selected; restricted to the selected analysis window."
+)
+_SACCADE_NOTE = (
+    "One saccade = the whole run of non-fixation samples between two consecutive fixations, "
+    "provided the run contains no tracking loss (EyesNotFound) and lasts at most 100 ms; short "
+    "Unclassified fragments inside the run are absorbed and its duration is the full interval. "
+    "Runs with tracking loss or longer than 100 ms are not saccades (they stay EyesNotFound / "
+    "Unclassified)."
+)
+_REGRESSION_NOTE = (
+    "Evaluated once per fixation-to-fixation transition without tracking loss (EyesNotFound) "
+    "between the two fixations, whatever the duration of the run between them (the 100 ms saccade "
+    "cap applies to the saccade metrics only); transitions across tracking loss are not used. "
+    "Regression: same line (|delta_y| below the line threshold) and rightward delta_x (Hebrew, "
+    "right-to-left reading) above the regression threshold."
+)
+
 FEATURE_DEFINITIONS: dict[str, FeatureDefinition] = {
     # Table 1 — Eye tracking
     "mean_fixation_duration": FeatureDefinition(
         "mean_fixation_duration",
         "Average duration of fixation events during the task window.",
         "ms",
-        "Computed from Tobii fixation events after segmentation to the selected analysis window.",
+        _EYE_SOURCE_NOTE,
     ),
     "fixation_time_percentage": FeatureDefinition(
         "fixation_time_percentage",
@@ -56,19 +76,19 @@ FEATURE_DEFINITIONS: dict[str, FeatureDefinition] = {
         "mean_saccade_duration",
         "Average duration of saccadic eye movements in the task window.",
         "ms",
-        "Computed from Tobii saccade events after segmentation to the selected analysis window.",
+        f"{_SACCADE_NOTE}\n\n{_EYE_SOURCE_NOTE}",
     ),
     "saccade_time_percentage": FeatureDefinition(
         "saccade_time_percentage",
         "Share of total task time spent in saccade events.",
         "%",
-        "Sum of saccade durations divided by total task duration, multiplied by 100.",
+        f"Sum of saccade durations divided by total task duration, multiplied by 100. {_SACCADE_NOTE}",
     ),
     "saccade_duration_variability": FeatureDefinition(
         "saccade_duration_variability",
         "Spread of saccade-event durations in the task window.",
         "ms",
-        "Standard deviation of saccade durations after event aggregation.",
+        f"Standard deviation of saccade durations. {_SACCADE_NOTE}",
     ),
     "EyesNotFound_percentage": FeatureDefinition(
         "EyesNotFound_percentage",
@@ -104,13 +124,13 @@ FEATURE_DEFINITIONS: dict[str, FeatureDefinition] = {
         "mean_pupil_diameter",
         "Average pupil diameter during valid task samples.",
         "mm",
-        "Mean of available left/right pupil values after validity filtering.",
+        "Pupil of the selected eye (Left or Right) after validity filtering; the mean of both eyes only when Average is selected. EyesNotFound samples are excluded.",
     ),
     "pupil_diameter_variability": FeatureDefinition(
         "pupil_diameter_variability",
         "Fluctuation of synchronized pupil diameter across the task window.",
         "mm",
-        "Standard deviation of the per-sample pupil average after validity filtering.",
+        "Standard deviation of the per-sample pupil diameter of the selected eye (per-sample mean of both eyes only when Average is selected) after validity filtering.",
     ),
     "left_valid_percentage": FeatureDefinition(
         "left_valid_percentage",
@@ -128,37 +148,37 @@ FEATURE_DEFINITIONS: dict[str, FeatureDefinition] = {
         "combined_valid_percentage",
         "Percentage of samples where at least one eye was tracked as valid.",
         "%",
-        "Computed using left OR right validity because participants may have asymmetric eye-tracking reliability due to amblyopia.",
+        "Computed using left OR right validity from the exported Tobii validity codes (Table 4 quality control), because participants may have asymmetric eye-tracking reliability due to amblyopia.",
     ),
     "regression_count": FeatureDefinition(
         "regression_count",
-        "Number of backward same-line saccadic transitions classified as regressions.",
+        "Number of backward same-line fixation-to-fixation transitions classified as regressions.",
         "count",
-        "Detected when abs(delta_y) is below the line threshold and delta_x exceeds the regression threshold.",
+        _REGRESSION_NOTE,
     ),
     "regression_percentage": FeatureDefinition(
         "regression_percentage",
-        "Share of saccades classified as regressions.",
+        "Share of fixation-to-fixation transitions classified as regressions.",
         "%",
-        "Regression count divided by total saccade count, multiplied by 100.",
+        f"Regressions divided by all fixation-to-fixation transitions without tracking loss (numerator and denominator from the same set), multiplied by 100. {_REGRESSION_NOTE}",
     ),
     "mean_regression_distance": FeatureDefinition(
         "mean_regression_distance",
         "Average horizontal distance of regression-classified saccades.",
         "px",
-        "Mean positive delta_x for same-line saccades classified as regressions.",
+        f"Mean positive delta_x (next minus previous fixation X) of regression transitions. {_REGRESSION_NOTE}",
     ),
     "mean_regression_duration": FeatureDefinition(
         "mean_regression_duration",
-        "Average duration of saccades classified as regressions.",
+        "Average duration of regression transitions.",
         "ms",
-        "Mean saccade duration for regression-classified events only.",
+        "Mean duration of the full non-fixation run between the two fixations of each regression transition (uncapped: it can exceed the 100 ms saccade cap).",
     ),
     "regression_duration_variability": FeatureDefinition(
         "regression_duration_variability",
-        "Spread of durations for regression-classified saccades.",
+        "Spread of the durations of regression transitions.",
         "ms",
-        "Standard deviation of regression saccade durations.",
+        "Standard deviation of the run durations of regression transitions (one per transition; uncapped, can exceed the 100 ms saccade cap).",
     ),
     # Table 2 — Physiological
     "mean_bpm": FeatureDefinition(
@@ -176,20 +196,20 @@ FEATURE_DEFINITIONS: dict[str, FeatureDefinition] = {
     "mean_respiration_rate": FeatureDefinition(
         "mean_respiration_rate",
         "Average respiration rate during the selected task.",
-        "breaths per minute, or Corsano respiration-rate units if the file does not specify units",
-        f"Calculated after keeping only samples with resp_q >= 3.\n\n{_TABLE2_OUTLIER_QC_NOTE}",
+        "breaths/min",
+        f"Calculated after keeping only samples with resp_q >= 1 (Corsano resp_q ranges 0-2).\n\n{_TABLE2_OUTLIER_QC_NOTE}",
     ),
     "respiration_variability": FeatureDefinition(
         "respiration_variability",
         "Standard deviation of respiration_rate during the selected task.",
-        "same as respiration_rate",
-        f"Calculated after resp_q >= 3 filtering.\n\n{_TABLE2_OUTLIER_QC_NOTE}",
+        "breaths/min",
+        f"Calculated after resp_q >= 1 filtering.\n\n{_TABLE2_OUTLIER_QC_NOTE}",
     ),
     "respiration_change_from_baseline": FeatureDefinition(
         "respiration_change_from_baseline",
         "Difference between task mean respiration rate and Resting state mean respiration rate.",
-        "same as respiration_rate",
-        f"Formula: task mean - resting-state mean. Task and resting means use resp_q >= 3 filtering.\n\n{_TABLE2_OUTLIER_QC_NOTE}",
+        "breaths/min",
+        f"Formula: task mean - resting-state mean. Task and resting means use resp_q >= 1 filtering.\n\n{_TABLE2_OUTLIER_QC_NOTE}",
     ),
     "mean_rmssd": FeatureDefinition(
         "mean_rmssd",
@@ -232,7 +252,7 @@ FEATURE_DEFINITIONS: dict[str, FeatureDefinition] = {
         "mean_frontal_theta_power",
         "Average frontal theta-band (4–8 Hz) power during the task.",
         "µV²",
-        "Welch PSD integrated over theta band, averaged across frontal ROI channels.",
+        "Welch PSD integrated over theta band, averaged across Fz, F3 and F4.",
     ),
     "theta_power_change_from_baseline": FeatureDefinition(
         "theta_power_change_from_baseline",
@@ -242,9 +262,9 @@ FEATURE_DEFINITIONS: dict[str, FeatureDefinition] = {
     ),
     "theta_power_variability": FeatureDefinition(
         "theta_power_variability",
-        "Spread of frontal theta power across frontal ROI channels.",
+        "Spread of frontal theta power across Fz, F3 and F4.",
         "µV²",
-        "Standard deviation of per-channel theta power estimates in the frontal ROI.",
+        "Standard deviation of per-channel theta power estimates over Fz, F3 and F4.",
     ),
     "mean_occipital_alpha_power": FeatureDefinition(
         "mean_occipital_alpha_power",
@@ -372,7 +392,8 @@ FEATURE_DEFINITIONS: dict[str, FeatureDefinition] = {
         "mean_event_duration",
         "Average behavioral duration of events of the selected type.",
         "ms",
-        "Behavioral event duration only; excludes the 500 ms pre-event and 500 ms post-event EEG alignment window.",
+        "Behavioral event duration only; excludes the 500 ms pre-event and 500 ms post-event EEG alignment window. "
+        "Regression Events: the full non-fixation run of the regression transition (uncapped).",
     ),
     "event_duration_variability": FeatureDefinition(
         "event_duration_variability",

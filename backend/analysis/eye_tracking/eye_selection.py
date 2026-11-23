@@ -13,6 +13,11 @@ Settings live per participant in ``eye_tracking_settings.json`` (participant fol
     {"eye_selection": "Left", "ivt": {"merge_max_angle_deg": 1.0, ...}}
 Without that file the selection is "Average": the export's own classification and the
 original both-eye validity rule are used unchanged (previous behaviour).
+
+On both paths the saccade labels are then consolidated (``consolidate_saccades``): one
+saccade is the whole run of non-fixation samples between two consecutive fixations, provided
+the run has no tracking loss and lasts at most ``SACCADE_MAX_DURATION_MS``. Fixation and
+EyesNotFound samples are never relabelled.
 """
 
 from __future__ import annotations
@@ -48,6 +53,13 @@ FIX_X_COL = "Fixation point X [DACS px]"
 FIX_Y_COL = "Fixation point Y [DACS px]"
 VALID_COLS = {"Left": "Validity left", "Right": "Validity right"}
 PUPIL_COLS = {"Left": "Pupil diameter left [mm]", "Right": "Pupil diameter right [mm]"}
+
+# A run of non-fixation samples between two fixations longer than this is not one saccade.
+SACCADE_MAX_DURATION_MS = 100.0
+FIXATION_LABEL = "Fixation"
+SACCADE_LABEL = "Saccade"
+EYES_NOT_FOUND_LABEL = "EyesNotFound"
+UNCLASSIFIED_LABEL = "Unclassified"
 
 
 def load_eye_selection_settings(participant_folder: Path) -> dict[str, Any]:
@@ -175,8 +187,118 @@ def classify_ivt(t_ms: np.ndarray, u: np.ndarray, valid: np.ndarray, p: dict[str
     return labels, event_id, filled
 
 
-def apply_eye_selection(df: pd.DataFrame, settings: dict[str, Any]) -> tuple[pd.DataFrame, dict[str, Any]]:
-    """Return the segment with eye-movement columns for the selected eye (in memory only)."""
+def _norm_label(value: Any) -> str:
+    if value is None:
+        return ""
+    text = str(value).strip()
+    return "" if text.casefold() in ("nan", "none", "<na>") else text
+
+
+def consolidate_saccades(
+    df: pd.DataFrame,
+    max_saccade_ms: float = SACCADE_MAX_DURATION_MS,
+) -> tuple[pd.DataFrame, dict[str, Any]]:
+    """
+    Relabel the samples between consecutive fixations so that each fixation pair has at most
+    one saccade (in memory only).
+
+    For every run of non-fixation samples between two fixations:
+      * the run contains EyesNotFound -> not a saccade: EyesNotFound stays, the rest becomes
+        Unclassified;
+      * otherwise, if its duration (first run sample to first sample of the next fixation) is
+        <= max_saccade_ms -> the whole run is one Saccade event (Unclassified fragments
+        absorbed) with that duration;
+      * otherwise (longer) -> the whole run is Unclassified.
+    Non-fixation runs before the first / after the last fixation are not between two
+    fixations: their samples become Unclassified (EyesNotFound and blank samples unchanged).
+    Fixation and EyesNotFound samples, their event indices and durations are never changed.
+    """
+    info: dict[str, Any] = {"saccade_max_duration_ms": float(max_saccade_ms)}
+    if df is None or df.empty or TYPE_COL not in df.columns or TS_COL not in df.columns:
+        return df, info
+    out = df.copy()
+    t_all = pd.to_numeric(out[TS_COL], errors="coerce").to_numpy(float)
+    pos = np.flatnonzero(np.isfinite(t_all))
+    pos = pos[np.argsort(t_all[pos], kind="mergesort")]
+    n = len(pos)
+    if n == 0:
+        return out, info
+    t = t_all[pos]
+    labels = np.array([_norm_label(v) for v in out[TYPE_COL].to_numpy(dtype=object)[pos]], dtype=object)
+    new = labels.copy()
+    is_fix = labels == FIXATION_LABEL
+    counts = {"runs_between_fixations": 0, "saccades": 0, "tracking_loss_runs": 0, "over_cap_runs": 0, "edge_runs": 0}
+    over_cap_durations: list[float] = []
+    for i0, i1 in _runs(~is_fix):
+        seg = labels[i0:i1 + 1]
+        keep = (seg == EYES_NOT_FOUND_LABEL) | (seg == "")
+        if i0 == 0 or i1 == n - 1:
+            counts["edge_runs"] += 1
+            new[i0:i1 + 1] = np.where(keep, seg, UNCLASSIFIED_LABEL)
+            continue
+        counts["runs_between_fixations"] += 1
+        if (seg == EYES_NOT_FOUND_LABEL).any():
+            counts["tracking_loss_runs"] += 1
+            new[i0:i1 + 1] = np.where(keep, seg, UNCLASSIFIED_LABEL)
+            continue
+        duration = float(t[i1 + 1] - t[i0])
+        if duration > max_saccade_ms:
+            counts["over_cap_runs"] += 1
+            over_cap_durations.append(duration)
+            new[i0:i1 + 1] = UNCLASSIFIED_LABEL
+        else:
+            counts["saccades"] += 1
+            new[i0:i1 + 1] = SACCADE_LABEL
+
+    # Re-index Saccade / Unclassified events (one event per contiguous run); Fixation and
+    # EyesNotFound keep their exported/classified index and duration.
+    dt = float(np.median(np.diff(t))) if n > 1 else 8.33
+    index_full = (
+        pd.to_numeric(out[TYPE_INDEX_COL], errors="coerce").to_numpy(float)
+        if TYPE_INDEX_COL in out.columns else np.full(len(out), np.nan)
+    )
+    duration_full = (
+        pd.to_numeric(out[DURATION_COL], errors="coerce").to_numpy(float)
+        if DURATION_COL in out.columns else np.full(len(out), np.nan)
+    )
+    type_index = index_full[pos]
+    durations = duration_full[pos]
+    for label in (SACCADE_LABEL, UNCLASSIFIED_LABEL):
+        for k, (i0, i1) in enumerate(_runs(new == label), start=1):
+            type_index[i0:i1 + 1] = k
+            end = t[i1 + 1] if i1 + 1 < n else t[i1] + dt
+            durations[i0:i1 + 1] = round(float(end - t[i0]))
+    index_full[pos] = type_index
+    duration_full[pos] = durations
+    type_values = out[TYPE_COL].to_numpy(dtype=object).copy()
+    type_values[pos] = np.where(new == "", type_values[pos], new)
+    out[TYPE_COL] = type_values
+    out[TYPE_INDEX_COL] = index_full
+    out[DURATION_COL] = duration_full
+    info.update(counts)
+    info["over_cap_durations_ms"] = [round(d, 1) for d in over_cap_durations]
+    info["relabelled_samples"] = int((new != labels).sum())
+    return out, info
+
+
+def apply_eye_selection(
+    df: pd.DataFrame,
+    settings: dict[str, Any],
+    *,
+    consolidate: bool = True,
+) -> tuple[pd.DataFrame, dict[str, Any]]:
+    """Return the segment with eye-movement columns for the selected eye (in memory only).
+
+    Saccades are then consolidated between consecutive fixations (``consolidate_saccades``);
+    ``consolidate=False`` skips that step (diagnostics only)."""
+    out, info = _apply_eye_selection_labels(df, settings)
+    if consolidate:
+        out, sacc_info = consolidate_saccades(out)
+        info["saccade_consolidation"] = sacc_info
+    return out, info
+
+
+def _apply_eye_selection_labels(df: pd.DataFrame, settings: dict[str, Any]) -> tuple[pd.DataFrame, dict[str, Any]]:
     selection = settings.get("eye_selection", DEFAULT_EYE_SELECTION)
     info: dict[str, Any] = {"eye_selection": selection}
     if selection == "Average":

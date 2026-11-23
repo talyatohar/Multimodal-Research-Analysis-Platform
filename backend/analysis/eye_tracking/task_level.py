@@ -11,6 +11,7 @@ from typing import Any
 import pandas as pd
 
 from backend.analysis.eye_tracking.eye_selection import (
+    SACCADE_MAX_DURATION_MS,
     apply_eye_selection,
     load_eye_selection_settings,
     participant_settings_mtime,
@@ -485,49 +486,91 @@ def _estimate_line_transition_threshold(sequence: pd.DataFrame) -> tuple[float, 
     }, f"Auto line-transition threshold estimation failed; using documented fallback {fallback}px."
 
 
-def _saccade_transition_deltas(sequence: pd.DataFrame) -> pd.DataFrame:
+TRANSITION_SACCADE = "saccade"
+TRANSITION_TRACKING_LOSS = "tracking_loss"
+TRANSITION_OVER_CAP = "over_saccade_cap"
+TRANSITION_NO_SACCADE = "no_saccade"
+
+
+def _fixation_transitions(sequence: pd.DataFrame, max_saccade_ms: float = SACCADE_MAX_DURATION_MS) -> pd.DataFrame:
+    """
+    One row per pair of consecutive fixations in the event sequence.
+
+    transition_status:
+      * "saccade": the in-between events are saccade(s) only, no tracking loss, interval <= cap
+        (after ``consolidate_saccades`` this is exactly one Saccade event);
+      * "tracking_loss": EyesNotFound between the two fixations (not a saccade);
+      * "over_saccade_cap": no tracking loss but the non-fixation interval is longer than the cap;
+      * "no_saccade": nothing or only Unclassified/blank samples in between within the cap.
+    Saccade metrics use only "saccade" runs (consolidate_saccades). Regression detection and the
+    regression-threshold estimate use every transition without tracking loss, whatever its run
+    duration; the regression duration is that run's (uncapped) duration.
+    """
+    columns = [
+        "previous_fixation_event_index", "next_fixation_event_index",
+        "previous_fixation_x", "previous_fixation_y", "next_fixation_x", "next_fixation_y",
+        "delta_x", "delta_y", "saccade_timestamp_ms", "saccade_duration_ms",
+        "intermediate_event_count", "intermediate_saccade_event_count", "transition_status",
+    ]
+    if sequence.empty:
+        return pd.DataFrame(columns=columns)
+    types = sequence["_event_type_normalized"].to_numpy()
+    onsets = pd.to_numeric(sequence["_event_timestamp_ms"], errors="coerce").to_numpy(float)
+    fixation_positions = [i for i, kind in enumerate(types) if kind == "fixation"]
     rows: list[dict[str, Any]] = []
-    saccades = sequence.loc[sequence["_event_type_normalized"] == "saccade"]
-    for pos, event in saccades.iterrows():
-        previous_fixations = sequence.loc[: pos - 1]
-        previous_fixations = previous_fixations.loc[previous_fixations["_event_type_normalized"] == "fixation"]
-        next_fixations = sequence.loc[pos + 1 :]
-        next_fixations = next_fixations.loc[next_fixations["_event_type_normalized"] == "fixation"]
-        if previous_fixations.empty or next_fixations.empty:
-            continue
-        previous = previous_fixations.iloc[-1]
-        next_fixation = next_fixations.iloc[0]
-        previous_x = previous.get(FIXATION_X_COL)
-        next_x = next_fixation.get(FIXATION_X_COL)
-        previous_y = previous.get(FIXATION_Y_COL)
-        next_y = next_fixation.get(FIXATION_Y_COL)
-        if pd.isna(previous_x) or pd.isna(next_x):
-            continue
+    for a, b in zip(fixation_positions[:-1], fixation_positions[1:]):
+        previous = sequence.iloc[a]
+        next_fixation = sequence.iloc[b]
+        between = list(types[a + 1:b])
+        if between:
+            run_start = float(onsets[a + 1])
+            interval = float(onsets[b] - run_start)
+        else:
+            run_start, interval = float("nan"), 0.0
+        saccade_events = between.count("saccade")
+        if "eyesnotfound" in between:
+            status = TRANSITION_TRACKING_LOSS
+        elif between and interval > max_saccade_ms:
+            status = TRANSITION_OVER_CAP
+        elif saccade_events:
+            status = TRANSITION_SACCADE
+        else:
+            status = TRANSITION_NO_SACCADE
+
+        def _num(row: pd.Series, col: str) -> float | None:
+            value = pd.to_numeric(pd.Series([row.get(col)]), errors="coerce").iloc[0]
+            return float(value) if pd.notna(value) else None
+
+        px, py = _num(previous, FIXATION_X_COL), _num(previous, FIXATION_Y_COL)
+        nx, ny = _num(next_fixation, FIXATION_X_COL), _num(next_fixation, FIXATION_Y_COL)
         rows.append(
             {
-                "saccade_event_index": event[TYPE_INDEX_COL],
-                "delta_x": float(next_x) - float(previous_x),
-                "delta_y": (
-                    float(next_y) - float(previous_y)
-                    if pd.notna(previous_y) and pd.notna(next_y)
-                    else None
-                ),
+                "previous_fixation_event_index": previous[TYPE_INDEX_COL],
+                "next_fixation_event_index": next_fixation[TYPE_INDEX_COL],
+                "previous_fixation_x": px,
+                "previous_fixation_y": py,
+                "next_fixation_x": nx,
+                "next_fixation_y": ny,
+                "delta_x": nx - px if px is not None and nx is not None else None,
+                "delta_y": ny - py if py is not None and ny is not None else None,
+                "saccade_timestamp_ms": run_start,
+                "saccade_duration_ms": interval if between else None,
+                "intermediate_event_count": len(between),
+                "intermediate_saccade_event_count": saccade_events,
+                "transition_status": status,
             }
         )
-    return pd.DataFrame(rows)
+    return pd.DataFrame(rows, columns=columns)
 
 
-def _nearest_fixation_context(sequence: pd.DataFrame, saccade_position: int) -> tuple[pd.Series | None, pd.Series | None, int, int]:
-    previous_events = sequence.loc[: saccade_position - 1]
-    previous_fixations = previous_events.loc[previous_events["_event_type_normalized"] == "fixation"]
-    next_events = sequence.loc[saccade_position + 1 :]
-    next_fixations = next_events.loc[next_events["_event_type_normalized"] == "fixation"]
-
-    previous = previous_fixations.iloc[-1] if not previous_fixations.empty else None
-    next_fixation = next_fixations.iloc[0] if not next_fixations.empty else None
-    ignored_before = 0 if previous is None else int(saccade_position - int(previous.name) - 1)
-    ignored_after = 0 if next_fixation is None else int(int(next_fixation.name) - saccade_position - 1)
-    return previous, next_fixation, ignored_before, ignored_after
+def _saccade_transition_deltas(sequence: pd.DataFrame) -> pd.DataFrame:
+    """delta_x / delta_y of the de-duplicated fixation-to-fixation transitions without tracking
+    loss (one per fixation pair, any run duration) - the same set used for regression detection."""
+    transitions = _fixation_transitions(sequence)
+    transitions = transitions.loc[
+        (transitions["transition_status"] != TRANSITION_TRACKING_LOSS) & transitions["delta_x"].notna()
+    ]
+    return transitions[["delta_x", "delta_y"]].reset_index(drop=True)
 
 
 def _estimate_regression_threshold(
@@ -598,7 +641,13 @@ def _regression_analysis(
             "regression_candidate_rule": "delta_x > 0",
             "same_line_rule": "abs(delta_y) < line_transition_threshold_px",
             "classification_rule": "same_line == True and delta_x > regression_threshold_px",
-            "percentage_rule": "regression_count / total_saccade_count * 100",
+            "unit_of_analysis": (
+                "one row per pair of consecutive fixations; every pair without EyesNotFound between "
+                "the two fixations is classified, whatever the run duration (the "
+                f"{SACCADE_MAX_DURATION_MS:.0f} ms saccade cap applies to saccade metrics only)"
+            ),
+            "percentage_rule": "regression_count / fixation-to-fixation transitions without tracking loss * 100",
+            "duration_rule": "regression duration = the full non-fixation run duration of that transition (uncapped)",
         },
         "parameters": {},
         "threshold_estimation": {},
@@ -634,7 +683,7 @@ def _regression_analysis(
     threshold_warnings: list[str] = []
     if line_transition_threshold_px is None:
         line_transition_threshold_px, line_details, line_warning = _estimate_line_transition_threshold(sequence)
-        line_source = "auto"
+        line_source = "fallback" if line_details.get("method") == "fallback" else "auto"
         if line_warning:
             threshold_warnings.append(line_warning)
     else:
@@ -645,7 +694,7 @@ def _regression_analysis(
         regression_threshold_px, regression_details, regression_warning = _estimate_regression_threshold(
             sequence, line_transition_threshold_px
         )
-        regression_source = "auto"
+        regression_source = "fallback" if regression_details.get("method") == "fallback" else "auto"
         if regression_warning:
             threshold_warnings.append(regression_warning)
     else:
@@ -667,71 +716,58 @@ def _regression_analysis(
         "regression_threshold": regression_details,
     }
 
-    saccades = sequence.loc[sequence["_event_type_normalized"] == "saccade"]
-    total_saccade_count = int(len(saccades))
-    events: list[dict[str, Any]] = []
-    candidate_count = 0
-    same_line_count = 0
-    no_previous_fixation_count = 0
-    no_next_fixation_count = 0
-    missing_neighbor_count = 0
-    missing_coordinate_count = 0
-    ignored_intermediate_event_count = 0
+    # One row per fixation-to-fixation transition (de-duplicated: several saccade fragments
+    # between the same two fixations can no longer count as several saccades/regressions).
+    transitions = _fixation_transitions(sequence)
+    saccade_mask = transitions["transition_status"] == TRANSITION_SACCADE
+    no_loss_mask = transitions["transition_status"] != TRANSITION_TRACKING_LOSS
+    coords_ok = transitions[["delta_x", "delta_y"]].notna().all(axis=1)
+    total_saccade_count = int(saccade_mask.sum())
+    usable = no_loss_mask & coords_ok
+    usable_transition_count = int(usable.sum())
+    events_df = transitions.copy()
+    dy_abs = pd.to_numeric(events_df["delta_y"], errors="coerce").abs()
+    dx = pd.to_numeric(events_df["delta_x"], errors="coerce")
+    events_df["same_line"] = (dy_abs < line_transition_threshold_px).fillna(False)
+    events_df["regression_candidate"] = usable & (dx > 0).fillna(False)
+    events_df["is_regression"] = usable & events_df["same_line"] & (dx > regression_threshold_px).fillna(False)
+    events_df["line_transition_threshold_px"] = float(line_transition_threshold_px)
+    events_df["regression_threshold_px"] = float(regression_threshold_px)
+    candidate_count = int(events_df["regression_candidate"].sum())
+    same_line_count = int((usable & events_df["same_line"]).sum())
+    missing_coordinate_count = int((no_loss_mask & ~coords_ok).sum())
+    status_counts = transitions["transition_status"].value_counts().to_dict()
 
-    for pos, event in saccades.iterrows():
-        previous, next_fixation, ignored_before, ignored_after = _nearest_fixation_context(sequence, int(pos))
-        ignored_intermediate_event_count += ignored_before + ignored_after
+    # Runs above the saccade cap: same-line vs line-change, with their durations.
+    over_cap = events_df.loc[events_df["transition_status"] == TRANSITION_OVER_CAP]
+    line_change = (dy_abs >= line_transition_threshold_px).fillna(False)
+    no_loss = events_df["transition_status"] != TRANSITION_TRACKING_LOSS
 
-        if previous is None:
-            no_previous_fixation_count += 1
-        if next_fixation is None:
-            no_next_fixation_count += 1
-        if previous is None or next_fixation is None:
-            missing_neighbor_count += 1
-            continue
+    def _dur_stats(frame: pd.DataFrame) -> dict[str, Any]:
+        d = pd.to_numeric(frame["saccade_duration_ms"], errors="coerce").dropna()
+        if d.empty:
+            return {"count": 0}
+        return {
+            "count": int(len(d)),
+            "min_ms": float(d.min()),
+            "median_ms": float(d.median()),
+            "p90_ms": float(d.quantile(0.9)),
+            "max_ms": float(d.max()),
+        }
 
-        previous_x = previous.get(FIXATION_X_COL)
-        previous_y = previous.get(FIXATION_Y_COL)
-        next_x = next_fixation.get(FIXATION_X_COL)
-        next_y = next_fixation.get(FIXATION_Y_COL)
-        if pd.isna(previous_x) or pd.isna(previous_y) or pd.isna(next_x) or pd.isna(next_y):
-            missing_coordinate_count += 1
-            continue
+    line_change_runs = int((no_loss & line_change).sum())
+    line_change_over_cap = int((over_cap.index.isin(events_df.index[line_change])).sum())
+    report["saccade_cap"] = {
+        "saccade_max_duration_ms": SACCADE_MAX_DURATION_MS,
+        "over_cap_same_line": _dur_stats(over_cap.loc[~line_change.loc[over_cap.index]]),
+        "over_cap_line_change": _dur_stats(over_cap.loc[line_change.loc[over_cap.index]]),
+        "runs_without_tracking_loss": int(no_loss.sum()),
+        "line_change_runs_without_tracking_loss": line_change_runs,
+        "line_change_over_cap_percentage": (
+            float(line_change_over_cap / line_change_runs * 100) if line_change_runs else None
+        ),
+    }
 
-        delta_x = float(next_x) - float(previous_x)
-        delta_y = float(next_y) - float(previous_y)
-        same_line = abs(delta_y) < line_transition_threshold_px
-        regression_candidate = delta_x > 0
-        is_regression = same_line and delta_x > regression_threshold_px
-        if regression_candidate:
-            candidate_count += 1
-        if same_line:
-            same_line_count += 1
-
-        events.append(
-            {
-                "saccade_event_index": event[TYPE_INDEX_COL],
-                "saccade_timestamp_ms": float(event["_event_timestamp_ms"]),
-                "saccade_duration_ms": float(event["_event_duration_ms"]) if pd.notna(event["_event_duration_ms"]) else None,
-                "previous_fixation_event_index": previous[TYPE_INDEX_COL],
-                "next_fixation_event_index": next_fixation[TYPE_INDEX_COL],
-                "previous_fixation_x": float(previous_x),
-                "previous_fixation_y": float(previous_y),
-                "next_fixation_x": float(next_x),
-                "next_fixation_y": float(next_y),
-                "delta_x": delta_x,
-                "delta_y": delta_y,
-                "same_line": bool(same_line),
-                "regression_candidate": bool(regression_candidate),
-                "is_regression": bool(is_regression),
-                "ignored_intermediate_events_before": ignored_before,
-                "ignored_intermediate_events_after": ignored_after,
-                "line_transition_threshold_px": float(line_transition_threshold_px),
-                "regression_threshold_px": float(regression_threshold_px),
-            }
-        )
-
-    events_df = pd.DataFrame(events)
     if not events_df.empty:
         events_df.to_excel(task_folder / regression_events_file, index=False, engine="openpyxl")
 
@@ -742,15 +778,14 @@ def _regression_analysis(
         regression_durations = pd.Series(dtype="float64")
     report["validation_summary"] = {
         "total_saccade_count": total_saccade_count,
+        "transitions_without_tracking_loss": usable_transition_count,
         "classifiable_saccade_count": int(len(events_df)),
         "regression_candidate_count": candidate_count,
         "same_line_saccade_count": same_line_count,
         "regression_count": int(len(regression_rows)),
-        "missing_neighbor_count": missing_neighbor_count,
-        "no_previous_fixation_count": no_previous_fixation_count,
-        "no_next_fixation_count": no_next_fixation_count,
+        "fixation_transition_count": int(len(transitions)),
+        "transition_status_counts": {str(k): int(v) for k, v in status_counts.items()},
         "missing_coordinate_count": missing_coordinate_count,
-        "ignored_intermediate_event_count": ignored_intermediate_event_count,
         "raw_rows_used_for_sequence": sequence.attrs.get("raw_rows_used_for_sequence"),
         "event_sequence_count": sequence.attrs.get("event_sequence_count"),
         "duplicate_rows_collapsed_count": sequence.attrs.get("duplicate_rows_collapsed_count"),
@@ -760,7 +795,9 @@ def _regression_analysis(
     }
     report["metrics"] = {
         "regression_count": int(len(regression_rows)),
-        "regression_percentage": float(len(regression_rows) / total_saccade_count * 100) if total_saccade_count else None,
+        "regression_percentage": (
+            float(len(regression_rows) / usable_transition_count * 100) if usable_transition_count else None
+        ),
         "mean_regression_distance": (
             float(pd.to_numeric(regression_rows["delta_x"], errors="coerce").dropna().mean())
             if "delta_x" in regression_rows.columns and not regression_rows.empty
@@ -882,7 +919,8 @@ def run_task_level_eye_tracking_analysis(
             "EyesNotFound is treated as tracking loss and is not validity-filtered away.",
             "Pupil means exclude invalid samples and EyesNotFound rows when those columns are available.",
             "Pupil diameter variability is the standard deviation of the synchronized per-sample left/right pupil average after validity filtering.",
-            "Regression detection uses Hebrew right-to-left reading direction, neighboring fixation transitions, same-line filtering by delta_y, and positive delta_x above the configured threshold.",
+            "Saccades are consolidated per fixation pair: the whole non-fixation run between two consecutive fixations is one saccade if it has no EyesNotFound and lasts <= 100 ms; otherwise it is not a saccade (EyesNotFound / Unclassified).",
+            "Regression detection iterates over fixation-to-fixation transitions without tracking loss (one row per pair, any run duration), Hebrew right-to-left reading direction, same-line filtering by delta_y, and positive delta_x above the configured threshold.",
         ],
         "not_implemented_without_defined_parameters": [
             "Extreme pupil outlier removal",
@@ -1010,6 +1048,7 @@ def run_task_level_eye_tracking_analysis(
         "total_samples": int(len(df)),
     }
     qc["regression_validation"] = regression_report.get("validation_summary", {})
+    qc["saccade_cap"] = regression_report.get("saccade_cap", {})
     qc["regression_parameters"] = regression_report.get("parameters", {})
     qc["regression_metrics"] = regression_metrics
     qc["regression_events_rows"] = int(len(regression_events))
