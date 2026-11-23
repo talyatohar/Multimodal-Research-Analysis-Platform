@@ -3,7 +3,8 @@
   "task_start_utc": "2026-06-09T08:05:00",
   "task_end_utc": "2026-06-09T08:06:00",
   "task_duration_ms": 60000,
-  "fixation_onset_ms": 10000,
-  "fixation_duration_ms": 3000,
-  "story_duration_ms": 57000
+  "eyes_open_onset_ms": 10000,
+  "eyes_open_duration_ms": 30000,
+  "eyes_close_onset_ms": 40000,
+  "eyes_close_duration_ms": 30000
 }

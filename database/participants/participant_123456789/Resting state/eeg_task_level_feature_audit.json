@@ -13,7 +13,7 @@
       "feature": "mean_frontal_theta_power",
       "present": true,
       "status": "numeric",
-      "value": 0.02775907407461907,
+      "value": 0.02782028331192599,
       "source_file": "database\\participants\\participant_123456789\\Resting state\\table_3_eeg_data.xlsx"
     },
     {
@@ -27,14 +27,14 @@
       "feature": "theta_power_variability",
       "present": true,
       "status": "numeric",
-      "value": 0.0007021995849055752,
+      "value": 0.0007481910187707835,
       "source_file": "database\\participants\\participant_123456789\\Resting state\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "mean_occipital_alpha_power",
       "present": true,
       "status": "numeric",
-      "value": 0.09602463744385603,
+      "value": 0.09599173607278272,
       "source_file": "database\\participants\\participant_123456789\\Resting state\\table_3_eeg_data.xlsx"
     },
     {
@@ -48,14 +48,14 @@
       "feature": "alpha_power_variability",
       "present": true,
       "status": "numeric",
-      "value": 0.003884909737147364,
+      "value": 0.004157360715747798,
       "source_file": "database\\participants\\participant_123456789\\Resting state\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "mean_theta_alpha_ratio",
       "present": true,
       "status": "numeric",
-      "value": 0.289082831381158,
+      "value": 0.2898195662471625,
       "source_file": "database\\participants\\participant_123456789\\Resting state\\table_3_eeg_data.xlsx"
     },
     {
@@ -69,14 +69,14 @@
       "feature": "theta_alpha_ratio_variability",
       "present": true,
       "status": "numeric",
-      "value": 0.180750553401838,
+      "value": 0.1799677896451677,
       "source_file": "database\\participants\\participant_123456789\\Resting state\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "mean_occipital_temporal_theta_plv",
       "present": true,
       "status": "numeric",
-      "value": 0.4149808110302724,
+      "value": 0.406200857247675,
       "source_file": "database\\participants\\participant_123456789\\Resting state\\table_3_eeg_data.xlsx"
     },
     {
@@ -90,14 +90,14 @@
       "feature": "OT_plv_variability",
       "present": true,
       "status": "numeric",
-      "value": 0.1132273284166821,
+      "value": 0.1211197285467144,
       "source_file": "database\\participants\\participant_123456789\\Resting state\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "mean_temporal_frontal_theta_plv",
       "present": true,
       "status": "numeric",
-      "value": 0.5812088464259387,
+      "value": 0.5818540010896864,
       "source_file": "database\\participants\\participant_123456789\\Resting state\\table_3_eeg_data.xlsx"
     },
     {
@@ -111,14 +111,14 @@
       "feature": "TF_plv_variability",
       "present": true,
       "status": "numeric",
-      "value": 0.4520304574852596,
+      "value": 0.4503101211170538,
       "source_file": "database\\participants\\participant_123456789\\Resting state\\table_3_eeg_data.xlsx"
     },
     {
       "feature": "mean_occipital_frontal_theta_plv",
       "present": true,
       "status": "numeric",
-      "value": 0.3876968180837432,
+      "value": 0.3783389516377857,
       "source_file": "database\\participants\\participant_123456789\\Resting state\\table_3_eeg_data.xlsx"
     },
     {
@@ -132,7 +132,7 @@
       "feature": "OF_plv_variability",
       "present": true,
       "status": "numeric",
-      "value": 0.1155911756924154,
+      "value": 0.1227517234693974,
       "source_file": "database\\participants\\participant_123456789\\Resting state\\table_3_eeg_data.xlsx"
     }
   ]

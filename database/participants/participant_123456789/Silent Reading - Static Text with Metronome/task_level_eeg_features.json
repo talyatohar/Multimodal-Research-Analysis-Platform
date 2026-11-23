@@ -5,16 +5,16 @@
   "alpha_power_variability": 0.004057322654327422,
   "mean_theta_alpha_ratio": 1.064534813274124,
   "theta_alpha_ratio_variability": 0.5138616513358024,
-  "theta_power_change_from_baseline": 0.031887454726732864,
-  "alpha_power_change_from_baseline": -0.03999403322350105,
-  "theta_alpha_ratio_change_from_baseline": 0.7754519818929659,
+  "theta_power_change_from_baseline": 0.03182624548942595,
+  "alpha_power_change_from_baseline": -0.039961131852427736,
+  "theta_alpha_ratio_change_from_baseline": 0.7747152470269614,
   "mean_occipital_temporal_theta_plv": 0.43937503414860657,
   "OT_plv_variability": 0.1980370047432962,
   "mean_temporal_frontal_theta_plv": 0.5849757208799632,
   "TF_plv_variability": 0.4428658393104141,
   "mean_occipital_frontal_theta_plv": 0.3590012653735165,
   "OF_plv_variability": 0.24027400965065637,
-  "OT_plv_change_from_baseline": 0.02439422311833417,
-  "TF_plv_change_from_baseline": 0.0037668744540244603,
-  "OF_plv_change_from_baseline": -0.028695552710226724
+  "OT_plv_change_from_baseline": 0.03317417690093161,
+  "TF_plv_change_from_baseline": 0.0031217197902767557,
+  "OF_plv_change_from_baseline": -0.019337686264269238
 }

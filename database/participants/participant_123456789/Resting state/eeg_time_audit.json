@@ -4,10 +4,12 @@
   "eeg_recording_start_utc_raw": "2026-06-09T08:04:56+00:00",
   "eeg_recording_end_utc_raw": "2026-06-09T08:06:03+00:00",
   "eeg_clock_offset_seconds": 0.0,
-  "eeg_clock_offset_source": "manual",
+  "eeg_clock_offset_source": "resting_state_triggers",
   "eeg_recording_start_utc_adjusted": "2026-06-09T08:04:56+00:00",
   "eeg_recording_end_utc_adjusted": "2026-06-09T08:06:03+00:00",
   "raw_overlap_seconds": 60.0,
   "adjusted_overlap_seconds": 60.0,
-  "warnings": []
+  "warnings": [
+    "EEG clock offset derived from resting-state EyesOpen/EyesClose hardware trigger markers (0.000s), overriding the manual clock offset."
+  ]
 }

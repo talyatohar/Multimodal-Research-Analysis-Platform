@@ -527,7 +527,7 @@
       "recording_end_time": "2026-06-09T08:06:03+00:00",
       "duration_seconds": 67.0,
       "sample_count": 33500,
-      "markers_count": 2,
+      "markers_count": 4,
       "markers": [
         {
           "sample": "0",
@@ -536,6 +536,22 @@
           "value": null,
           "datetime": "2026-06-09T11:04:56.000000+03:00",
           "comment": "Synthetic recording start"
+        },
+        {
+          "sample": "2000",
+          "type": "Stimulus",
+          "code": "S",
+          "value": "2",
+          "datetime": "2026-06-09T11:05:00.000000+03:00",
+          "comment": "Synthetic eyes open"
+        },
+        {
+          "sample": "17000",
+          "type": "Stimulus",
+          "code": "S",
+          "value": "4",
+          "datetime": "2026-06-09T11:05:30.000000+03:00",
+          "comment": "Synthetic eyes closed"
         },
         {
           "sample": "33499",

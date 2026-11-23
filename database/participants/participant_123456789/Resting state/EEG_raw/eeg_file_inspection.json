@@ -15,7 +15,7 @@
       },
       "marker_file": {
         "path": "database\\participants\\participant_123456789\\Resting state\\EEG_raw\\Resting_state.bvrm",
-        "size_bytes": 312
+        "size_bytes": 463
       },
       "impedance_file": {
         "path": "database\\participants\\participant_123456789\\Resting state\\EEG_raw\\Resting_state.bvri",
@@ -24,7 +24,7 @@
       "file_sizes_bytes": {
         "header": 50597,
         "data": 9648000,
-        "marker": 312,
+        "marker": 463,
         "impedance": 485
       },
       "number_of_channels": 72,

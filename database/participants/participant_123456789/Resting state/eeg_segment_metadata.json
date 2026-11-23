@@ -17,5 +17,7 @@
   "eeg_end_sample_index": 31999,
   "sampling_rate_hz": 500.0,
   "sample_count": 33500,
-  "warnings": []
+  "warnings": [
+    "EEG clock offset derived from resting-state EyesOpen/EyesClose hardware trigger markers (0.000s), overriding the manual clock offset."
+  ]
 }

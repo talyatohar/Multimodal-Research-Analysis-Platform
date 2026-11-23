@@ -6,9 +6,10 @@ SessionStartDateTimeUtc: 09/06/2026 08:04:50
 
 *** LogFrame Start ***
 Procedure: Resting state
-FixationStart.OnsetTime: 10000
-FixationStart.OnsetToOnsetTime: 3000
-SixationOpenS.OnsetToOnsetTime: 57000
+FixationOpen.OnsetTime: 10000
+FixationOpen.Duration: 30000
+FixationClose.OnsetTime: 40000
+FixationClose.Duration: 30000
 TaskName: Resting state
 SyntheticDemo: TRUE
 *** LogFrame End ***

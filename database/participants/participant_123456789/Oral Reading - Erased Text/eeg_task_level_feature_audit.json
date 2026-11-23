@@ -20,7 +20,7 @@
       "feature": "theta_power_change_from_baseline",
       "present": true,
       "status": "numeric",
-      "value": 0.05984715271919316,
+      "value": 0.05978594348188625,
       "source_file": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
     },
     {
@@ -41,7 +41,7 @@
       "feature": "alpha_power_change_from_baseline",
       "present": true,
       "status": "numeric",
-      "value": -0.04632895144377051,
+      "value": -0.04629605007269719,
       "source_file": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
     },
     {
@@ -62,7 +62,7 @@
       "feature": "theta_alpha_ratio_change_from_baseline",
       "present": true,
       "status": "numeric",
-      "value": 1.473770926058904,
+      "value": 1.473034191192899,
       "source_file": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
     },
     {
@@ -83,7 +83,7 @@
       "feature": "OT_plv_change_from_baseline",
       "present": true,
       "status": "numeric",
-      "value": -0.1784802481206851,
+      "value": -0.1697002943380877,
       "source_file": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
     },
     {
@@ -104,7 +104,7 @@
       "feature": "TF_plv_change_from_baseline",
       "present": true,
       "status": "numeric",
-      "value": -0.01378552873949579,
+      "value": -0.01443068340324349,
       "source_file": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
     },
     {
@@ -125,7 +125,7 @@
       "feature": "OF_plv_change_from_baseline",
       "present": true,
       "status": "numeric",
-      "value": -0.1833433938752121,
+      "value": -0.1739855274292546,
       "source_file": "database\\participants\\participant_123456789\\Oral Reading - Erased Text\\table_3_eeg_data.xlsx"
     },
     {

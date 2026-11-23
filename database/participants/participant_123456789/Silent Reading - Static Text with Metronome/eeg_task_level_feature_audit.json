@@ -20,7 +20,7 @@
       "feature": "theta_power_change_from_baseline",
       "present": true,
       "status": "numeric",
-      "value": 0.03188745472673286,
+      "value": 0.03182624548942595,
       "source_file": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
     },
     {
@@ -41,7 +41,7 @@
       "feature": "alpha_power_change_from_baseline",
       "present": true,
       "status": "numeric",
-      "value": -0.03999403322350105,
+      "value": -0.03996113185242774,
       "source_file": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
     },
     {
@@ -62,7 +62,7 @@
       "feature": "theta_alpha_ratio_change_from_baseline",
       "present": true,
       "status": "numeric",
-      "value": 0.7754519818929659,
+      "value": 0.7747152470269614,
       "source_file": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
     },
     {
@@ -83,7 +83,7 @@
       "feature": "OT_plv_change_from_baseline",
       "present": true,
       "status": "numeric",
-      "value": 0.02439422311833417,
+      "value": 0.03317417690093161,
       "source_file": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
     },
     {
@@ -104,7 +104,7 @@
       "feature": "TF_plv_change_from_baseline",
       "present": true,
       "status": "numeric",
-      "value": 0.00376687445402446,
+      "value": 0.003121719790276756,
       "source_file": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
     },
     {
@@ -125,7 +125,7 @@
       "feature": "OF_plv_change_from_baseline",
       "present": true,
       "status": "numeric",
-      "value": -0.02869555271022672,
+      "value": -0.01933768626426924,
       "source_file": "database\\participants\\participant_123456789\\Silent Reading - Static Text with Metronome\\table_3_eeg_data.xlsx"
     },
     {
