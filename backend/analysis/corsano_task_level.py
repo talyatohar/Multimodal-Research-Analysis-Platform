@@ -56,7 +56,7 @@ def _parse_task_window(task_folder: Path) -> tuple[pd.Timestamp, pd.Timestamp] |
     """
     Task window on the Corsano clock. E-Prime times are on the E-Prime PC clock, while
     Corsano timestamps follow real (network) time, which matches the EEG PC clock
-    (verified on participant 211: rest wrist stillness and oral-reading HR line up only
+    (checked on pilot data: rest wrist stillness and oral-reading HR line up only
     after shifting). So the window is shifted by the task's effective EEG clock offset
     (manual session offset for reading tasks, trigger-derived for Resting state).
     No EEG offset available -> no shift.
